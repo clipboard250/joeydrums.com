@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Joey Interrante | Tampa Bay Drummer</title>
+    <meta name="description" content="Book Joey Interrante for your next gig. Tampa Bay drummer available for live shows, session work, and events.">
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://joeydrums.com/book.html">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='3' y='26' font-family='Arial Black,Arial' font-weight='900' font-size='26' fill='%23e63946'%3EJ%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #e63946;
+            --red-dim: rgba(230,57,70,0.15);
+            --red-border: rgba(230,57,70,0.3);
+            --bg: #080808;
+            --bg-card: #0f0f0f;
+            --text: #f0f0f0;
+            --text-mid: #888;
+            --text-dim: #444;
+            --border: rgba(255,255,255,0.06);
+            --input-border: rgba(255,255,255,0.12);
+            --input-focus: rgba(230,57,70,0.5);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Oswald', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 40% at 15% 0%, rgba(230,57,70,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 30% at 85% 100%, rgba(180,30,40,0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 4rem 2.5rem 6rem;
+        }
+
+        /* BACK LINK */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-bottom: 3rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--red); }
+
+        /* HEADER */
+        .page-header { margin-bottom: 3rem; animation: fadeUp 0.8s ease both; }
+        .name-first {
+            display: block;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1;
+            color: var(--text);
+            text-transform: uppercase;
+        }
+        .name-last {
+            display: block;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1;
+            color: var(--red);
+            text-transform: uppercase;
+        }
+        .page-sub {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.8rem;
+        }
+        .page-sub::before {
+            content: '';
+            display: block;
+            width: 2rem;
+            height: 2px;
+            background: var(--red);
+            flex-shrink: 0;
+        }
+        .page-sub-text {
+            font-size: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--text-mid);
+        }
+
+        /* SECTION LABEL */
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* FORM */
+        .booking-form {
+            animation: fadeUp 0.8s 0.1s ease both;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .field label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.55rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        .field .required {
+            color: var(--red);
+            margin-left: 2px;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            background: var(--bg-card);
+            border: 1px solid var(--input-border);
+            color: var(--text);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            padding: 0.75rem 1rem;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.2s;
+            -webkit-appearance: none;
+            border-radius: 0;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: var(--text-dim);
+            font-weight: 300;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--input-focus);
+        }
+
+        .field select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23444' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .field select option {
+            background: #111;
+            color: var(--text);
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.5;
+        }
+
+        /* SUBMIT */
+        .submit-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .submit-note {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        .submit-btn {
+            background: var(--red);
+            border: none;
+            color: #fff;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            padding: 0.9rem 2.5rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .submit-btn:hover { background: #c0303b; }
+        .submit-btn:active { transform: scale(0.98); }
+
+        /* DIRECT CONTACT NOTE */
+        .direct-note {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            animation: fadeUp 0.8s 0.2s ease both;
+        }
+
+        .direct-note p {
+            font-size: 0.7rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 0.8rem;
+        }
+
+        .direct-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .direct-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .direct-link:hover { color: var(--red); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 520px) {
+            .page { padding: 3rem 1.5rem 5rem; }
+            .field-row { grid-template-columns: 1fr; gap: 0; }
+            .submit-row { flex-direction: column; align-items: flex-start; }
+            .submit-btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <a class="back-link" href="index.html">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to Joey's page
+    </a>
+
+    <div class="page-header">
+        <span class="name-first">Book</span>
+        <span class="name-last">Joey</span>
+        <div class="page-sub">
+            <span class="page-sub-text">Gig Inquiry &nbsp;&middot;&nbsp; Tampa Bay</span>
+        </div>
+    </div>
+
+    <p class="section-label">Tell us about your gig</p>
+
+    <form class="booking-form" action="https://formspree.io/f/meepqeoo" method="POST">
+
+        <!-- Hidden fields -->
+        <input type="hidden" name="_subject" value="New Gig Booking Inquiry — joeydrums.com">
+        <input type="hidden" name="_cc" value="interrantej@gmail.com">
+        <input type="hidden" name="_next" value="https://joeydrums.com/thank-you.html">
+
+        <div class="field-row">
+            <div class="field">
+                <label for="name">Your Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" placeholder="First and last" required autocomplete="name">
+            </div>
+            <div class="field">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+        </div>
+
+        <div class="field-row">
+            <div class="field">
+                <label for="phone">Phone <span style="color:var(--text-dim);font-size:0.5rem;">(optional)</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="(813) 555-0000" autocomplete="tel">
+            </div>
+            <div class="field">
+                <label for="gig_date">Date of Gig <span class="required">*</span></label>
+                <input type="date" id="gig_date" name="gig_date" required>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="gig_type">Type of Gig <span class="required">*</span></label>
+            <select id="gig_type" name="gig_type" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="Live Bar / Venue Show">Live Bar / Venue Show</option>
+                <option value="Private Event">Private Event</option>
+                <option value="Corporate Event">Corporate Event</option>
+                <option value="Wedding / Reception">Wedding / Reception</option>
+                <option value="Festival / Outdoor Event">Festival / Outdoor Event</option>
+                <option value="Session / Recording">Session / Recording</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label for="venue">Venue or Location <span class="required">*</span></label>
+            <input type="text" id="venue" name="venue" placeholder="Name and city" required>
+        </div>
+
+        <div class="field">
+            <label for="message">Details</label>
+            <textarea id="message" name="message" placeholder="Hours, set length, pay, other musicians, anything else Joey should know..."></textarea>
+        </div>
+
+        <div class="submit-row">
+            <span class="submit-note">Joey will reply within 24 hrs</span>
+            <button type="submit" class="submit-btn">Send Inquiry &nbsp;&#8594;</button>
+        </div>
+
+    </form>
+
+    <div class="direct-note">
+        <p>Prefer to reach out directly?</p>
+        <div class="direct-links" id="directLinks">
+            <a class="direct-link" href="tel:+18133268800">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                813.326.8800
+            </a>
+            <a class="direct-link" id="emailLink" href="mailto:interrantej@gmail.com?subject=Gig Inquiry">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                interrantej@gmail.com
+            </a>
+        </div>
+    </div>
+
+</div>
+<script>
+// On mobile show SMS option as primary direct contact
+(function() {
+    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        var links = document.getElementById('directLinks');
+        var smsLink = document.createElement('a');
+        smsLink.className = 'direct-link';
+        smsLink.href = "sms:+18133268800&body=Hi Joey, I'd like to book you for a gig.";
+        smsLink.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Text Joey';
+        links.insertBefore(smsLink, links.firstChild);
+    }
+})();
+</script>
+</body>
+</html>
