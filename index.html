@@ -27,9 +27,9 @@
             --bg-card: #0f0f0f;
             --bg-card-hover: #141414;
             --text: #f0f0f0;
-            --text-mid: #888;
-            --text-dim: #444;
-            --border: rgba(255,255,255,0.06);
+            --text-mid: #999;
+            --text-dim: #555;
+            --border: rgba(255,255,255,0.08);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -54,44 +54,48 @@
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse 60% 40% at 15% 0%, rgba(230,57,70,0.07) 0%, transparent 70%),
-                radial-gradient(ellipse 40% 30% at 85% 100%, rgba(180,30,40,0.05) 0%, transparent 70%);
+                radial-gradient(ellipse 60% 40% at 15% 0%, rgba(230,57,70,0.09) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 30% at 85% 100%, rgba(180,30,40,0.06) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
         .page {
             position: relative;
             z-index: 1;
-            max-width: 960px;
+            max-width: 1020px;
             margin: 0 auto;
-            padding: 4rem 2.5rem 6rem;
+            padding: 4rem 3rem 6rem;
         }
 
-        /* HEADER */
+        /* ── HEADER ── */
         header {
-            margin-bottom: 4rem;
+            margin-bottom: 4.5rem;
             animation: fadeUp 0.8s ease both;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: auto auto;
+            gap: 0 3rem;
+            align-items: start;
         }
+        .header-left { grid-column: 1; grid-row: 1 / 3; }
+        .header-right-top { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-end; padding-top: 0.5rem; }
+        .header-right-bottom { grid-column: 2; grid-row: 2; align-self: end; }
+
         .name-first {
             display: block;
-            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            font-size: clamp(4rem, 9vw, 7.5rem);
             font-weight: 700;
-            letter-spacing: -1px;
-            line-height: 1;
+            letter-spacing: -2px;
+            line-height: 0.95;
             color: var(--text);
             text-transform: uppercase;
         }
         .name-last {
             display: block;
-            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            font-size: clamp(4rem, 9vw, 7.5rem);
             font-weight: 700;
-            letter-spacing: -1px;
-            line-height: 1;
+            letter-spacing: -2px;
+            line-height: 0.95;
             color: var(--red);
             text-transform: uppercase;
         }
@@ -99,31 +103,25 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-top: 0.8rem;
+            margin-top: 1rem;
         }
         .title-bar::before {
             content: '';
             display: block;
-            width: 2rem;
-            height: 2px;
+            width: 2.5rem;
+            height: 3px;
             background: var(--red);
             flex-shrink: 0;
         }
         .role-text {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             font-weight: 300;
-            letter-spacing: 6px;
+            letter-spacing: 7px;
             text-transform: uppercase;
             color: var(--text-mid);
         }
-        .header-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            align-items: flex-end;
-        }
         .header-link {
-            font-size: 0.65rem;
+            font-size: 0.72rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--text-dim);
@@ -131,30 +129,52 @@
             transition: color 0.2s;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.5rem;
         }
         .header-link:hover { color: var(--red); }
 
-        /* SECTION LABEL */
+        /* ── HERO PHOTO ── */
+        .hero-photo {
+            width: 280px;
+            height: 360px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            filter: grayscale(15%);
+            transition: filter 0.4s ease;
+        }
+        .hero-photo:hover img { filter: grayscale(0%); }
+        .hero-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 55%, rgba(8,8,8,0.5) 100%);
+            pointer-events: none;
+        }
+
+        /* ── SECTION LABEL ── */
         .section-label {
             font-family: 'Space Mono', monospace;
-            font-size: 0.6rem;
+            font-size: 0.65rem;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--text-dim);
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
             gap: 0.8rem;
         }
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
+        .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-        /* WEEK NAV */
+        /* ── WEEK NAV ── */
         .week-nav {
             display: flex;
             align-items: center;
@@ -164,44 +184,41 @@
         }
         .week-range {
             font-family: 'Space Mono', monospace;
-            font-size: 0.65rem;
+            font-size: 0.8rem;
             letter-spacing: 2px;
             color: var(--text-mid);
         }
         .week-count {
             font-family: 'Space Mono', monospace;
-            font-size: 0.55rem;
+            font-size: 0.65rem;
             letter-spacing: 2px;
-            color: rgba(230,57,70,0.6);
-            margin-top: 0.2rem;
+            color: rgba(230,57,70,0.7);
+            margin-top: 0.25rem;
         }
-        .week-arrows { display: flex; gap: 0.4rem; }
+        .week-arrows { display: flex; gap: 0.5rem; }
         .week-btn {
             background: none;
             border: 1px solid var(--border);
             color: var(--text-dim);
             font-family: 'Oswald', sans-serif;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            padding: 0.4rem 0.9rem;
+            padding: 0.5rem 1.1rem;
             cursor: pointer;
             transition: all 0.2s;
         }
         .week-btn:hover { border-color: var(--red-border); color: var(--red); }
         .week-btn:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
 
-        /* SHOWS */
-        .shows-section {
-            margin-bottom: 4rem;
-            animation: fadeUp 0.8s 0.15s ease both;
-        }
+        /* ── SHOWS ── */
+        .shows-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.15s ease both; }
         .gig-list { display: flex; flex-direction: column; }
         .gig {
             display: grid;
-            grid-template-columns: 64px 1fr 120px;
-            gap: 0 1.5rem;
-            padding: 1.1rem 0;
+            grid-template-columns: 72px 1fr 130px;
+            gap: 0 1.8rem;
+            padding: 1.3rem 0;
             border-bottom: 1px solid var(--border);
             align-items: center;
             position: relative;
@@ -210,7 +227,7 @@
         .gig::before {
             content: '';
             position: absolute;
-            left: -2.5rem;
+            left: -3rem;
             top: 0; bottom: 0;
             width: 2px;
             background: var(--red);
@@ -223,7 +240,7 @@
         .gig-month {
             display: block;
             font-family: 'Space Mono', monospace;
-            font-size: 0.55rem;
+            font-size: 0.6rem;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--red);
@@ -232,14 +249,14 @@
         }
         .gig-day {
             display: block;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 700;
             line-height: 1;
             color: var(--text);
         }
-        .gig-info { display: flex; flex-direction: column; gap: 0.2rem; }
+        .gig-info { display: flex; flex-direction: column; gap: 0.3rem; }
         .gig-act {
-            font-size: 1rem;
+            font-size: 1.15rem;
             font-weight: 600;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -250,17 +267,16 @@
             gap: 0.5rem;
             flex-wrap: wrap;
         }
-        .gig-feat { font-weight: 300; color: var(--text-mid); font-size: 0.9rem; }
+        .gig-feat { font-weight: 300; color: var(--text-mid); font-size: 1rem; }
         .gig-sublabel {
             font-family: 'Space Mono', monospace;
-            font-size: 0.52rem;
+            font-size: 0.58rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--text-dim);
         }
-        .gig-venue-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
         .gig-venue {
-            font-size: 0.72rem;
+            font-size: 0.8rem;
             font-weight: 300;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -269,22 +285,22 @@
             transition: color 0.2s;
             display: flex;
             align-items: center;
-            gap: 0.35rem;
+            gap: 0.4rem;
         }
         .gig-venue:hover { color: var(--red); }
-        .gig-venue svg { width: 11px; height: 11px; opacity: 0.5; flex-shrink: 0; transition: opacity 0.2s; }
+        .gig-venue svg { width: 12px; height: 12px; opacity: 0.5; flex-shrink: 0; transition: opacity 0.2s; }
         .gig-venue:hover svg { opacity: 1; }
         .gig-time {
             font-family: 'Space Mono', monospace;
-            font-size: 0.58rem;
+            font-size: 0.65rem;
             color: var(--text-dim);
             letter-spacing: 1px;
         }
 
-        /* PHOTO */
+        /* ── PHOTO THUMBNAIL ── */
         .gig-photo {
-            width: 120px;
-            height: 72px;
+            width: 130px;
+            height: 80px;
             overflow: hidden;
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -298,40 +314,23 @@
             transition: transform 0.3s ease;
         }
         .gig:hover .gig-photo img { transform: scale(1.05); }
-        .gig-photo-ph {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-        }
-        .gig-photo-ph svg { opacity: 0.15; }
-        .gig-photo-ph span {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.42rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--text-dim);
-        }
 
-        /* TODAY BADGE */
+        /* ── TODAY BADGE ── */
         .today-badge {
             display: inline-block;
             font-family: 'Space Mono', monospace;
-            font-size: 0.48rem;
+            font-size: 0.52rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             background: var(--red);
             color: #fff;
-            padding: 2px 6px;
+            padding: 3px 7px;
             line-height: 1.6;
         }
 
         .no-shows {
             padding: 3rem 0;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 300;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -339,41 +338,37 @@
             border-top: 1px solid var(--border);
         }
 
-        /* LINKS */
+        /* ── LINKS ── */
         .links-section { animation: fadeUp 0.8s 0.25s ease both; }
         .link-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 0.4rem;
-            margin-bottom: 0.4rem;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
         }
         .link-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.9rem 1.2rem;
+            padding: 1rem 1.3rem;
             background: var(--bg-card);
             border: 1px solid var(--border);
             text-decoration: none;
             color: var(--text);
             transition: all 0.25s;
         }
-        .link-item:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--red-border);
-            transform: translateX(3px);
-        }
-        .link-item-left { display: flex; align-items: center; gap: 0.8rem; }
-        .link-icon { width: 16px; height: 16px; color: var(--text-dim); flex-shrink: 0; transition: color 0.25s; }
+        .link-item:hover { background: var(--bg-card-hover); border-color: var(--red-border); transform: translateX(3px); }
+        .link-item-left { display: flex; align-items: center; gap: 0.9rem; }
+        .link-icon { width: 18px; height: 18px; color: var(--text-dim); flex-shrink: 0; transition: color 0.25s; }
         .link-item:hover .link-icon { color: var(--red); }
-        .link-name { font-size: 0.8rem; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; }
-        .link-arrow { font-size: 0.85rem; color: var(--text-dim); transition: color 0.25s; }
+        .link-name { font-size: 0.9rem; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; }
+        .link-arrow { font-size: 1rem; color: var(--text-dim); transition: color 0.25s; }
         .link-item:hover .link-arrow { color: var(--red); }
         .studio-cta {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.2rem 1.5rem;
+            padding: 1.3rem 1.6rem;
             background: linear-gradient(135deg, rgba(230,57,70,0.08), rgba(230,57,70,0.04));
             border: 1px solid var(--red-border);
             text-decoration: none;
@@ -381,12 +376,12 @@
             transition: all 0.25s;
         }
         .studio-cta:hover { background: rgba(230,57,70,0.14); border-color: rgba(230,57,70,0.5); transform: translateX(3px); }
-        .studio-left { display: flex; flex-direction: column; gap: 0.2rem; }
-        .studio-name { font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
-        .studio-sub { font-size: 0.65rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--text-mid); }
-        .studio-arrow { color: var(--red); font-size: 1.1rem; }
+        .studio-left { display: flex; flex-direction: column; gap: 0.25rem; }
+        .studio-name { font-size: 0.95rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+        .studio-sub { font-size: 0.72rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--text-mid); }
+        .studio-arrow { color: var(--red); font-size: 1.2rem; }
 
-        /* FOOTER */
+        /* ── FOOTER ── */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -398,68 +393,51 @@
         }
         .footer-phone {
             font-family: 'Space Mono', monospace;
-            font-size: 0.65rem;
+            font-size: 0.72rem;
             color: var(--text-dim);
             letter-spacing: 2px;
             text-decoration: none;
             transition: color 0.2s;
         }
         .footer-phone:hover { color: var(--text-mid); }
-        .footer-note { font-size: 0.6rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
+        .footer-note { font-size: 0.68rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
 
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(16px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* HERO PHOTO */
-        .hero-photo {
-            width: 220px;
-            height: 280px;
-            flex-shrink: 0;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            position: relative;
-        }
-        .hero-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
-            filter: grayscale(20%);
-            transition: filter 0.3s ease;
-        }
-        .hero-photo:hover img { filter: grayscale(0%); }
-        .hero-photo::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent 60%, rgba(8,8,8,0.4) 100%);
-            pointer-events: none;
-        }
+        /* ── RESPONSIVE ── */
+        @media (max-width: 760px) {
+            .page { padding: 2.5rem 1.5rem 5rem; }
 
-        /* RESPONSIVE */
-        @media (max-width: 680px) {
-            .page { padding: 3rem 1.5rem 5rem; }
-            .gig { grid-template-columns: 52px 1fr; }
+            header {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .header-right-top {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            .hero-photo {
+                width: 100%;
+                height: 220px;
+            }
+            .hero-photo img { object-position: center 25%; }
+
+            .gig { grid-template-columns: 58px 1fr; }
             .gig-photo { display: none; }
-            .gig-day { font-size: 1.6rem; }
-            .gig-act { font-size: 1rem; }
-            .gig-venue { font-size: 0.75rem; }
-            .gig-time { font-size: 0.65rem; }
-            .gig-sublabel { font-size: 0.58rem; }
-            .week-range { font-size: 0.7rem; }
-            .week-count { font-size: 0.62rem; }
-            .week-btn { font-size: 0.65rem; padding: 0.5rem 1rem; }
-            .section-label { font-size: 0.65rem; }
-            .role-text { font-size: 0.8rem; }
-            .link-name { font-size: 0.85rem; }
-            header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-            .header-links { align-items: flex-start; flex-direction: row; gap: 1.5rem; }
-            .header-link { font-size: 0.72rem; }
-            .hero-photo { width: 100%; height: 200px; }
-            .hero-photo img { object-position: center 20%; }
+            .gig-day { font-size: 1.8rem; }
+            .gig-act { font-size: 1.1rem; }
+            .gig-feat { font-size: 0.95rem; }
+            .gig-venue { font-size: 0.8rem; }
+            .gig-time { font-size: 0.68rem; }
+            .week-range { font-size: 0.78rem; }
+            .week-count { font-size: 0.65rem; }
+            .week-btn { font-size: 0.68rem; padding: 0.55rem 1rem; }
+            .link-name { font-size: 0.9rem; }
             .link-grid { grid-template-columns: 1fr; }
             footer { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
         }
@@ -469,27 +447,27 @@
 <div class="page">
 
     <header>
-        <div>
-            <div class="name-block">
-                <span class="name-first">Joey</span>
-                <span class="name-last">Interrante</span>
-            </div>
+        <div class="header-left">
+            <span class="name-first">Joey</span>
+            <span class="name-last">Interrante</span>
             <div class="title-bar">
                 <span class="role-text">Drummer &nbsp;&middot;&nbsp; Tampa Bay</span>
             </div>
         </div>
-        <div class="header-links">
-            <a class="header-link" id="bookBtnHeader" href="sms:+18133268800&body=Hi Joey, I'd like to book you for a gig.%0AMy name:%0ADate:%0AVenue:">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="header-right-top">
+            <a class="header-link" href="book.html">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Book a Gig
             </a>
             <a class="header-link" href="https://hippocketstudios.com" target="_blank" rel="noopener">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 Hip Pocket Studios
             </a>
         </div>
-        <div class="hero-photo">
-            <img src="assets/joey_hero_tal_9-16.jpg" alt="Joey Interrante, professional drummer based in Tampa Bay">
+        <div class="header-right-bottom">
+            <div class="hero-photo">
+                <img src="assets/joey_hero_tal_9-16.jpg" alt="Joey Interrante, professional drummer based in Tampa Bay">
+            </div>
         </div>
     </header>
 
@@ -512,9 +490,9 @@
     <section class="links-section">
         <p class="section-label">Book &amp; Connect</p>
         <div class="link-grid">
-            <a class="link-item" id="bookBtn" href="sms:+18133268800&body=Hi Joey, I'd like to book you for a gig.%0AMy name:%0ADate:%0AVenue:">
+            <a class="link-item" href="book.html">
                 <div class="link-item-left">
-                    <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                     <span class="link-name">Book a Gig</span>
                 </div>
                 <span class="link-arrow">&#8594;</span>
@@ -558,20 +536,20 @@
 </div>
 <script>
 var SHOWS = [
-    { date:'2026-03-25', endTime:'22:00', month:'Mar', day:'25', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 \u2013 10:00 PM', photo:'kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
-    { date:'2026-03-27', endTime:'19:30', month:'Mar', day:'27', act:'Gale Trippsmith', feat:'Free Community Mingle', sublabel:'', venue:'Mahaffey Theater', venueUrl:'https://themahaffey.com/show/communitymingle/', time:'5:30 \u2013 7:30 PM', photo:'gale-trippsmith.jpg', photoAlt:'Gale Trippsmith at Mahaffey Theater' },
-    { date:'2026-03-28', endTime:'22:00', month:'Mar', day:'28', act:'Dog and Pony Trio', feat:'', sublabel:'', venue:'Middle Grounds Grill', venueUrl:'https://www.middlegroundsgrill.com/', time:'7:00 \u2013 10:00 PM', photo:'dog-and-pony-trio.jpg', photoAlt:'Dog and Pony Trio at Middle Grounds Grill' },
-    { date:'2026-03-29', endTime:'16:30', month:'Mar', day:'29', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
-    { date:'2026-03-29', endTime:'22:00', month:'Mar', day:'29', act:'Kid Royal Band', feat:'', sublabel:'', venue:'Saltwater Hippie', venueUrl:'https://www.saltwaterhippie.com/', time:'6:00 \u2013 10:00 PM', photo:'kid-royal-band-saltwater-hippie.jpg', photoAlt:'Kid Royal Band at Saltwater Hippie' },
-    { date:'2026-03-31', endTime:'21:00', month:'Mar', day:'31', act:'Gale &amp; Joey Duo', feat:'', sublabel:'', venue:"Woody's River Roo", venueUrl:'https://woodysriverroo.com/event/gale-joey-duo-8/', time:'5:00 \u2013 9:00 PM', photo:'gale-and-joey-duo.jpg', photoAlt:"Gale and Joey Duo at Woody's River Roo" },
-    { date:'2026-04-04', endTime:'23:00', month:'Apr', day:'04', act:'Gale &amp; Joey Duo', feat:'', sublabel:'', venue:'Proper Pint', venueUrl:'https://www.instagram.com/theproper_pint/', time:'8:00 \u2013 11:00 PM', photo:'gale-and-joey-duo.jpg', photoAlt:'Gale and Joey Duo at Proper Pint' },
-    { date:'2026-04-05', endTime:'16:30', month:'Apr', day:'05', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
-    { date:'2026-04-07', endTime:'22:00', month:'Apr', day:'07', act:'Joey &amp; Gale', feat:'', sublabel:'', venue:"O'Maddy's Bar &amp; Grille", venueUrl:'https://www.omaddys.com/', time:'6:00 \u2013 10:00 PM', photo:'joey-and-gale.jpg', photoAlt:"Joey and Gale at O'Maddy's" },
-    { date:'2026-04-08', endTime:'22:00', month:'Apr', day:'08', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 \u2013 10:00 PM', photo:'kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
-    { date:'2026-04-11', endTime:'22:00', month:'Apr', day:'11', act:'Dog and Pony Trio', feat:'', sublabel:'', venue:'Middle Grounds Grill', venueUrl:'https://www.middlegroundsgrill.com/', time:'7:00 \u2013 10:00 PM', photo:'dog-and-pony-trio.jpg', photoAlt:'Dog and Pony Trio at Middle Grounds Grill' },
-    { date:'2026-04-12', endTime:'16:30', month:'Apr', day:'12', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
-    { date:'2026-04-19', endTime:'16:30', month:'Apr', day:'19', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
-    { date:'2026-04-26', endTime:'16:30', month:'Apr', day:'26', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' }
+    { date:'2026-03-25', endTime:'22:00', month:'Mar', day:'25', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 &ndash; 10:00 PM', photo:'assets/kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
+    { date:'2026-03-27', endTime:'19:30', month:'Mar', day:'27', act:'Gale Trippsmith', feat:'Free Community Mingle', sublabel:'', venue:'Mahaffey Theater', venueUrl:'https://themahaffey.com/show/communitymingle/', time:'5:30 &ndash; 7:30 PM', photo:'assets/gale-trippsmith.jpg', photoAlt:'Gale Trippsmith at Mahaffey Theater' },
+    { date:'2026-03-28', endTime:'22:00', month:'Mar', day:'28', act:'Dog and Pony Trio', feat:'', sublabel:'', venue:'Middle Grounds Grill', venueUrl:'https://www.middlegroundsgrill.com/', time:'7:00 &ndash; 10:00 PM', photo:'assets/dog-and-pony-trio.jpg', photoAlt:'Dog and Pony Trio at Middle Grounds Grill' },
+    { date:'2026-03-29', endTime:'16:30', month:'Mar', day:'29', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 &ndash; 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-03-29', endTime:'22:00', month:'Mar', day:'29', act:'Kid Royal Band', feat:'', sublabel:'', venue:'Saltwater Hippie', venueUrl:'https://www.saltwaterhippie.com/', time:'6:00 &ndash; 10:00 PM', photo:'assets/kid-royal-band-saltwater-hippie.jpg', photoAlt:'Kid Royal Band at Saltwater Hippie' },
+    { date:'2026-03-31', endTime:'21:00', month:'Mar', day:'31', act:'Gale &amp; Joey Duo', feat:'', sublabel:'', venue:"Woody's River Roo", venueUrl:'https://woodysriverroo.com/event/gale-joey-duo-8/', time:'5:00 &ndash; 9:00 PM', photo:'assets/gale-and-joey-duo.jpg', photoAlt:"Gale and Joey Duo at Woody's River Roo" },
+    { date:'2026-04-04', endTime:'23:00', month:'Apr', day:'04', act:'Gale &amp; Joey Duo', feat:'', sublabel:'', venue:'Proper Pint', venueUrl:'https://www.instagram.com/theproper_pint/', time:'8:00 &ndash; 11:00 PM', photo:'assets/gale-and-joey-duo.jpg', photoAlt:'Gale and Joey Duo at Proper Pint' },
+    { date:'2026-04-05', endTime:'16:30', month:'Apr', day:'05', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 &ndash; 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-04-07', endTime:'22:00', month:'Apr', day:'07', act:'Joey &amp; Gale', feat:'', sublabel:'', venue:"O'Maddy's Bar &amp; Grille", venueUrl:'https://www.omaddys.com/', time:'6:00 &ndash; 10:00 PM', photo:'assets/joey-and-gale.jpg', photoAlt:"Joey and Gale at O'Maddy's" },
+    { date:'2026-04-08', endTime:'22:00', month:'Apr', day:'08', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 &ndash; 10:00 PM', photo:'assets/kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
+    { date:'2026-04-11', endTime:'22:00', month:'Apr', day:'11', act:'Dog and Pony Trio', feat:'', sublabel:'', venue:'Middle Grounds Grill', venueUrl:'https://www.middlegroundsgrill.com/', time:'7:00 &ndash; 10:00 PM', photo:'assets/dog-and-pony-trio.jpg', photoAlt:'Dog and Pony Trio at Middle Grounds Grill' },
+    { date:'2026-04-12', endTime:'16:30', month:'Apr', day:'12', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 &ndash; 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-04-19', endTime:'16:30', month:'Apr', day:'19', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 &ndash; 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-04-26', endTime:'16:30', month:'Apr', day:'26', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 &ndash; 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' }
 ];
 
 var weekOffset = 0;
@@ -588,10 +566,6 @@ function venueIcon(url) {
         return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
     }
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
-}
-
-function phIcon() {
-    return '<div class="gig-photo-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5"><rect x="2" y="6" width="20" height="15" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6l2-3h4l2 3"/></svg><span>Photo soon</span></div>';
 }
 
 function renderShows() {
@@ -630,7 +604,7 @@ function renderShows() {
             +   '<div class="gig-venue-row"><a class="gig-venue" href="' + s.venueUrl + '" target="_blank" rel="noopener">' + venueIcon(s.venueUrl) + s.venue + '</a></div>'
             +   '<span class="gig-time">' + s.time + '</span>'
             + '</div>'
-            + '<div class="gig-photo" id="ph' + visible + '"><img src="' + s.photo + '" alt="' + s.photoAlt + '" onerror="this.style.display=\'none\'"></div>'
+            + '<div class="gig-photo"><img src="' + s.photo + '" alt="' + s.photoAlt + '" onerror="this.style.display=\'none\'"></div>'
             + '</article>';
 
         list.insertAdjacentHTML('beforeend', html);
@@ -652,17 +626,6 @@ function shiftWeek(dir) {
     if (weekOffset < 0) weekOffset = 0;
     renderShows();
 }
-
-// Desktop: swap SMS for email
-(function() {
-    if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        var e = 'mailto:interrantej@gmail.com?subject=Gig Booking Inquiry&body=Hi Joey, I\'d like to book you for a gig.%0AMy name:%0ADate:%0AVenue:';
-        var b1 = document.getElementById('bookBtn');
-        var b2 = document.getElementById('bookBtnHeader');
-        if (b1) b1.href = e;
-        if (b2) b2.href = e;
-    }
-})();
 
 renderShows();
 </script>
