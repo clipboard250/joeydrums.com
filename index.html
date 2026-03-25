@@ -11,6 +11,12 @@
     <meta property="og:description" content="Live shows, bookings, and session work. Tampa Bay drummer.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://joeydrums.com">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ctext x='3' y='26' font-family='Arial Black,Arial' font-weight='900' font-size='26' fill='%23e63946'%3EJ%3C/text%3E%3C/svg%3E">
+    <meta property="og:image" content="https://joeydrums.com/assets/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://joeydrums.com/assets/og-image.svg">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -406,14 +412,54 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
+        /* HERO PHOTO */
+        .hero-photo {
+            width: 220px;
+            height: 280px;
+            flex-shrink: 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
+        }
+        .hero-photo:hover img { filter: grayscale(0%); }
+        .hero-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(8,8,8,0.4) 100%);
+            pointer-events: none;
+        }
+
         /* RESPONSIVE */
         @media (max-width: 680px) {
             .page { padding: 3rem 1.5rem 5rem; }
             .gig { grid-template-columns: 52px 1fr; }
             .gig-photo { display: none; }
-            .gig-day { font-size: 1.5rem; }
-            header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            .header-links { align-items: flex-start; }
+            .gig-day { font-size: 1.6rem; }
+            .gig-act { font-size: 1rem; }
+            .gig-venue { font-size: 0.75rem; }
+            .gig-time { font-size: 0.65rem; }
+            .gig-sublabel { font-size: 0.58rem; }
+            .week-range { font-size: 0.7rem; }
+            .week-count { font-size: 0.62rem; }
+            .week-btn { font-size: 0.65rem; padding: 0.5rem 1rem; }
+            .section-label { font-size: 0.65rem; }
+            .role-text { font-size: 0.8rem; }
+            .link-name { font-size: 0.85rem; }
+            header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+            .header-links { align-items: flex-start; flex-direction: row; gap: 1.5rem; }
+            .header-link { font-size: 0.72rem; }
+            .hero-photo { width: 100%; height: 200px; }
+            .hero-photo img { object-position: center 20%; }
             .link-grid { grid-template-columns: 1fr; }
             footer { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
         }
@@ -441,6 +487,9 @@
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 Hip Pocket Studios
             </a>
+        </div>
+        <div class="hero-photo">
+            <img src="assets/joey_hero_tal_9-16.jpg" alt="Joey Interrante, professional drummer based in Tampa Bay">
         </div>
     </header>
 
@@ -509,20 +558,20 @@
 </div>
 <script>
 var SHOWS = [
-    { date:'2026-03-25', endTime:'22:00', month:'Mar', day:'25', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 \u2013 10:00 PM', photo:'assets/kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
-    { date:'2026-03-27', endTime:'19:30', month:'Mar', day:'27', act:'Gale Trippsmith', feat:'Free Community Mingle', sublabel:'', venue:'Mahaffey Theater', venueUrl:'https://themahaffey.com/show/communitymingle/', time:'5:30 \u2013 7:30 PM', photo:'assets/gale-trippsmith.jpg', photoAlt:'Gale Trippsmith at Mahaffey Theater' },
-    { date:'2026-03-28', endTime:'22:00', month:'Mar', day:'28', act:'Dog and Pony Trio', feat:'', sublabel:'', venue:'Middle Grounds Grill', venueUrl:'https://www.middlegroundsgrill.com/', time:'7:00 \u2013 10:00 PM', photo:'assets/dog-and-pony-trio.jpg', photoAlt:'Dog and Pony Trio at Middle Grounds Grill' },
-    { date:'2026-03-29', endTime:'16:30', month:'Mar', day:'29', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
-    { date:'2026-03-29', endTime:'22:00', month:'Mar', day:'29', act:'Kid Royal Band', feat:'', sublabel:'', venue:'Saltwater Hippie', venueUrl:'https://www.saltwaterhippie.com/', time:'6:00 \u2013 10:00 PM', photo:'assets/kid-royal-band-saltwater-hippie.jpg', photoAlt:'Kid Royal Band at Saltwater Hippie' },
-    { date:'2026-03-31', endTime:'21:00', month:'Mar', day:'31', act:'Gale &amp; Joey Duo', feat:'', sublabel:'', venue:"Woody's River Roo", venueUrl:'https://woodysriverroo.com/event/gale-joey-duo-8/', time:'5:00 \u2013 9:00 PM', photo:'assets/gale-and-joey-duo.jpg', photoAlt:"Gale and Joey Duo at Woody's River Roo" },
-    { date:'2026-04-04', endTime:'23:00', month:'Apr', day:'04', act:'Gale &amp; Joey Duo', feat:'', sublabel:'', venue:'Proper Pint', venueUrl:'https://www.instagram.com/theproper_pint/', time:'8:00 \u2013 11:00 PM', photo:'assets/gale-and-joey-duo.jpg', photoAlt:'Gale and Joey Duo at Proper Pint' },
-    { date:'2026-04-05', endTime:'16:30', month:'Apr', day:'05', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
-    { date:'2026-04-07', endTime:'22:00', month:'Apr', day:'07', act:'Joey &amp; Gale', feat:'', sublabel:'', venue:"O'Maddy's Bar &amp; Grille", venueUrl:'https://www.omaddys.com/', time:'6:00 \u2013 10:00 PM', photo:'assets/joey-and-gale.jpg', photoAlt:"Joey and Gale at O'Maddy's" },
-    { date:'2026-04-08', endTime:'22:00', month:'Apr', day:'08', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 \u2013 10:00 PM', photo:'assets/kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
-    { date:'2026-04-11', endTime:'22:00', month:'Apr', day:'11', act:'Dog and Pony Trio', feat:'', sublabel:'', venue:'Middle Grounds Grill', venueUrl:'https://www.middlegroundsgrill.com/', time:'7:00 \u2013 10:00 PM', photo:'assets/dog-and-pony-trio.jpg', photoAlt:'Dog and Pony Trio at Middle Grounds Grill' },
-    { date:'2026-04-12', endTime:'16:30', month:'Apr', day:'12', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
-    { date:'2026-04-19', endTime:'16:30', month:'Apr', day:'19', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
-    { date:'2026-04-26', endTime:'16:30', month:'Apr', day:'26', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' }
+    { date:'2026-03-25', endTime:'22:00', month:'Mar', day:'25', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 \u2013 10:00 PM', photo:'kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
+    { date:'2026-03-27', endTime:'19:30', month:'Mar', day:'27', act:'Gale Trippsmith', feat:'Free Community Mingle', sublabel:'', venue:'Mahaffey Theater', venueUrl:'https://themahaffey.com/show/communitymingle/', time:'5:30 \u2013 7:30 PM', photo:'gale-trippsmith.jpg', photoAlt:'Gale Trippsmith at Mahaffey Theater' },
+    { date:'2026-03-28', endTime:'22:00', month:'Mar', day:'28', act:'Dog and Pony Trio', feat:'', sublabel:'', venue:'Middle Grounds Grill', venueUrl:'https://www.middlegroundsgrill.com/', time:'7:00 \u2013 10:00 PM', photo:'dog-and-pony-trio.jpg', photoAlt:'Dog and Pony Trio at Middle Grounds Grill' },
+    { date:'2026-03-29', endTime:'16:30', month:'Mar', day:'29', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-03-29', endTime:'22:00', month:'Mar', day:'29', act:'Kid Royal Band', feat:'', sublabel:'', venue:'Saltwater Hippie', venueUrl:'https://www.saltwaterhippie.com/', time:'6:00 \u2013 10:00 PM', photo:'kid-royal-band-saltwater-hippie.jpg', photoAlt:'Kid Royal Band at Saltwater Hippie' },
+    { date:'2026-03-31', endTime:'21:00', month:'Mar', day:'31', act:'Gale &amp; Joey Duo', feat:'', sublabel:'', venue:"Woody's River Roo", venueUrl:'https://woodysriverroo.com/event/gale-joey-duo-8/', time:'5:00 \u2013 9:00 PM', photo:'gale-and-joey-duo.jpg', photoAlt:"Gale and Joey Duo at Woody's River Roo" },
+    { date:'2026-04-04', endTime:'23:00', month:'Apr', day:'04', act:'Gale &amp; Joey Duo', feat:'', sublabel:'', venue:'Proper Pint', venueUrl:'https://www.instagram.com/theproper_pint/', time:'8:00 \u2013 11:00 PM', photo:'gale-and-joey-duo.jpg', photoAlt:'Gale and Joey Duo at Proper Pint' },
+    { date:'2026-04-05', endTime:'16:30', month:'Apr', day:'05', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-04-07', endTime:'22:00', month:'Apr', day:'07', act:'Joey &amp; Gale', feat:'', sublabel:'', venue:"O'Maddy's Bar &amp; Grille", venueUrl:'https://www.omaddys.com/', time:'6:00 \u2013 10:00 PM', photo:'joey-and-gale.jpg', photoAlt:"Joey and Gale at O'Maddy's" },
+    { date:'2026-04-08', endTime:'22:00', month:'Apr', day:'08', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 \u2013 10:00 PM', photo:'kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
+    { date:'2026-04-11', endTime:'22:00', month:'Apr', day:'11', act:'Dog and Pony Trio', feat:'', sublabel:'', venue:'Middle Grounds Grill', venueUrl:'https://www.middlegroundsgrill.com/', time:'7:00 \u2013 10:00 PM', photo:'dog-and-pony-trio.jpg', photoAlt:'Dog and Pony Trio at Middle Grounds Grill' },
+    { date:'2026-04-12', endTime:'16:30', month:'Apr', day:'12', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-04-19', endTime:'16:30', month:'Apr', day:'19', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-04-26', endTime:'16:30', month:'Apr', day:'26', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' }
 ];
 
 var weekOffset = 0;
