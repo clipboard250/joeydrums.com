@@ -1,0 +1,33 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#080808"/>
+  <!-- grain texture suggestion via subtle rect -->
+  <rect width="1200" height="630" fill="url(#grain)" opacity="0.04"/>
+  <!-- red glow -->
+  <radialGradient id="glow1" cx="15%" cy="0%" r="60%">
+    <stop offset="0%" stop-color="#e63946" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#080808" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="glow2" cx="85%" cy="100%" r="45%">
+    <stop offset="0%" stop-color="#b41e28" stop-opacity="0.12"/>
+    <stop offset="100%" stop-color="#080808" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- red accent bar -->
+  <rect x="80" y="280" width="48" height="6" fill="#e63946"/>
+
+  <!-- JOEY -->
+  <text x="80" y="260" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="180" fill="#f0f0f0" text-anchor="start" letter-spacing="-4">JOEY</text>
+  <!-- INTERRANTE -->
+  <text x="80" y="430" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="140" fill="#e63946" text-anchor="start" letter-spacing="-3">INTERRANTE</text>
+
+  <!-- role -->
+  <text x="148" y="310" font-family="Arial, sans-serif" font-weight="300" font-size="22" fill="#888888" letter-spacing="10">DRUMMER  ·  TAMPA BAY</text>
+
+  <!-- bottom label -->
+  <text x="80" y="580" font-family="Arial, sans-serif" font-weight="300" font-size="20" fill="#444444" letter-spacing="6">JOEYDRUMS.COM</text>
+
+  <!-- hip pocket -->
+  <text x="1120" y="580" font-family="Arial, sans-serif" font-weight="300" font-size="18" fill="#444444" letter-spacing="4" text-anchor="end">HIP POCKET STUDIOS</text>
+</svg>
