@@ -7,20 +7,16 @@
     <meta name="description" content="Joey Interrante is a professional drummer based in Tampa Bay. Catch him live at venues across the bay or book him for your next gig.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://joeydrums.com">
-
-    <!-- Open Graph -->
     <meta property="og:title" content="Joey Interrante | Drummer">
     <meta property="og:description" content="Live shows, bookings, and session work. Tampa Bay drummer.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://joeydrums.com">
-
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
-
     <style>
         :root {
             --red: #e63946;
-            --red-dim: rgba(230, 57, 70, 0.15);
-            --red-border: rgba(230, 57, 70, 0.3);
+            --red-dim: rgba(230,57,70,0.15);
+            --red-border: rgba(230,57,70,0.3);
             --bg: #080808;
             --bg-card: #0f0f0f;
             --bg-card-hover: #141414;
@@ -29,21 +25,15 @@
             --text-dim: #444;
             --border: rgba(255,255,255,0.06);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
-
         body {
             font-family: 'Oswald', sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
-            position: relative;
             overflow-x: hidden;
         }
-
-        /* Grain texture */
         body::before {
             content: '';
             position: fixed;
@@ -53,8 +43,6 @@
             z-index: 0;
             opacity: 0.5;
         }
-
-        /* Glow blobs */
         body::after {
             content: '';
             position: fixed;
@@ -65,52 +53,48 @@
             pointer-events: none;
             z-index: 0;
         }
-
         .page {
             position: relative;
             z-index: 1;
-            max-width: 680px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 4rem 2rem 6rem;
+            padding: 4rem 2.5rem 6rem;
         }
 
-        /* ── HEADER ── */
+        /* HEADER */
         header {
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
             animation: fadeUp 0.8s ease both;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
         }
-
-        .name-block {
-            margin-bottom: 1.2rem;
-        }
-
         .name-first {
             display: block;
-            font-size: clamp(3.5rem, 10vw, 6rem);
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
             font-weight: 700;
             letter-spacing: -1px;
             line-height: 1;
             color: var(--text);
             text-transform: uppercase;
         }
-
         .name-last {
             display: block;
-            font-size: clamp(3.5rem, 10vw, 6rem);
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
             font-weight: 700;
             letter-spacing: -1px;
             line-height: 1;
             color: var(--red);
             text-transform: uppercase;
         }
-
         .title-bar {
             display: flex;
             align-items: center;
             gap: 1rem;
             margin-top: 0.8rem;
         }
-
         .title-bar::before {
             content: '';
             display: block;
@@ -119,7 +103,6 @@
             background: var(--red);
             flex-shrink: 0;
         }
-
         .role-text {
             font-size: 0.75rem;
             font-weight: 300;
@@ -127,20 +110,37 @@
             text-transform: uppercase;
             color: var(--text-mid);
         }
+        .header-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            align-items: flex-end;
+        }
+        .header-link {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .header-link:hover { color: var(--red); }
 
-        /* ── SECTION LABEL ── */
+        /* SECTION LABEL */
         .section-label {
             font-family: 'Space Mono', monospace;
             font-size: 0.6rem;
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--text-dim);
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.6rem;
             display: flex;
             align-items: center;
             gap: 0.8rem;
         }
-
         .section-label::after {
             content: '';
             flex: 1;
@@ -148,56 +148,72 @@
             background: var(--border);
         }
 
-        /* ── SHOWS ── */
+        /* WEEK NAV */
+        .week-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.8s 0.1s ease both;
+        }
+        .week-range {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--text-mid);
+        }
+        .week-count {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            color: rgba(230,57,70,0.6);
+            margin-top: 0.2rem;
+        }
+        .week-arrows { display: flex; gap: 0.4rem; }
+        .week-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 0.4rem 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .week-btn:hover { border-color: var(--red-border); color: var(--red); }
+        .week-btn:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
+
+        /* SHOWS */
         .shows-section {
             margin-bottom: 4rem;
             animation: fadeUp 0.8s 0.15s ease both;
         }
-
-        .gig-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
+        .gig-list { display: flex; flex-direction: column; }
         .gig {
             display: grid;
-            grid-template-columns: 64px 1fr;
+            grid-template-columns: 64px 1fr 120px;
             gap: 0 1.5rem;
-            padding: 1.2rem 0;
+            padding: 1.1rem 0;
             border-bottom: 1px solid var(--border);
-            align-items: start;
-            transition: background 0.2s;
-            cursor: default;
+            align-items: center;
             position: relative;
         }
-
-        .gig:first-child {
-            border-top: 1px solid var(--border);
-        }
-
+        .gig:first-child { border-top: 1px solid var(--border); }
         .gig::before {
             content: '';
             position: absolute;
-            left: -2rem;
-            top: 0;
-            bottom: 0;
+            left: -2.5rem;
+            top: 0; bottom: 0;
             width: 2px;
             background: var(--red);
             transform: scaleY(0);
             transform-origin: bottom;
             transition: transform 0.25s ease;
         }
-
-        .gig:hover::before {
-            transform: scaleY(1);
-        }
-
-        .gig-date {
-            text-align: center;
-            padding-top: 2px;
-        }
-
+        .gig:hover::before { transform: scaleY(1); }
+        .gig-date { text-align: center; }
         .gig-month {
             display: block;
             font-family: 'Space Mono', monospace;
@@ -208,7 +224,6 @@
             line-height: 1;
             margin-bottom: 0.2rem;
         }
-
         .gig-day {
             display: block;
             font-size: 1.8rem;
@@ -216,13 +231,7 @@
             line-height: 1;
             color: var(--text);
         }
-
-        .gig-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
+        .gig-info { display: flex; flex-direction: column; gap: 0.2rem; }
         .gig-act {
             font-size: 1rem;
             font-weight: 600;
@@ -230,17 +239,22 @@
             text-transform: uppercase;
             color: var(--text);
             line-height: 1.2;
-        }
-
-        .gig-venue-row {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
         }
-
+        .gig-feat { font-weight: 300; color: var(--text-mid); font-size: 0.9rem; }
+        .gig-sublabel {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.52rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+        .gig-venue-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
         .gig-venue {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 300;
             letter-spacing: 2px;
             text-transform: uppercase;
@@ -251,50 +265,82 @@
             align-items: center;
             gap: 0.35rem;
         }
-
-        .gig-venue:hover {
-            color: var(--red);
-        }
-
-        .gig-venue svg {
-            width: 11px;
-            height: 11px;
-            opacity: 0.6;
-            flex-shrink: 0;
-        }
-
-        .gig-venue:hover svg {
-            opacity: 1;
-        }
-
+        .gig-venue:hover { color: var(--red); }
+        .gig-venue svg { width: 11px; height: 11px; opacity: 0.5; flex-shrink: 0; transition: opacity 0.2s; }
+        .gig-venue:hover svg { opacity: 1; }
         .gig-time {
             font-family: 'Space Mono', monospace;
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             color: var(--text-dim);
             letter-spacing: 1px;
         }
 
+        /* PHOTO */
+        .gig-photo {
+            width: 120px;
+            height: 72px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .gig-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .gig:hover .gig-photo img { transform: scale(1.05); }
+        .gig-photo-ph {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+        .gig-photo-ph svg { opacity: 0.15; }
+        .gig-photo-ph span {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.42rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        /* TODAY BADGE */
+        .today-badge {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.48rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: var(--red);
+            color: #fff;
+            padding: 2px 6px;
+            line-height: 1.6;
+        }
+
         .no-shows {
-            padding: 2rem 0;
+            padding: 3rem 0;
             font-size: 0.8rem;
             font-weight: 300;
             letter-spacing: 3px;
             text-transform: uppercase;
             color: var(--text-dim);
+            border-top: 1px solid var(--border);
         }
 
-        /* ── CONNECT LINKS ── */
-        .links-section {
-            animation: fadeUp 0.8s 0.25s ease both;
-        }
-
+        /* LINKS */
+        .links-section { animation: fadeUp 0.8s 0.25s ease both; }
         .link-grid {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 0.4rem;
-            margin-bottom: 3rem;
+            margin-bottom: 0.4rem;
         }
-
         .link-item {
             display: flex;
             align-items: center;
@@ -306,47 +352,17 @@
             color: var(--text);
             transition: all 0.25s;
         }
-
         .link-item:hover {
             background: var(--bg-card-hover);
             border-color: var(--red-border);
             transform: translateX(3px);
         }
-
-        .link-item-left {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .link-icon {
-            width: 16px;
-            height: 16px;
-            color: var(--text-dim);
-            flex-shrink: 0;
-            transition: color 0.25s;
-        }
-
-        .link-item:hover .link-icon {
-            color: var(--red);
-        }
-
-        .link-name {
-            font-size: 0.8rem;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .link-arrow {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            transition: color 0.25s;
-        }
-
+        .link-item-left { display: flex; align-items: center; gap: 0.8rem; }
+        .link-icon { width: 16px; height: 16px; color: var(--text-dim); flex-shrink: 0; transition: color 0.25s; }
+        .link-item:hover .link-icon { color: var(--red); }
+        .link-name { font-size: 0.8rem; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; }
+        .link-arrow { font-size: 0.85rem; color: var(--text-dim); transition: color 0.25s; }
         .link-item:hover .link-arrow { color: var(--red); }
-
-        /* Studio CTA */
         .studio-cta {
             display: flex;
             align-items: center;
@@ -358,79 +374,13 @@
             color: var(--text);
             transition: all 0.25s;
         }
+        .studio-cta:hover { background: rgba(230,57,70,0.14); border-color: rgba(230,57,70,0.5); transform: translateX(3px); }
+        .studio-left { display: flex; flex-direction: column; gap: 0.2rem; }
+        .studio-name { font-size: 0.85rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+        .studio-sub { font-size: 0.65rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--text-mid); }
+        .studio-arrow { color: var(--red); font-size: 1.1rem; }
 
-        .studio-cta:hover {
-            background: rgba(230,57,70,0.14);
-            border-color: rgba(230,57,70,0.5);
-            transform: translateX(3px);
-        }
-
-        .studio-left {
-            display: flex;
-            flex-direction: column;
-            gap: 0.2rem;
-        }
-
-        .studio-name {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-
-        .studio-sub {
-            font-size: 0.65rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-mid);
-        }
-
-        .studio-arrow {
-            color: var(--red);
-            font-size: 1.1rem;
-        }
-
-        /* ── MUSIC PLAYER (hidden — uncomment to enable) ── */
-        /* 
-        .player-section {
-            margin-bottom: 3rem;
-            animation: fadeUp 0.8s 0.2s ease both;
-        }
-
-        .player-embed {
-            width: 100%;
-            border: 1px solid var(--border);
-        }
-        */
-
-        /* ── BUY ME A COFFEE (hidden — uncomment to enable) ──
-        .bmc-section {
-            margin-bottom: 3rem;
-        }
-
-        .bmc-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.9rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transition: all 0.25s;
-        }
-
-        .bmc-btn:hover {
-            border-color: #FFDD00;
-            color: #FFDD00;
-        }
-        */
-
-        /* ── FOOTER ── */
+        /* FOOTER */
         footer {
             margin-top: 4rem;
             padding-top: 2rem;
@@ -440,7 +390,6 @@
             align-items: center;
             animation: fadeUp 0.8s 0.3s ease both;
         }
-
         .footer-phone {
             font-family: 'Space Mono', monospace;
             font-size: 0.65rem;
@@ -449,437 +398,224 @@
             text-decoration: none;
             transition: color 0.2s;
         }
-
         .footer-phone:hover { color: var(--text-mid); }
+        .footer-note { font-size: 0.6rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
 
-        .footer-note {
-            font-size: 0.6rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-dim);
-        }
-
-        /* ── ANIMATIONS ── */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(16px); }
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* ── TODAY BADGE ── */
-        .today-badge {
-            display: inline-block;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            background: var(--red);
-            color: #fff;
-            padding: 2px 6px;
-            margin-left: 6px;
-            vertical-align: middle;
-            line-height: 1.6;
-        }
-
-        /* ── RESPONSIVE ── */
-        @media (max-width: 480px) {
+        /* RESPONSIVE */
+        @media (max-width: 680px) {
             .page { padding: 3rem 1.5rem 5rem; }
-
-            .gig {
-                grid-template-columns: 52px 1fr;
-                gap: 0 1.2rem;
-            }
-
+            .gig { grid-template-columns: 52px 1fr; }
+            .gig-photo { display: none; }
             .gig-day { font-size: 1.5rem; }
-
-            footer {
-                flex-direction: column;
-                gap: 0.8rem;
-                align-items: flex-start;
-            }
+            header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .header-links { align-items: flex-start; }
+            .link-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
-    <div class="page">
+<div class="page">
 
-        <!-- HEADER -->
-        <header>
+    <header>
+        <div>
             <div class="name-block">
                 <span class="name-first">Joey</span>
                 <span class="name-last">Interrante</span>
             </div>
             <div class="title-bar">
-                <span class="role-text">Drummer &nbsp;·&nbsp; Tampa Bay</span>
+                <span class="role-text">Drummer &nbsp;&middot;&nbsp; Tampa Bay</span>
             </div>
-        </header>
-
-        <!-- MUSIC PLAYER — hidden, uncomment when ready -->
-        <!--
-        <section class="player-section" style="display:none;">
-            <p class="section-label">Listen</p>
-            <iframe class="player-embed" src="PASTE_EMBED_URL_HERE" height="180" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </section>
-        -->
-
-        <!-- BUY ME A COFFEE — hidden, uncomment when ready -->
-        <!--
-        <section class="bmc-section" style="display:none;">
-            <p class="section-label">Support</p>
-            <a class="bmc-btn" href="https://buymeacoffee.com/JOEY_USERNAME" target="_blank" rel="noopener">
-                ☕ Buy Joey a Coffee
+        </div>
+        <div class="header-links">
+            <a class="header-link" id="bookBtnHeader" href="sms:+18133268800&body=Hi Joey, I'd like to book you for a gig.%0AMy name:%0ADate:%0AVenue:">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Book a Gig
             </a>
-        </section>
-        -->
+            <a class="header-link" href="https://hippocketstudios.com" target="_blank" rel="noopener">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                Hip Pocket Studios
+            </a>
+        </div>
+    </header>
 
-        <!-- UPCOMING SHOWS -->
-        <section class="shows-section">
-            <p class="section-label">Upcoming Shows</p>
-            <div class="gig-list" id="gigList">
-
-                <article class="gig" data-end="2026-03-25T22:00:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Mar</span>
-                        <span class="gig-day">25</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Kid Royal Band <span style="font-weight:300;color:var(--text-mid)">feat. Josh Nelms</span></span>
-                        <span style="font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);">Wednesday Blues &amp; $5 Jacks</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.bayborobrewing.com/upcoming-events" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Bayboro Brewing Co.
-                            </a>
-                        </div>
-                        <span class="gig-time">8:00 – 10:00 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-03-27T19:30:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Mar</span>
-                        <span class="gig-day">27</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Gale Trippsmith <span style="font-weight:300;color:var(--text-mid)">Free Community Mingle</span></span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://themahaffey.com/show/communitymingle/" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Mahaffey Theater
-                            </a>
-                        </div>
-                        <span class="gig-time">5:30 – 7:30 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-03-28T22:00:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Mar</span>
-                        <span class="gig-day">28</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Dog and Pony Trio</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.middlegroundsgrill.com/" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Middle Grounds Grill
-                            </a>
-                        </div>
-                        <span class="gig-time">7:00 – 10:00 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-03-29T16:30:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Mar</span>
-                        <span class="gig-day">29</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Gale &amp; Joey</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.bamboobeachbarandgrill.com/entertainment" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Bamboo Beach Bar
-                            </a>
-                        </div>
-                        <span class="gig-time">12:30 – 4:30 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-03-29T22:00:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Mar</span>
-                        <span class="gig-day">29</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Kid Royal Band</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.saltwaterhippie.com/" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Saltwater Hippie
-                            </a>
-                        </div>
-                        <span class="gig-time">6:00 – 10:00 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-03-31T21:00:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Mar</span>
-                        <span class="gig-day">31</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Gale &amp; Joey Duo</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://woodysriverroo.com/event/gale-joey-duo-8/" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Woody's River Roo
-                            </a>
-                        </div>
-                        <span class="gig-time">5:00 – 9:00 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-04-04T23:00:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Apr</span>
-                        <span class="gig-day">04</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Gale &amp; Joey Duo</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.instagram.com/theproper_pint/" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-                                Proper Pint
-                            </a>
-                        </div>
-                        <span class="gig-time">8:00 – 11:00 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-04-05T16:30:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Apr</span>
-                        <span class="gig-day">05</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Gale &amp; Joey</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.bamboobeachbarandgrill.com/entertainment" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Bamboo Beach Bar
-                            </a>
-                        </div>
-                        <span class="gig-time">12:30 – 4:30 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-04-07T22:00:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Apr</span>
-                        <span class="gig-day">07</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Joey &amp; Gale</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.omaddys.com/" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                O'Maddy's Bar &amp; Grille
-                            </a>
-                        </div>
-                        <span class="gig-time">6:00 – 10:00 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-04-08T22:00:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Apr</span>
-                        <span class="gig-day">08</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Kid Royal Band <span style="font-weight:300;color:var(--text-mid)">feat. Josh Nelms</span></span>
-                        <span style="font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);">Wednesday Blues &amp; $5 Jacks</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.bayborobrewing.com/upcoming-events" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Bayboro Brewing Co.
-                            </a>
-                        </div>
-                        <span class="gig-time">8:00 – 10:00 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-04-11T22:00:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Apr</span>
-                        <span class="gig-day">11</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Dog and Pony Trio</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.middlegroundsgrill.com/" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Middle Grounds Grill
-                            </a>
-                        </div>
-                        <span class="gig-time">7:00 – 10:00 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-04-12T16:30:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Apr</span>
-                        <span class="gig-day">12</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Gale &amp; Joey</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.bamboobeachbarandgrill.com/entertainment" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Bamboo Beach Bar
-                            </a>
-                        </div>
-                        <span class="gig-time">12:30 – 4:30 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-04-19T16:30:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Apr</span>
-                        <span class="gig-day">19</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Gale &amp; Joey</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.bamboobeachbarandgrill.com/entertainment" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Bamboo Beach Bar
-                            </a>
-                        </div>
-                        <span class="gig-time">12:30 – 4:30 PM</span>
-                    </div>
-                </article>
-
-                <article class="gig" data-end="2026-04-26T16:30:00">
-                    <div class="gig-date">
-                        <span class="gig-month">Apr</span>
-                        <span class="gig-day">26</span>
-                    </div>
-                    <div class="gig-info">
-                        <span class="gig-act">Gale &amp; Joey</span>
-                        <div class="gig-venue-row">
-                            <a class="gig-venue" href="https://www.bamboobeachbarandgrill.com/entertainment" target="_blank" rel="noopener">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                                Bamboo Beach Bar
-                            </a>
-                        </div>
-                        <span class="gig-time">12:30 – 4:30 PM</span>
-                    </div>
-                </article>
-
+    <section class="shows-section">
+        <p class="section-label">Upcoming Shows</p>
+        <div class="week-nav">
+            <div>
+                <div class="week-range" id="weekRange"></div>
+                <div class="week-count" id="weekCount"></div>
             </div>
-            <!-- Shows up when all gigs have passed -->
-            <p class="no-shows" id="noShows" style="display:none;">No upcoming shows scheduled — check back soon.</p>
-        </section>
-
-        <!-- CONNECT -->
-        <section class="links-section">
-            <p class="section-label">Book &amp; Connect</p>
-            <div class="link-grid">
-
-                <a class="link-item" id="bookBtn" href="sms:+18133268800&body=Hi Joey, I'd like to book you for a gig.%0AMy name:%0ADate:%0AVenue:">
-                    <div class="link-item-left">
-                        <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                        <span class="link-name">Book a Gig</span>
-                    </div>
-                    <span class="link-arrow">→</span>
-                </a>
-
-                <a class="link-item" href="https://www.instagram.com/interrantejoseph_banjoey" target="_blank" rel="noopener">
-                    <div class="link-item-left">
-                        <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-                        <span class="link-name">Instagram</span>
-                    </div>
-                    <span class="link-arrow">→</span>
-                </a>
-
-                <a class="link-item" href="https://www.facebook.com/joey.gmsdrums" target="_blank" rel="noopener">
-                    <div class="link-item-left">
-                        <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                        <span class="link-name">Facebook</span>
-                    </div>
-                    <span class="link-arrow">→</span>
-                </a>
-
-                <a class="link-item" href="https://www.youtube.com/@banjoeydrummer" target="_blank" rel="noopener">
-                    <div class="link-item-left">
-                        <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-                        <span class="link-name">YouTube</span>
-                    </div>
-                    <span class="link-arrow">→</span>
-                </a>
-
+            <div class="week-arrows">
+                <button class="week-btn" id="prevWeek" onclick="shiftWeek(-1)">&#8592; Prev</button>
+                <button class="week-btn" id="nextWeek" onclick="shiftWeek(1)">Next &#8594;</button>
             </div>
+        </div>
+        <div class="gig-list" id="gigList"></div>
+        <p class="no-shows" id="noShows" style="display:none;">No shows this week &mdash; hit Next to see what&rsquo;s coming.</p>
+    </section>
 
-            <a class="studio-cta" href="https://hippocketstudios.com" target="_blank" rel="noopener">
-                <div class="studio-left">
-                    <span class="studio-name">Hip Pocket Studios</span>
-                    <span class="studio-sub">Remote drum tracks &amp; production</span>
+    <section class="links-section">
+        <p class="section-label">Book &amp; Connect</p>
+        <div class="link-grid">
+            <a class="link-item" id="bookBtn" href="sms:+18133268800&body=Hi Joey, I'd like to book you for a gig.%0AMy name:%0ADate:%0AVenue:">
+                <div class="link-item-left">
+                    <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.59 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span class="link-name">Book a Gig</span>
                 </div>
-                <span class="studio-arrow">→</span>
+                <span class="link-arrow">&#8594;</span>
             </a>
-        </section>
+            <a class="link-item" href="https://www.instagram.com/interrantejoseph_banjoey" target="_blank" rel="noopener">
+                <div class="link-item-left">
+                    <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                    <span class="link-name">Instagram</span>
+                </div>
+                <span class="link-arrow">&#8594;</span>
+            </a>
+            <a class="link-item" href="https://www.facebook.com/joey.gmsdrums" target="_blank" rel="noopener">
+                <div class="link-item-left">
+                    <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    <span class="link-name">Facebook</span>
+                </div>
+                <span class="link-arrow">&#8594;</span>
+            </a>
+            <a class="link-item" href="https://www.youtube.com/@banjoeydrummer" target="_blank" rel="noopener">
+                <div class="link-item-left">
+                    <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    <span class="link-name">YouTube</span>
+                </div>
+                <span class="link-arrow">&#8594;</span>
+            </a>
+        </div>
+        <a class="studio-cta" href="https://hippocketstudios.com" target="_blank" rel="noopener">
+            <div class="studio-left">
+                <span class="studio-name">Hip Pocket Studios</span>
+                <span class="studio-sub">Remote drum tracks &amp; production</span>
+            </div>
+            <span class="studio-arrow">&#8594;</span>
+        </a>
+    </section>
 
-        <!-- FOOTER -->
-        <footer>
-            <a class="footer-phone" href="tel:+18133268800">813.326.8800</a>
-            <span class="footer-note">Tampa Bay</span>
-        </footer>
+    <footer>
+        <a class="footer-phone" href="tel:+18133268800">813.326.8800</a>
+        <span class="footer-note">Tampa Bay</span>
+    </footer>
 
-    </div>
+</div>
+<script>
+var SHOWS = [
+    { date:'2026-03-25', endTime:'22:00', month:'Mar', day:'25', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 \u2013 10:00 PM', photo:'kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
+    { date:'2026-03-27', endTime:'19:30', month:'Mar', day:'27', act:'Gale Trippsmith', feat:'Free Community Mingle', sublabel:'', venue:'Mahaffey Theater', venueUrl:'https://themahaffey.com/show/communitymingle/', time:'5:30 \u2013 7:30 PM', photo:'gale-trippsmith.jpg', photoAlt:'Gale Trippsmith at Mahaffey Theater' },
+    { date:'2026-03-28', endTime:'22:00', month:'Mar', day:'28', act:'Dog and Pony Trio', feat:'', sublabel:'', venue:'Middle Grounds Grill', venueUrl:'https://www.middlegroundsgrill.com/', time:'7:00 \u2013 10:00 PM', photo:'dog-and-pony-trio.jpg', photoAlt:'Dog and Pony Trio at Middle Grounds Grill' },
+    { date:'2026-03-29', endTime:'16:30', month:'Mar', day:'29', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-03-29', endTime:'22:00', month:'Mar', day:'29', act:'Kid Royal Band', feat:'', sublabel:'', venue:'Saltwater Hippie', venueUrl:'https://www.saltwaterhippie.com/', time:'6:00 \u2013 10:00 PM', photo:'kid-royal-band-saltwater-hippie.jpg', photoAlt:'Kid Royal Band at Saltwater Hippie' },
+    { date:'2026-03-31', endTime:'21:00', month:'Mar', day:'31', act:'Gale &amp; Joey Duo', feat:'', sublabel:'', venue:"Woody's River Roo", venueUrl:'https://woodysriverroo.com/event/gale-joey-duo-8/', time:'5:00 \u2013 9:00 PM', photo:'gale-and-joey-duo.jpg', photoAlt:"Gale and Joey Duo at Woody's River Roo" },
+    { date:'2026-04-04', endTime:'23:00', month:'Apr', day:'04', act:'Gale &amp; Joey Duo', feat:'', sublabel:'', venue:'Proper Pint', venueUrl:'https://www.instagram.com/theproper_pint/', time:'8:00 \u2013 11:00 PM', photo:'gale-and-joey-duo.jpg', photoAlt:'Gale and Joey Duo at Proper Pint' },
+    { date:'2026-04-05', endTime:'16:30', month:'Apr', day:'05', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-04-07', endTime:'22:00', month:'Apr', day:'07', act:'Joey &amp; Gale', feat:'', sublabel:'', venue:"O'Maddy's Bar &amp; Grille", venueUrl:'https://www.omaddys.com/', time:'6:00 \u2013 10:00 PM', photo:'joey-and-gale.jpg', photoAlt:"Joey and Gale at O'Maddy's" },
+    { date:'2026-04-08', endTime:'22:00', month:'Apr', day:'08', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 \u2013 10:00 PM', photo:'kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
+    { date:'2026-04-11', endTime:'22:00', month:'Apr', day:'11', act:'Dog and Pony Trio', feat:'', sublabel:'', venue:'Middle Grounds Grill', venueUrl:'https://www.middlegroundsgrill.com/', time:'7:00 \u2013 10:00 PM', photo:'dog-and-pony-trio.jpg', photoAlt:'Dog and Pony Trio at Middle Grounds Grill' },
+    { date:'2026-04-12', endTime:'16:30', month:'Apr', day:'12', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-04-19', endTime:'16:30', month:'Apr', day:'19', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
+    { date:'2026-04-26', endTime:'16:30', month:'Apr', day:'26', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 \u2013 4:30 PM', photo:'gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' }
+];
 
-    <script>
-        // ── AUTO-EXPIRE GIGS ──
-        (function() {
-            const now = new Date();
-            const today = now.toDateString();
-            const gigs = document.querySelectorAll('.gig');
-            let visible = 0;
+var weekOffset = 0;
 
-            gigs.forEach(function(gig) {
-                const endDate = new Date(gig.dataset.end);
-                if (now > endDate) {
-                    gig.style.display = 'none';
-                } else {
-                    visible++;
-                    // Tag today's shows
-                    if (endDate.toDateString() === today) {
-                        const actEl = gig.querySelector('.gig-act');
-                        if (actEl) {
-                            const badge = document.createElement('span');
-                            badge.className = 'today-badge';
-                            badge.textContent = 'Tonight';
-                            actEl.appendChild(badge);
-                        }
-                    }
-                }
-            });
+function midnight(d) { var m = new Date(d); m.setHours(0,0,0,0); return m; }
 
-            if (visible === 0) {
-                document.getElementById('noShows').style.display = 'block';
-            }
-        })();
+function fmtRange(s, e) {
+    var mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return mo[s.getMonth()] + ' ' + s.getDate() + ' \u2013 ' + mo[e.getMonth()] + ' ' + e.getDate();
+}
 
-        // ── DESKTOP: swap SMS for email on book button ──
-        (function() {
-            if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                var btn = document.getElementById('bookBtn');
-                if (btn) {
-                    btn.href = "mailto:interrantej@gmail.com?subject=Gig Booking Inquiry&body=Hi Joey, I'd like to book you for a gig.%0AMy name:%0ADate:%0AVenue:";
-                }
-            }
-        })();
-    </script>
+function venueIcon(url) {
+    if (url.indexOf('instagram') > -1) {
+        return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
+    }
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
+}
 
+function phIcon() {
+    return '<div class="gig-photo-ph"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5"><rect x="2" y="6" width="20" height="15" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6l2-3h4l2 3"/></svg><span>Photo soon</span></div>';
+}
+
+function renderShows() {
+    var now = new Date();
+    var todayMid = midnight(now);
+    var winStart = new Date(todayMid);
+    winStart.setDate(winStart.getDate() + weekOffset * 7);
+    var winEnd = new Date(winStart);
+    winEnd.setDate(winEnd.getDate() + 7);
+
+    var winEndLabel = new Date(winEnd.getTime() - 86400000);
+    document.getElementById('weekRange').textContent = fmtRange(winStart, winEndLabel);
+    document.getElementById('prevWeek').disabled = (weekOffset <= 0);
+
+    var list = document.getElementById('gigList');
+    list.innerHTML = '';
+    var visible = 0;
+
+    SHOWS.forEach(function(s) {
+        var showDate = midnight(new Date(s.date + 'T00:00:00'));
+        var showEnd  = new Date(s.date + 'T' + s.endTime + ':00');
+        if (now > showEnd) return;
+        if (showDate < winStart || showDate >= winEnd) return;
+        visible++;
+        var isToday = showDate.toDateString() === now.toDateString();
+
+        var actHtml = s.act;
+        if (s.feat) actHtml += ' <span class="gig-feat">' + s.feat + '</span>';
+        if (isToday) actHtml += ' <span class="today-badge">Tonight</span>';
+
+        var html = '<article class="gig">'
+            + '<div class="gig-date"><span class="gig-month">' + s.month + '</span><span class="gig-day">' + s.day + '</span></div>'
+            + '<div class="gig-info">'
+            +   '<div class="gig-act">' + actHtml + '</div>'
+            +   (s.sublabel ? '<div class="gig-sublabel">' + s.sublabel + '</div>' : '')
+            +   '<div class="gig-venue-row"><a class="gig-venue" href="' + s.venueUrl + '" target="_blank" rel="noopener">' + venueIcon(s.venueUrl) + s.venue + '</a></div>'
+            +   '<span class="gig-time">' + s.time + '</span>'
+            + '</div>'
+            + '<div class="gig-photo"><img src="' + s.photo + '" alt="' + s.photoAlt + '" onerror="this.outerHTML=\'' + phIcon().replace(/'/g, "\\'") + '\'"></div>'
+            + '</article>';
+
+        list.insertAdjacentHTML('beforeend', html);
+    });
+
+    var noEl = document.getElementById('noShows');
+    var countEl = document.getElementById('weekCount');
+    if (visible === 0) {
+        noEl.style.display = 'block';
+        countEl.textContent = '';
+    } else {
+        noEl.style.display = 'none';
+        countEl.textContent = visible + (visible === 1 ? ' show' : ' shows');
+    }
+}
+
+function shiftWeek(dir) {
+    weekOffset += dir;
+    if (weekOffset < 0) weekOffset = 0;
+    renderShows();
+}
+
+// Desktop: swap SMS for email
+(function() {
+    if (!/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        var e = 'mailto:interrantej@gmail.com?subject=Gig Booking Inquiry&body=Hi Joey, I\'d like to book you for a gig.%0AMy name:%0ADate:%0AVenue:';
+        var b1 = document.getElementById('bookBtn');
+        var b2 = document.getElementById('bookBtnHeader');
+        if (b1) b1.href = e;
+        if (b2) b2.href = e;
+    }
+})();
+
+renderShows();
+</script>
 </body>
 </html>
