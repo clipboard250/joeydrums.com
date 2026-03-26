@@ -142,7 +142,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center top;
+            object-position: center 10%;
             display: block;
             filter: grayscale(15%);
             transition: filter 0.4s ease;
@@ -178,29 +178,29 @@
             margin-bottom: 1.5rem;
             animation: fadeUp 0.8s 0.1s ease both;
         }
-        .week-range {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            color: var(--text-mid);
-        }
-        .week-count {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.65rem;
-            letter-spacing: 2px;
-            color: rgba(230,57,70,0.7);
-            margin-top: 0.25rem;
-        }
+     .week-range {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--text-mid);
+}
+.week-count {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: rgba(230,57,70,0.7);
+    margin-top: 0.25rem;
+}
         .week-arrows { display: flex; gap: 0.5rem; }
-        .week-btn {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--text-dim);
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            padding: 0.5rem 1.1rem;
+    .week-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 0.65rem 1.4rem;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -421,7 +421,7 @@
                 width: 100%;
                 height: 320px;
             }
-            .hero-photo img { object-position: center 15%; } 
+            .hero-photo img { object-position: center top; }
             .role-text { letter-spacing: 2px; font-size: 0.75rem; }
 
             .gig { grid-template-columns: 58px 1fr; }
@@ -564,9 +564,9 @@
     </section>
 
     <footer>
-        <a class="footer-phone" href="book.html">Book a Gig</a>
-        
-    </footer>
+    <a class="footer-phone" href="book.html">Book a Gig</a>
+    <span class="footer-note">Built by <a href="https://www.gofercontent.com" target="_blank" rel="noopener" style="color:var(--text-dim);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text-dim)'">Gofer Content</a></span>
+</footer>
 
 </div>
 <script>
