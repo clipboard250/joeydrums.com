@@ -20,7 +20,7 @@
             --text-mid: #888;
             --text-dim: #444;
             --border: rgba(255,255,255,0.06);
-            --input-border: rgba(255,255,255,0.12);
+            --input-border: rgba(255,255,255,0.28);
             --input-focus: rgba(230,57,70,0.5);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -78,7 +78,7 @@
         .page-header { margin-bottom: 3rem; animation: fadeUp 0.8s ease both; }
         .name-first {
             display: block;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(4rem, 9vw, 7.5rem);
             font-weight: 700;
             letter-spacing: -1px;
             line-height: 1;
@@ -87,7 +87,7 @@
         }
         .name-last {
             display: block;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(4rem, 9vw, 7.5rem);
             font-weight: 700;
             letter-spacing: -1px;
             line-height: 1;
@@ -122,7 +122,7 @@
             font-size: 0.6rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--text-dim);
+            ccolor: #aaa;
             margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
@@ -153,13 +153,13 @@
             margin-bottom: 1.2rem;
         }
 
-        .field label {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.55rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--text-dim);
-        }
+  .field label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #aaa;
+}
 
         .field .required {
             color: var(--red);
@@ -184,10 +184,10 @@
             border-radius: 0;
         }
 
-        .field input::placeholder,
-        .field textarea::placeholder {
-            color: var(--text-dim);
-            font-weight: 300;
+       .field input::placeholder,
+.field textarea::placeholder {
+  color: #888;
+font-weight: 300;
         }
 
         .field input:focus,
@@ -339,7 +339,7 @@
         <div class="field-row">
             <div class="field">
                 <label for="phone">Phone <span style="color:var(--text-dim);font-size:0.5rem;">(optional)</span></label>
-                <input type="tel" id="phone" name="phone" placeholder="(813) 555-0000" autocomplete="tel">
+                <input type="tel" id="phone" name="phone" placeholder="Your number" autocomplete="tel">
             </div>
             <div class="field">
                 <label for="gig_date">Date of Gig <span style="color:var(--text-dim);font-size:0.5rem;">(optional)</span></label>
@@ -376,22 +376,9 @@
             <button type="submit" class="submit-btn">Send Inquiry &nbsp;&#8594;</button>
         </div>
 
-    </form>
-    </div>
+   </form>
 
 </div>
-<script>
-// On mobile show SMS option as primary direct contact
-(function() {
-    if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-        var links = document.getElementById('directLinks');
-        var smsLink = document.createElement('a');
-        smsLink.className = 'direct-link';
-        smsLink.href = "sms:+18133268800&body=Hi Joey, I'd like to book you for a gig.";
-        smsLink.innerHTML = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Text Joey';
-        links.insertBefore(smsLink, links.firstChild);
-    }
-})();
-</script>
+    
 </body>
 </html>
