@@ -672,7 +672,7 @@ function renderShows() {
             +   '<div class="gig-venue-row"><a class="gig-venue" href="' + s.venueUrl + '" target="_blank" rel="noopener">' + venueIcon(s.venueUrl) + s.venue + '</a></div>'
             +   '<span class="gig-time">' + s.time + '</span>'
             + '</div>'
-            + '<div class="gig-photo"><img src="' + s.photo + '" alt="' + s.photoAlt + '" onerror="this.style.display=\'none\'"></div>'
+            + '<div class="gig-photo"><img src="' + (s.act === 'Kid Royal Band' && s.feat ? 'assets/kid-royal-band-bayboro.jpg' : s.act === 'Kid Royal Band' ? 'assets/kid-royal-band-saltwater-hippie.jpg' : s.photo) + '" alt="' + s.photoAlt + '" onerror="this.style.display=\'none\'"></div>'
             + '</article>';
 
         list.insertAdjacentHTML('beforeend', html);
