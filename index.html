@@ -349,6 +349,87 @@
             border-top: 1px solid var(--border);
         }
 
+   /* ── SUBSCRIBE ── */
+        .subscribe-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.2s ease both; }
+        .subscribe-inner {
+            border: 1px solid var(--border);
+            padding: 2rem 2.2rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+        }
+        .subscribe-inner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: var(--red);
+        }
+        .subscribe-text h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 0.35rem;
+        }
+        .subscribe-text p {
+            font-size: 0.78rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+        .subscribe-form { display: flex; gap: 0; flex-shrink: 0; }
+        .subscribe-input {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-right: none;
+            color: var(--text);
+            padding: 0.75rem 1.2rem;
+            width: 230px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .subscribe-input::placeholder { color: var(--text-dim); }
+        .subscribe-input:focus { border-color: var(--red-border); }
+        .subscribe-btn {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: var(--red);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.4rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .subscribe-btn:hover { background: #c8313d; }
+        .subscribe-fine {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            opacity: 0.5;
+            grid-column: 1 / -1;
+            margin-top: -1rem;
+        }
+        @media (max-width: 640px) {
+            .subscribe-inner { grid-template-columns: 1fr; gap: 1.2rem; }
+            .subscribe-form { flex-direction: column; }
+            .subscribe-input { width: 100%; border-right: 1px solid var(--border); border-bottom: none; }
+            .subscribe-btn { width: 100%; padding: 0.85rem; }
+        }
+
         /* ── LINKS ── */
         .links-section { animation: fadeUp 0.8s 0.25s ease both; }
         .link-grid {
@@ -538,6 +619,34 @@
         </div>
         <div class="gig-list" id="gigList"></div>
         <p class="no-shows" id="noShows" style="display:none;">No shows this week &mdash; hit Next to see what&rsquo;s coming.</p>
+    </section>
+
+   <section class="subscribe-section" aria-label="Subscribe to updates">
+        <p class="section-label">Stay in the Loop</p>
+        <div class="subscribe-inner">
+            <div class="subscribe-text">
+                <h2>First to know.</h2>
+                <p>Upcoming gigs, last-minute changes, and new releases.</p>
+            </div>
+            <div>
+                <form class="subscribe-form" id="subscribeForm" action="https://formspree.io/f/xojpknqj" method="POST">
+                    <input type="hidden" name="_subject" value="New subscriber — JoeyDrums.com">
+                    <input type="hidden" name="_cc" value="info@gofercontent.com">
+                    <input type="hidden" name="_next" value="https://joeydrums.com/subscribe-thanks.html">
+                    <input
+                        class="subscribe-input"
+                        type="email"
+                        name="email"
+                        placeholder="Your email"
+                        required
+                        autocomplete="email"
+                        aria-label="Email address"
+                    >
+                    <button class="subscribe-btn" type="submit">Notify Me</button>
+                </form>
+            </div>
+            <p class="subscribe-fine">Unsubscribe any time.</p>
+        </div>
     </section>
 
     <section class="links-section">
