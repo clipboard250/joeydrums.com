@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're In — Joey Interrante</title>
+    <meta name="robots" content="noindex, follow">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #e63946;
+            --bg: #080808;
+            --text: #f0f0f0;
+            --text-mid: #bbb;
+            --text-dim: #888;
+            --border: rgba(255,255,255,0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Oswald', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 40% at 15% 0%, rgba(230,57,70,0.09) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 30% at 85% 100%, rgba(180,30,40,0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 520px;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .check {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+        .check svg { width: 22px; height: 22px; color: var(--red); }
+        h1 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        h1 span { color: var(--red); }
+        p {
+            font-size: 0.82rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-mid);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+        .back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.6rem;
+            transition: all 0.2s;
+        }
+        .back:hover { color: var(--red); border-color: rgba(230,57,70,0.3); }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+            </svg>
+        </div>
+        <h1>You're <span>In.</span></h1>
+        <p>Upcoming gigs, last-minute changes,<br>and new releases — first to your inbox.</p>
+        <a class="back" href="/">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to Shows
+        </a>
+    </div>
+</body>
+</html>
