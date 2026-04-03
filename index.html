@@ -618,7 +618,10 @@
             </div>
         </div>
         <div class="gig-list" id="gigList"></div>
-        <p class="no-shows" id="noShows" style="display:none;">No shows this week &mdash; hit Next to see what&rsquo;s coming.</p>
+       <p class="no-shows" id="noShows" style="display:none;">No shows this week &mdash; hit Next to see what&rsquo;s coming.</p>
+        <div style="margin-top:1.5rem; text-align:right;">
+            <button class="week-btn" onclick="shiftWeek(1); window.scrollTo({top:0,behavior:'smooth'});">Next Week &#8594;</button>
+        </div>
     </section>
 
    <section class="subscribe-section" aria-label="Subscribe to updates">
