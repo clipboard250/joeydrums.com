@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -83,561 +82,547 @@
             padding: 4rem 3rem 6rem;
         }
 
-```
-    /* ── HEADER ── */
-    header {
-        margin-bottom: 4.5rem;
-        animation: fadeUp 0.8s ease both;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        grid-template-rows: auto auto;
-      gap: 0 3rem;
-      align-items: stretch;
-    }
-    .header-left { grid-column: 1; grid-row: 1 / 3; display: flex; flex-direction: column; justify-content: center; gap: 0; }
-    .header-right-top { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-end; padding-top: 0.5rem; }
-    .header-right-bottom { grid-column: 2; grid-row: 2; align-self: end; }
+        /* ── HEADER ── */
+        header {
+            margin-bottom: 4.5rem;
+            animation: fadeUp 0.8s ease both;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: auto auto;
+          gap: 0 3rem;
+          align-items: stretch;
+        }
+        .header-left { grid-column: 1; grid-row: 1 / 3; display: flex; flex-direction: column; justify-content: center; gap: 0; }
+        .header-right-top { grid-column: 2; grid-row: 1; display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-end; padding-top: 0.5rem; }
+        .header-right-bottom { grid-column: 2; grid-row: 2; align-self: end; }
 
-    .name-first {
-        display: block;
-        font-size: clamp(4rem, 9vw, 7.5rem);
-        font-weight: 700;
-        letter-spacing: -2px;
-        line-height: 0.95;
-        color: var(--text);
-        text-transform: uppercase;
-    }
-    .name-last {
-        display: block;
-        font-size: clamp(4rem, 9vw, 7.5rem);
-        font-weight: 700;
-        letter-spacing: -2px;
-        line-height: 0.95;
-        color: var(--red);
-        text-transform: uppercase;
-    }
-    .title-bar {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-    .title-bar::before {
-display: none;
-```
-
+        .name-first {
+            display: block;
+            font-size: clamp(4rem, 9vw, 7.5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 0.95;
+            color: var(--text);
+            text-transform: uppercase;
+        }
+        .name-last {
+            display: block;
+            font-size: clamp(4rem, 9vw, 7.5rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 0.95;
+            color: var(--red);
+            text-transform: uppercase;
+        }
+        .title-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .title-bar::before {
+    display: none;
 }
-.role-text {
-font-size: 0.85rem;
-font-weight: 300;
-letter-spacing: 4px;
-text-transform: uppercase;
-color: var(–text-mid);
-white-space: nowrap;
+        .role-text {
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    white-space: nowrap;
 }
-.header-link {
-font-size: 0.72rem;
-letter-spacing: 3px;
-text-transform: uppercase;
-color: var(–text-dim);
-text-decoration: none;
-transition: color 0.2s;
-display: flex;
-align-items: center;
-gap: 0.5rem;
-}
-.header-link:hover { color: var(–red); }
+        .header-link {
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .header-link:hover { color: var(--red); }
 
-```
-    /* ── HERO PHOTO ── */
-        .hero-photo {
-        width: 320px;
-        height: 420px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        position: relative;
-        flex-shrink: 0;
-    }
-    .hero-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 5%;
-        display: block;
-        filter: grayscale(15%);
-        transition: filter 0.4s ease;
-    }
-    .hero-photo:hover img { filter: grayscale(0%); }
-    .hero-photo::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, transparent 55%, rgba(8,8,8,0.5) 100%);
-        pointer-events: none;
-    }
+        /* ── HERO PHOTO ── */
+            .hero-photo {
+            width: 320px;
+            height: 420px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 5%;
+            display: block;
+            filter: grayscale(15%);
+            transition: filter 0.4s ease;
+        }
+        .hero-photo:hover img { filter: grayscale(0%); }
+        .hero-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 55%, rgba(8,8,8,0.5) 100%);
+            pointer-events: none;
+        }
 
-    /* ── SECTION LABEL ── */
-    .section-label {
-        font-family: 'Oswald', sans-serif;
-        font-size: 0.65rem;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        color: var(--text-dim);
-        margin-bottom: 0.8rem;
-        display: flex;
-        align-items: center;
-        gap: 0.8rem;
-    }
-    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+        /* ── SECTION LABEL ── */
+        .section-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
-    /* ── WEEK NAV ── */
-    .week-nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 1.5rem;
-        animation: fadeUp 0.8s 0.1s ease both;
-    }
- .week-range {
-font-family: 'Oswald', sans-serif;
-font-size: 1.1rem;
-letter-spacing: 2px;
-color: var(--text-mid);
-```
-
+        /* ── WEEK NAV ── */
+        .week-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.8s 0.1s ease both;
+        }
+     .week-range {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--text-mid);
 }
 .week-count {
-font-family: ‘Oswald’, sans-serif;
-font-size: 0.85rem;
-letter-spacing: 2px;
-color: var(–red);
-margin-top: 0.25rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    color: var(--red);
+    margin-top: 0.25rem;
 }
-.week-arrows { display: flex; gap: 0.5rem; }
-.week-btn {
-background: none;
-border: 1px solid var(–border);
-color: var(–text-dim);
-font-family: ‘Oswald’, sans-serif;
-font-size: 0.85rem;
-letter-spacing: 3px;
-text-transform: uppercase;
-padding: 0.65rem 1.4rem;
-cursor: pointer;
-transition: all 0.2s;
-}
-.week-btn:hover { border-color: var(–red-border); color: var(–red); }
-.week-btn:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
+        .week-arrows { display: flex; gap: 0.5rem; }
+    .week-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 0.65rem 1.4rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .week-btn:hover { border-color: var(--red-border); color: var(--red); }
+        .week-btn:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
 
-```
-    /* ── SHOWS ── */
-    .shows-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.15s ease both; }
-    .gig-list { display: flex; flex-direction: column; }
-    .gig {
-        display: grid;
-        grid-template-columns: 72px 1fr 130px;
-        gap: 0 1.8rem;
-        padding: 1.3rem 0;
-        border-bottom: 1px solid var(--border);
-        align-items: center;
-        position: relative;
-    }
-    .gig:first-child { border-top: 1px solid var(--border); }
-    .gig::before {
-        content: '';
-        position: absolute;
-        left: -3rem;
-        top: 0; bottom: 0;
-        width: 2px;
-        background: var(--red);
-        transform: scaleY(0);
-        transform-origin: bottom;
-        transition: transform 0.25s ease;
-    }
-    .gig:hover::before { transform: scaleY(1); }
-    .gig-date { text-align: center; }
-    .gig-month {
-        display: block;
-        font-family: 'Oswald', sans-serif;
-        font-size: 0.6rem;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: var(--red);
-        line-height: 1;
-        margin-bottom: 0.2rem;
-    }
-    .gig-day {
-        display: block;
-        font-size: 2.2rem;
-        font-weight: 700;
-        line-height: 1;
-        color: var(--text);
-    }
-    .gig-info { display: flex; flex-direction: column; gap: 0.3rem; }
-    .gig-act {
-        font-size: 1.15rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        color: var(--text);
-        line-height: 1.2;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
-    .gig-feat { font-weight: 300; color: var(--text-mid); font-size: 1rem; }
-    .gig-sublabel {
-        font-family: 'Oswald', sans-serif;
-        font-size: 0.58rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--text-dim);
-    }
-    .gig-venue {
-        font-size: 0.8rem;
-        font-weight: 300;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--text-mid);
-        text-decoration: none;
-        transition: color 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-    }
-    .gig-venue:hover { color: var(--red); }
-    .gig-venue svg { width: 12px; height: 12px; opacity: 0.5; flex-shrink: 0; transition: opacity 0.2s; }
-    .gig-venue:hover svg { opacity: 1; }
-    .gig-time {
-        font-family: 'Oswald', sans-serif;
-        font-size: 0.72rem;
-        color: var(--text-mid);
-        letter-spacing: 1px;
-    }
-
-    /* ── PHOTO THUMBNAIL ── */
-    .gig-photo {
-        width: 130px;
-        height: 80px;
-        overflow: hidden;
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        flex-shrink: 0;
-    }
-    .gig-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.3s ease;
-    }
-    .gig:hover .gig-photo img { transform: scale(1.05); }
-
-    /* ── TODAY BADGE ── */
-    .today-badge {
-        display: inline-block;
-        font-family: 'Oswald', sans-serif;
-        font-size: 0.52rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        background: var(--red);
-        color: #fff;
-        padding: 3px 7px;
-        line-height: 1.6;
-    }
-
-    .no-shows {
-        padding: 3rem 0;
-        font-size: 0.9rem;
-        font-weight: 300;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: var(--text-dim);
-        border-top: 1px solid var(--border);
-    }
-```
-
-/* ── SUBSCRIBE ── */
-.subscribe-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.2s ease both; }
-.subscribe-inner {
-border: 1px solid var(–border);
-padding: 2rem 2.2rem;
-display: grid;
-grid-template-columns: 1fr auto;
-gap: 2rem;
-align-items: center;
-position: relative;
-}
-.subscribe-inner::before {
-content: ‘’;
-position: absolute;
-top: 0; left: 0;
-width: 3px; height: 100%;
-background: var(–red);
-}
-.subscribe-text h2 {
-font-size: 1.15rem;
-font-weight: 600;
-letter-spacing: 3px;
-text-transform: uppercase;
-color: var(–text);
-margin-bottom: 0.35rem;
-}
-.subscribe-text p {
-font-size: 0.78rem;
-font-weight: 300;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: var(–text-dim);
-line-height: 1.5;
-}
-.subscribe-form { display: flex; gap: 0; flex-shrink: 0; }
-.subscribe-input {
-font-family: ‘Oswald’, sans-serif;
-font-size: 0.8rem;
-letter-spacing: 2px;
-text-transform: uppercase;
-background: var(–bg);
-border: 1px solid var(–border);
-border-right: none;
-color: var(–text);
-padding: 0.75rem 1.2rem;
-width: 230px;
-outline: none;
-transition: border-color 0.2s;
-}
-.subscribe-input::placeholder { color: var(–text-dim); }
-.subscribe-input:focus { border-color: var(–red-border); }
-.subscribe-btn {
-font-family: ‘Oswald’, sans-serif;
-font-size: 0.72rem;
-letter-spacing: 3px;
-text-transform: uppercase;
-background: var(–red);
-color: #fff;
-border: none;
-padding: 0.75rem 1.4rem;
-cursor: pointer;
-transition: background 0.2s;
-white-space: nowrap;
-}
-.subscribe-btn:hover { background: #c8313d; }
-.subscribe-fine {
-font-size: 0.6rem;
-letter-spacing: 2px;
-text-transform: uppercase;
-color: var(–text-dim);
-opacity: 0.5;
-grid-column: 1 / -1;
-margin-top: -1rem;
-}
-@media (max-width: 640px) {
-.subscribe-inner { grid-template-columns: 1fr; gap: 1.2rem; }
-.subscribe-form { flex-direction: column; }
-.subscribe-input { width: 100%; border-right: 1px solid var(–border); border-bottom: none; }
-.subscribe-btn { width: 100%; padding: 0.85rem; }
-}
-
-```
-    /* ── LINKS ── */
-    .links-section { animation: fadeUp 0.8s 0.25s ease both; }
-    .link-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-        gap: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
-    .link-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 1.3rem;
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        text-decoration: none;
-        color: var(--text);
-        transition: all 0.25s;
-    }
-    .link-item:hover { background: var(--bg-card-hover); border-color: var(--red-border); transform: translateX(3px); }
-    .link-item-left { display: flex; align-items: center; gap: 0.9rem; }
-    .link-icon { width: 18px; height: 18px; color: var(--text-dim); flex-shrink: 0; transition: color 0.25s; }
-    .link-item:hover .link-icon { color: var(--red); }
-    .link-name { font-size: 0.9rem; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; }
-    .link-arrow { font-size: 1rem; color: var(--text-dim); transition: color 0.25s; }
-    .link-item:hover .link-arrow { color: var(--red); }
-    .studio-cta {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1.3rem 1.6rem;
-        background: linear-gradient(135deg, rgba(230,57,70,0.08), rgba(230,57,70,0.04));
-        border: 1px solid var(--red-border);
-        text-decoration: none;
-        color: var(--text);
-        transition: all 0.25s;
-    }
-    .studio-cta:hover { background: rgba(230,57,70,0.14); border-color: rgba(230,57,70,0.5); transform: translateX(3px); }
-    .studio-left { display: flex; flex-direction: column; gap: 0.25rem; }
-    .studio-name { font-size: 0.95rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
-    .studio-sub { font-size: 0.72rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--text-mid); }
-    .studio-arrow { color: var(--red); font-size: 1.2rem; }
-
-    /* ── FOOTER ── */
-    footer {
-        margin-top: 4rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--border);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        animation: fadeUp 0.8s 0.3s ease both;
-    }
-    .footer-phone {
-        font-family: 'Oswald', sans-serif;
-        font-size: 0.72rem;
-        color: var(--text-dim);
-        letter-spacing: 2px;
-        text-decoration: none;
-        transition: color 0.2s;
-    }
-    .footer-phone:hover { color: var(--text-mid); }
-    .footer-note { font-size: 0.68rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
-
-    @keyframes fadeUp {
-        from { opacity: 0; transform: translateY(16px); }
-        to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 760px) {
-        .page { padding: 2.5rem 1.5rem 5rem; }
-
-        header {
+        /* ── SHOWS ── */
+        .shows-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.15s ease both; }
+        .gig-list { display: flex; flex-direction: column; }
+        .gig {
+            display: grid;
+            grid-template-columns: 72px 1fr 130px;
+            gap: 0 1.8rem;
+            padding: 1.3rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+            position: relative;
+        }
+        .gig:first-child { border-top: 1px solid var(--border); }
+        .gig::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 0; bottom: 0;
+            width: 2px;
+            background: var(--red);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.25s ease;
+        }
+        .gig:hover::before { transform: scaleY(1); }
+        .gig-date { text-align: center; }
+        .gig-month {
+            display: block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+        .gig-day {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--text);
+        }
+        .gig-info { display: flex; flex-direction: column; gap: 0.3rem; }
+        .gig-act {
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--text);
+            line-height: 1.2;
             display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
-        .header-right-top {
-            flex-direction: row;
-            align-items: flex-start;
-            gap: 1.5rem;
+        .gig-feat { font-weight: 300; color: var(--text-mid); font-size: 1rem; }
+        .gig-sublabel {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.58rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
         }
-        .hero-photo {
+        .gig-venue {
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-mid);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .gig-venue:hover { color: var(--red); }
+        .gig-venue svg { width: 12px; height: 12px; opacity: 0.5; flex-shrink: 0; transition: opacity 0.2s; }
+        .gig-venue:hover svg { opacity: 1; }
+        .gig-time {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            color: var(--text-mid);
+            letter-spacing: 1px;
+        }
+
+        /* ── PHOTO THUMBNAIL ── */
+        .gig-photo {
+            width: 130px;
+            height: 80px;
+            overflow: hidden;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .gig-photo img {
             width: 100%;
-            height: 320px;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
         }
-        .hero-photo img { object-position: center top; }
-        .role-text { letter-spacing: 2px; font-size: 0.75rem; }
+        .gig:hover .gig-photo img { transform: scale(1.05); }
 
-        .gig { grid-template-columns: 58px 1fr; }
-        .gig-photo { display: none; }
-        .gig-day { font-size: 1.8rem; }
-        .gig-act { font-size: 1.1rem; }
-        .gig-feat { font-size: 0.95rem; }
-        .gig-venue { font-size: 0.8rem; }
-        .gig-time { font-size: 0.68rem; }
-        .week-range { font-size: 0.78rem; }
-        .week-count { font-size: 0.65rem; }
-        .week-btn { font-size: 0.68rem; padding: 0.55rem 1rem; }
-        .link-name { font-size: 0.9rem; }
-        .link-grid { grid-template-columns: 1fr; }
-        footer { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+        /* ── TODAY BADGE ── */
+        .today-badge {
+            display: inline-block;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.52rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: var(--red);
+            color: #fff;
+            padding: 3px 7px;
+            line-height: 1.6;
+        }
+
+        .no-shows {
+            padding: 3rem 0;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+        }
+
+   /* ── SUBSCRIBE ── */
+        .subscribe-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.2s ease both; }
+        .subscribe-inner {
+            border: 1px solid var(--border);
+            padding: 2rem 2.2rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+        }
+        .subscribe-inner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: var(--red);
+        }
+        .subscribe-text h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text);
+            margin-bottom: 0.35rem;
+        }
+        .subscribe-text p {
+            font-size: 0.78rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+        .subscribe-form { display: flex; gap: 0; flex-shrink: 0; }
+        .subscribe-input {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-right: none;
+            color: var(--text);
+            padding: 0.75rem 1.2rem;
+            width: 230px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .subscribe-input::placeholder { color: var(--text-dim); }
+        .subscribe-input:focus { border-color: var(--red-border); }
+        .subscribe-btn {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: var(--red);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.4rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .subscribe-btn:hover { background: #c8313d; }
+        .subscribe-fine {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            opacity: 0.5;
+            grid-column: 1 / -1;
+            margin-top: -1rem;
+        }
+        @media (max-width: 640px) {
+            .subscribe-inner { grid-template-columns: 1fr; gap: 1.2rem; }
+            .subscribe-form { flex-direction: column; }
+            .subscribe-input { width: 100%; border-right: 1px solid var(--border); border-bottom: none; }
+            .subscribe-btn { width: 100%; padding: 0.85rem; }
+        }
+
+        /* ── LINKS ── */
+        .links-section { animation: fadeUp 0.8s 0.25s ease both; }
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.25s;
+        }
+        .link-item:hover { background: var(--bg-card-hover); border-color: var(--red-border); transform: translateX(3px); }
+        .link-item-left { display: flex; align-items: center; gap: 0.9rem; }
+        .link-icon { width: 18px; height: 18px; color: var(--text-dim); flex-shrink: 0; transition: color 0.25s; }
+        .link-item:hover .link-icon { color: var(--red); }
+        .link-name { font-size: 0.9rem; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; }
+        .link-arrow { font-size: 1rem; color: var(--text-dim); transition: color 0.25s; }
+        .link-item:hover .link-arrow { color: var(--red); }
+        .studio-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.3rem 1.6rem;
+            background: linear-gradient(135deg, rgba(230,57,70,0.08), rgba(230,57,70,0.04));
+            border: 1px solid var(--red-border);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.25s;
+        }
+        .studio-cta:hover { background: rgba(230,57,70,0.14); border-color: rgba(230,57,70,0.5); transform: translateX(3px); }
+        .studio-left { display: flex; flex-direction: column; gap: 0.25rem; }
+        .studio-name { font-size: 0.95rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
+        .studio-sub { font-size: 0.72rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--text-mid); }
+        .studio-arrow { color: var(--red); font-size: 1.2rem; }
+
+        /* ── FOOTER ── */
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeUp 0.8s 0.3s ease both;
+        }
+        .footer-phone {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-phone:hover { color: var(--text-mid); }
+        .footer-note { font-size: 0.68rem; font-weight: 300; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 760px) {
+            .page { padding: 2.5rem 1.5rem 5rem; }
+
+            header {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .header-right-top {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+            .hero-photo {
+                width: 100%;
+                height: 320px;
+            }
+            .hero-photo img { object-position: center top; }
+            .role-text { letter-spacing: 2px; font-size: 0.75rem; }
+
+            .gig { grid-template-columns: 58px 1fr; }
+            .gig-photo { display: none; }
+            .gig-day { font-size: 1.8rem; }
+            .gig-act { font-size: 1.1rem; }
+            .gig-feat { font-size: 0.95rem; }
+            .gig-venue { font-size: 0.8rem; }
+            .gig-time { font-size: 0.68rem; }
+            .week-range { font-size: 0.78rem; }
+            .week-count { font-size: 0.65rem; }
+            .week-btn { font-size: 0.68rem; padding: 0.55rem 1rem; }
+            .link-name { font-size: 0.9rem; }
+            .link-grid { grid-template-columns: 1fr; }
+            footer { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+        }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://joeydrums.com/#joey",
+    "name": "Joey Interrante",
+"alternateName": "Joseph Interrante",
+"url": "https://joeydrums.com",
+"jobTitle": "Professional Drummer",
+"knowsAbout": ["Florida blues", "Americana", "rock", "alternative", "country", "acoustic rock", "alt-rock", "live performance", "session drumming", "music production"],
+      "image": "https://joeydrums.com/assets/joey_hero_tal_9-16.webp",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tampa",
+        "addressRegion": "FL",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.instagram.com/interrantejoseph_banjoey",
+        "https://www.facebook.com/joey.gmsdrums",
+        "https://www.youtube.com/@banjoeydrummer",
+        "https://hippocketstudios.com"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://joeydrums.com/#website",
+      "url": "https://joeydrums.com",
+      "name": "Joey Interrante | Drummer",
+      "description": "Official website of Joey Interrante, professional drummer based in Tampa Bay.",
+      "publisher": {
+        "@id": "https://joeydrums.com/#joey"
+      }
     }
-</style>
-<script type="application/ld+json">
-```
-
-{
-“@context”: “https://schema.org”,
-“@graph”: [
-{
-“@type”: “Person”,
-“@id”: “https://joeydrums.com/#joey”,
-“name”: “Joey Interrante”,
-“alternateName”: “Joseph Interrante”,
-“url”: “https://joeydrums.com”,
-“jobTitle”: “Professional Drummer”,
-“knowsAbout”: [“Florida blues”, “Americana”, “rock”, “alternative”, “country”, “acoustic rock”, “alt-rock”, “live performance”, “session drumming”, “music production”],
-“image”: “https://joeydrums.com/assets/joey_hero_tal_9-16.webp”,
-“address”: {
-“@type”: “PostalAddress”,
-“addressLocality”: “Tampa”,
-“addressRegion”: “FL”,
-“addressCountry”: “US”
-},
-“sameAs”: [
-“https://www.instagram.com/interrantejoseph_banjoey”,
-“https://www.facebook.com/joey.gmsdrums”,
-“https://www.youtube.com/@banjoeydrummer”,
-“https://hippocketstudios.com”
-]
-},
-{
-“@type”: “WebSite”,
-“@id”: “https://joeydrums.com/#website”,
-“url”: “https://joeydrums.com”,
-“name”: “Joey Interrante | Drummer”,
-“description”: “Official website of Joey Interrante, professional drummer based in Tampa Bay.”,
-“publisher”: {
-“@id”: “https://joeydrums.com/#joey”
-}
-}
-]
+  ]
 }
 </script>
-
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a> 
     <div class="page">
 
-```
-<header>
-    <div class="header-left">
-        <span class="name-first">Joey</span>
-        <span class="name-last">Interrante</span>
-        <div class="title-bar">
-            <span class="role-text">Drummer &nbsp;&middot;&nbsp; Based in Tampa Bay</span>
+    <header>
+        <div class="header-left">
+            <span class="name-first">Joey</span>
+            <span class="name-last">Interrante</span>
+            <div class="title-bar">
+                <span class="role-text">Drummer &nbsp;&middot;&nbsp; Based in Tampa Bay</span>
+            </div>
         </div>
-    </div>
-    <div class="header-right-top">
-        <a class="header-link" href="book.html">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Book a Gig
-        </a>
-        <a class="header-link" href="https://hippocketstudios.com" target="_blank" rel="noopener">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            Hip Pocket Studios
-        </a>
-    </div>
-    <div class="header-right-bottom">
-        <div class="hero-photo">
-            <img src="assets/joey_hero_tal_9-16.webp" alt="Joey Interrante, professional drummer based in Tampa Bay">
+        <div class="header-right-top">
+            <a class="header-link" href="book.html">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Book a Gig
+            </a>
+            <a class="header-link" href="https://hippocketstudios.com" target="_blank" rel="noopener">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                Hip Pocket Studios
+            </a>
         </div>
-    </div>
-</header>
+        <div class="header-right-bottom">
+            <div class="hero-photo">
+                <img src="assets/joey_hero_tal_9-16.webp" alt="Joey Interrante, professional drummer based in Tampa Bay">
+            </div>
+        </div>
+    </header>
 
-<main id="main-content">     
-<section class="shows-section">
-    <p class="section-label">Upcoming Shows</p>
-    <div class="week-nav">
-        <div>
-            <div class="week-range" id="weekRange"></div>
-            <div class="week-count" id="weekCount"></div>
+    <main id="main-content">     
+    <section class="shows-section">
+        <p class="section-label">Upcoming Shows</p>
+        <div class="week-nav">
+            <div>
+                <div class="week-range" id="weekRange"></div>
+                <div class="week-count" id="weekCount"></div>
+            </div>
+            <div class="week-arrows">
+                <button class="week-btn" id="prevWeek" onclick="shiftWeek(-1)">&#8592; Prev</button>
+                <button class="week-btn" id="nextWeek" onclick="shiftWeek(1)">Next &#8594;</button>
+            </div>
         </div>
-        <div class="week-arrows">
-            <button class="week-btn" id="prevWeek" onclick="shiftWeek(-1)">&#8592; Prev</button>
-            <button class="week-btn" id="nextWeek" onclick="shiftWeek(1)">Next &#8594;</button>
+        <div class="gig-list" id="gigList"></div>
+       <p class="no-shows" id="noShows" style="display:none;">No shows this week &mdash; hit Next to see what&rsquo;s coming.</p>
+        <div style="margin-top:1.5rem; text-align:right;">
+            <button class="week-btn" onclick="shiftWeek(1); document.querySelector('.shows-section').scrollIntoView({behavior:'smooth'});">More Shows &#8594;</button>
         </div>
-    </div>
-    <div class="gig-list" id="gigList"></div>
-   <p class="no-shows" id="noShows" style="display:none;">No shows this week &mdash; hit Next to see what&rsquo;s coming.</p>
-    <div style="margin-top:1.5rem; text-align:right;">
-        <button class="week-btn" onclick="shiftWeek(1); document.querySelector('.shows-section').scrollIntoView({behavior:'smooth'});">More Shows &#8594;</button>
-    </div>
-</section>
-```
+    </section>
 
    <section class="subscribe-section" aria-label="Subscribe to updates">
         <p class="section-label">Stay in the Loop</p>
@@ -667,48 +652,46 @@ margin-top: -1rem;
         </div>
     </section>
 
-```
-<section class="links-section">
-    <p class="section-label">Book &amp; Connect</p>
-    <div class="link-grid">
-        <a class="link-item" href="book.html">
-            <div class="link-item-left">
-                <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                <span class="link-name">Book a Gig</span>
-            </div>
-            <span class="link-arrow">&#8594;</span>
-        </a>
-        <a class="link-item" href="https://www.instagram.com/interrantejoseph_banjoey" target="_blank" rel="noopener">
-            <div class="link-item-left">
-                <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-                <span class="link-name">Instagram</span>
-            </div>
-            <span class="link-arrow">&#8594;</span>
-        </a>
-        <a class="link-item" href="https://www.facebook.com/joey.gmsdrums" target="_blank" rel="noopener">
-            <div class="link-item-left">
-                <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-                <span class="link-name">Facebook</span>
-            </div>
-            <span class="link-arrow">&#8594;</span>
-        </a>
-        <a class="link-item" href="https://www.youtube.com/@banjoeydrummer" target="_blank" rel="noopener">
-            <div class="link-item-left">
-                <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-                <span class="link-name">YouTube</span>
-            </div>
-            <span class="link-arrow">&#8594;</span>
-        </a>
-    </div>
-    <a class="studio-cta" href="https://hippocketstudios.com" target="_blank" rel="noopener">
-        <div class="studio-left">
-            <span class="studio-name">Hip Pocket Studios</span>
-            <span class="studio-sub">Remote drum tracks &amp; production</span>
+    <section class="links-section">
+        <p class="section-label">Book &amp; Connect</p>
+        <div class="link-grid">
+            <a class="link-item" href="book.html">
+                <div class="link-item-left">
+                    <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <span class="link-name">Book a Gig</span>
+                </div>
+                <span class="link-arrow">&#8594;</span>
+            </a>
+            <a class="link-item" href="https://www.instagram.com/interrantejoseph_banjoey" target="_blank" rel="noopener">
+                <div class="link-item-left">
+                    <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                    <span class="link-name">Instagram</span>
+                </div>
+                <span class="link-arrow">&#8594;</span>
+            </a>
+            <a class="link-item" href="https://www.facebook.com/joey.gmsdrums" target="_blank" rel="noopener">
+                <div class="link-item-left">
+                    <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    <span class="link-name">Facebook</span>
+                </div>
+                <span class="link-arrow">&#8594;</span>
+            </a>
+            <a class="link-item" href="https://www.youtube.com/@banjoeydrummer" target="_blank" rel="noopener">
+                <div class="link-item-left">
+                    <svg class="link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    <span class="link-name">YouTube</span>
+                </div>
+                <span class="link-arrow">&#8594;</span>
+            </a>
         </div>
-        <span class="studio-arrow">&#8594;</span>
-    </a>
-</section>
-```
+        <a class="studio-cta" href="https://hippocketstudios.com" target="_blank" rel="noopener">
+            <div class="studio-left">
+                <span class="studio-name">Hip Pocket Studios</span>
+                <span class="studio-sub">Remote drum tracks &amp; production</span>
+            </div>
+            <span class="studio-arrow">&#8594;</span>
+        </a>
+    </section>
 
 </main>
     <footer>
@@ -798,81 +781,77 @@ var weekOffset = 0;
 function midnight(d) { var m = new Date(d); m.setHours(0,0,0,0); return m; }
 
 function fmtRange(s, e) {
-var mo = [‘Jan’,‘Feb’,‘Mar’,‘Apr’,‘May’,‘Jun’,‘Jul’,‘Aug’,‘Sep’,‘Oct’,‘Nov’,‘Dec’];
-return mo[s.getMonth()] + ’ ’ + s.getDate() + ’ \u2013 ’ + mo[e.getMonth()] + ’ ’ + e.getDate();
+    var mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return mo[s.getMonth()] + ' ' + s.getDate() + ' \u2013 ' + mo[e.getMonth()] + ' ' + e.getDate();
 }
 
 function venueIcon(url) {
-if (url.indexOf(‘instagram’) > -1) {
-return ‘<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>’;
-}
-return ‘<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>’;
+    if (url.indexOf('instagram') > -1) {
+        return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
+    }
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
 }
 
 function renderShows() {
-var now = new Date();
-var todayMid = midnight(now);
-var winStart = new Date(todayMid);
-winStart.setDate(winStart.getDate() + weekOffset * 7);
-var winEnd = new Date(winStart);
-winEnd.setDate(winEnd.getDate() + 7);
+    var now = new Date();
+    var todayMid = midnight(now);
+    var winStart = new Date(todayMid);
+    winStart.setDate(winStart.getDate() + weekOffset * 7);
+    var winEnd = new Date(winStart);
+    winEnd.setDate(winEnd.getDate() + 7);
 
-```
-var winEndLabel = new Date(winEnd.getTime() - 86400000);
-document.getElementById('weekRange').textContent = fmtRange(winStart, winEndLabel);
-document.getElementById('prevWeek').disabled = (weekOffset <= 0);
+    var winEndLabel = new Date(winEnd.getTime() - 86400000);
+    document.getElementById('weekRange').textContent = fmtRange(winStart, winEndLabel);
+    document.getElementById('prevWeek').disabled = (weekOffset <= 0);
 
-var list = document.getElementById('gigList');
-list.innerHTML = '';
-var visible = 0;
+    var list = document.getElementById('gigList');
+    list.innerHTML = '';
+    var visible = 0;
 
-SHOWS.forEach(function(s) {
-    var showDate = midnight(new Date(s.date + 'T00:00:00'));
-    var showEnd  = new Date(s.date + 'T' + s.endTime + ':00');
-    if (now > showEnd) return;
-    if (showDate < winStart || showDate >= winEnd) return;
-    visible++;
-    var isToday = showDate.toDateString() === now.toDateString();
+    SHOWS.forEach(function(s) {
+        var showDate = midnight(new Date(s.date + 'T00:00:00'));
+        var showEnd  = new Date(s.date + 'T' + s.endTime + ':00');
+        if (now > showEnd) return;
+        if (showDate < winStart || showDate >= winEnd) return;
+        visible++;
+        var isToday = showDate.toDateString() === now.toDateString();
 
-    var actHtml = s.act;
-    if (s.feat) actHtml += ' <span class="gig-feat">' + s.feat + '</span>';
-    if (isToday) actHtml += ' <span class="today-badge">Tonight</span>';
+        var actHtml = s.act;
+        if (s.feat) actHtml += ' <span class="gig-feat">' + s.feat + '</span>';
+        if (isToday) actHtml += ' <span class="today-badge">Tonight</span>';
 
-    var html = '<article class="gig">'
-        + '<div class="gig-date"><span class="gig-month">' + s.month + '</span><span class="gig-day">' + s.day + '</span></div>'
-        + '<div class="gig-info">'
-        +   '<div class="gig-act">' + actHtml + '</div>'
-        +   (s.sublabel ? '<div class="gig-sublabel">' + s.sublabel + '</div>' : '')
-        +   '<div class="gig-venue-row"><a class="gig-venue" href="' + s.venueUrl + '" target="_blank" rel="noopener">' + venueIcon(s.venueUrl) + s.venue + '</a></div>'
-        +   '<span class="gig-time">' + s.time + '</span>'
-        + '</div>'
-        + '<div class="gig-photo"><img src="' + (s.act === 'Kid Royal Band' && s.feat ? 'assets/kid-royal-band-bayboro.jpg' : s.act === 'Kid Royal Band' ? 'assets/kid-royal-band-saltwater-hippie.jpg' : s.photo) + '" alt="' + s.photoAlt + '" onerror="this.style.display=\'none\'"></div>'
-        + '</article>';
+        var html = '<article class="gig">'
+            + '<div class="gig-date"><span class="gig-month">' + s.month + '</span><span class="gig-day">' + s.day + '</span></div>'
+            + '<div class="gig-info">'
+            +   '<div class="gig-act">' + actHtml + '</div>'
+            +   (s.sublabel ? '<div class="gig-sublabel">' + s.sublabel + '</div>' : '')
+            +   '<div class="gig-venue-row"><a class="gig-venue" href="' + s.venueUrl + '" target="_blank" rel="noopener">' + venueIcon(s.venueUrl) + s.venue + '</a></div>'
+            +   '<span class="gig-time">' + s.time + '</span>'
+            + '</div>'
+            + '<div class="gig-photo"><img src="' + (s.act === 'Kid Royal Band' && s.feat ? 'assets/kid-royal-band-bayboro.jpg' : s.act === 'Kid Royal Band' ? 'assets/kid-royal-band-saltwater-hippie.jpg' : s.photo) + '" alt="' + s.photoAlt + '" onerror="this.style.display=\'none\'"></div>'
+            + '</article>';
 
-    list.insertAdjacentHTML('beforeend', html);
-});
+        list.insertAdjacentHTML('beforeend', html);
+    });
 
-var noEl = document.getElementById('noShows');
-var countEl = document.getElementById('weekCount');
-if (visible === 0) {
-    noEl.style.display = 'block';
-    countEl.textContent = '';
-} else {
-    noEl.style.display = 'none';
-    countEl.textContent = visible + (visible === 1 ? ' show' : ' shows');
-}
-```
-
+    var noEl = document.getElementById('noShows');
+    var countEl = document.getElementById('weekCount');
+    if (visible === 0) {
+        noEl.style.display = 'block';
+        countEl.textContent = '';
+    } else {
+        noEl.style.display = 'none';
+        countEl.textContent = visible + (visible === 1 ? ' show' : ' shows');
+    }
 }
 
 function shiftWeek(dir) {
-weekOffset += dir;
-if (weekOffset < 0) weekOffset = 0;
-renderShows();
+    weekOffset += dir;
+    if (weekOffset < 0) weekOffset = 0;
+    renderShows();
 }
 
 renderShows();
 </script>
-
 </body>
 </html>
