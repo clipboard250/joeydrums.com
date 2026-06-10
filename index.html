@@ -142,7 +142,29 @@
             align-items: center;
             gap: 0.5rem;
         }
-        .header-link:hover { color: var(--red); }
+        .header-link:hover { color: var(--red); }         
+        .header-cta {             
+        font-size: 0.72rem;
+        letter-spacing: 3px;          
+        text-transform: uppercase;            
+        color: #fff;            
+        background: var(--red);             
+        padding: 0.7rem 1.2rem;             
+        text-decoration: none;             
+        display: flex;             
+        align-items: center;             
+        gap: 0.5rem;             
+        transition: background 0.2s;         
+        }         
+        .header-cta:hover { background: #c8313d; }         
+        .header-more-label {             
+        font-size: 0.6rem;             
+        letter-spacing: 3px;             
+        text-transform: uppercase;             
+        color: var(--text-dim);             
+        opacity: 0.7;             
+        margin-top: 0.8rem;         
+        }
 
         /* ── HERO PHOTO ── */
             .hero-photo {
@@ -508,11 +530,14 @@
                 flex-direction: column;
                 gap: 1.5rem;
             }
-            .header-right-top {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 1.5rem;
+           .header-right-top {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
             }
+            .header-cta { justify-content: center; padding: 0.9rem 1.2rem; }
+            .header-more-label { margin-top: 0.4rem; text-align: left; }
+            .header-right-top .header-link { font-size: 0.78rem; }
             .hero-photo {
                 width: 100%;
                 height: 320px;
@@ -588,11 +613,12 @@
                 <span class="role-text">Drummer &nbsp;&middot;&nbsp; Based in Tampa Bay</span>
             </div>
         </div>
-        <div class="header-right-top">
-            <a class="header-link" href="book.html">
+      <div class="header-right-top">
+            <a class="header-cta" href="book.html">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Book a Gig
             </a>
+           <span class="header-more-label">More from Joey</span>
             <a class="header-link" href="https://hippocketstudios.com" target="_blank" rel="noopener">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                 Hip Pocket Studios
