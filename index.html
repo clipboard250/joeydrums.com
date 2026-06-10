@@ -24,6 +24,7 @@
             --red-dim: rgba(230,57,70,0.15);
             --red-border: rgba(230,57,70,0.3);
             --bg: #080808;
+            --bg-rgb: 8,8,8;
             --bg-card: #0f0f0f;
             --bg-card-hover: #141414;
             --text: #f0f0f0;
@@ -31,6 +32,35 @@
             --text-dim: #888;
             --border: rgba(255,255,255,0.08);
         }
+        html.light {
+            --bg: #faf8f4;
+            --bg-rgb: 250,248,244;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f0ece4;
+            --text: #161616;
+            --text-mid: #4a4a4a;
+            --text-dim: #857d72;
+            --border: rgba(0,0,0,0.12);
+        }
+        .theme-toggle {
+            position: fixed;
+            top: 1.1rem;
+            right: 1.1rem;
+            z-index: 60;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .theme-toggle:hover { color: var(--red); border-color: var(--red-border); }
+        .theme-toggle svg { width: 17px; height: 17px; }
         .skip-link {
     position: absolute;
     top: -100%;
@@ -168,7 +198,7 @@
 
      /* ── TICKER ── */
         .ticker {
-            background: var(--red);
+            background: linear-gradient(100deg, #9e2230 0%, #e63946 45%, #8f1f2a 100%);
             overflow: hidden;
             height: 44px;
             display: flex;
@@ -178,7 +208,7 @@
         .ticker-track {
             display: flex;
             white-space: nowrap;
-            animation: tick 26s linear infinite;
+            animation: tick 48s linear infinite;
         }
         .ti {
             font-family: 'Oswald', sans-serif;
@@ -249,7 +279,7 @@
         /* ── HERO PHOTO ── */
            .hero-photo {
             width: 340px;
-            height: 420px;
+            height: 400px;
             overflow: hidden;
             position: relative;
             flex-shrink: 0;
@@ -258,7 +288,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, var(--bg) 0%, rgba(8,8,8,0.55) 18%, transparent 55%);
+            background: linear-gradient(to right, var(--bg) 0%, rgba(var(--bg-rgb),0.55) 18%, transparent 55%);
             pointer-events: none;
             z-index: 1;
         }
@@ -276,7 +306,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 55%, rgba(8,8,8,0.5) 100%);
+            background: linear-gradient(to bottom, transparent 55%, rgba(var(--bg-rgb),0.5) 100%);
             pointer-events: none;
         }
 
@@ -612,28 +642,47 @@
         @media (max-width: 760px) {
             .page { padding: 2.5rem 1.5rem 5rem; }
 
-            header {
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem;
+        header {
+                display: block;
+                position: relative;
+                min-height: 410px;
+                margin-bottom: 3rem;
             }
-           .header-right-top {
+            .header-right-bottom {
+                position: absolute;
+                top: 0;
+                right: -1.5rem;
+                bottom: 0;
+                width: 82%;
+                z-index: 0;
+            }
+            .hero-photo {
+                width: 100%;
+                height: 100%;
+            }
+            .hero-photo img { object-position: 72% 12%; }
+            .hero-photo::before {
+                background: linear-gradient(to right, var(--bg) 0%, rgba(var(--bg-rgb),0.8) 30%, rgba(var(--bg-rgb),0.2) 68%, transparent 100%);
+            }
+            .hero-photo::after {
+                background: linear-gradient(to bottom, transparent 50%, rgba(var(--bg-rgb),0.92) 100%);
+            }
+            .header-left {
+                position: relative;
+                z-index: 2;
+                min-height: 310px;
+                justify-content: flex-end;
+            }
+            .name-first, .name-last { font-size: clamp(2.7rem, 12vw, 4rem); letter-spacing: -1px; }
+            .header-right-top {
+                position: relative;
+                z-index: 2;
                 flex-direction: column;
                 align-items: stretch;
-                gap: 0.8rem;
+                margin-top: 1.2rem;
             }
             .header-cta { justify-content: center; padding: 0.9rem 1.2rem; }
-            .header-more-label { margin-top: 0.4rem; text-align: left; }
-            .header-right-top .header-link { font-size: 0.78rem; }
-          .hero-photo {
-                width: 100%;
-                height: 300px;
-            }
-            .hero-photo img { object-position: center 20%; }
-            .hero-photo::before {
-                background: linear-gradient(to bottom, var(--bg) 0%, rgba(8,8,8,0.45) 15%, transparent 45%);
-            }
-          .role-text { letter-spacing: 2px; font-size: 0.9rem; }
+            .role-text { letter-spacing: 2px; font-size: 0.9rem; }
 
             .gig { grid-template-columns: 58px 1fr; }
             .gig-photo { display: none; }
@@ -657,7 +706,8 @@
             .slink:last-child { grid-column: 1 / -1; }
             footer { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
         }
-    </style>
+   </style>
+    <script>if (localStorage.getItem('joeyTheme') === 'light') { document.documentElement.classList.add('light'); }</script>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -703,6 +753,11 @@
 <a class="skip-link" href="#main-content">Skip to main content</a> 
     <div class="page">
 
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Switch between dark and light mode">
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+
     <header>
         <div class="header-left">
             <span class="name-first">Joey</span>
@@ -715,15 +770,6 @@
             <a class="header-cta" href="book.html">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                 Book a Gig
-            </a>
-           <span class="header-more-label">More from Joey</span>
-            <a class="header-link" href="https://hippocketstudios.com" target="_blank" rel="noopener">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                Hip Pocket Studios
-            </a>
-            <a class="header-link" href="https://banjoey.com" target="_blank" rel="noopener">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3v18"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg>
-                BanJoey
             </a>
         </div>
         <div class="header-right-bottom">
@@ -824,15 +870,15 @@
                 <span class="slink-name">YouTube</span>
                 <span class="slink-sub">@banjoeydrummer</span>
             </a>
-            <a class="slink" href="https://hippocketstudios.com" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+           <a class="slink" href="https://hippocketstudios.com" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-12"/><line x1="8" y1="7.7" x2="8" y2="19.7"/><line x1="16" y1="7.7" x2="16" y2="19.7"/></svg>
                 <span class="slink-name">Hip Pocket Studios</span>
                 <span class="slink-sub">Remote drum tracks</span>
             </a>
             <a class="slink" href="https://banjoey.com" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3v18"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none"/></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="21" x2="17.5" y2="7"/><circle cx="19" cy="5" r="1.6"/><line x1="19" y1="21" x2="6.5" y2="7"/><circle cx="5" cy="5" r="1.6"/></svg>
                 <span class="slink-name">BanJoey</span>
-                <span class="slink-sub">banjoey.com</span>
+                <span class="slink-sub">One-of-a-kind instrument</span>
             </a>
         </div>
     </section>
@@ -1021,6 +1067,18 @@ function shiftWeek(dir) {
 }
 
 renderShows();
+
+function toggleTheme() {
+    var isLight = document.documentElement.classList.toggle('light');
+    localStorage.setItem('joeyTheme', isLight ? 'light' : 'dark');
+    updateThemeIcon();
+}
+function updateThemeIcon() {
+    var isLight = document.documentElement.classList.contains('light');
+    document.getElementById('iconMoon').style.display = isLight ? 'none' : 'block';
+    document.getElementById('iconSun').style.display = isLight ? 'block' : 'none';
+}
+updateThemeIcon();
 </script>
 </body>
 </html>
