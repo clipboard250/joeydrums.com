@@ -76,6 +76,47 @@
     text-decoration: none;
 }
 .skip-link:focus { top: 0.5rem; }
+        /* ── TOP NAV ── */
+        .topnav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1.4rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            animation: fadeUp 0.8s ease both;
+        }
+        .nav-brand { font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text); text-decoration: none; }
+        .nav-brand span { color: var(--red); }
+        .nav-links { display: flex; align-items: center; gap: 2rem; padding-right: 2.8rem; }
+        .nav-links a { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--red); }
+        .nav-links a.nav-book { color: #fff; background: var(--red); padding: 0.55rem 1rem; }
+        .nav-links a.nav-book:hover { background: #c8313d; color: #fff; }
+        .nav-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 0.4rem; }
+        .nav-toggle svg { width: 24px; height: 24px; }
+        @media (max-width: 760px) {
+            .nav-toggle { display: block; margin-right: 3rem; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding-right: 0;
+                background: var(--bg-card);
+                border: 1px solid var(--border);
+                z-index: 55;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 1rem 1.3rem; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+            .nav-links a:last-child { border-bottom: none; }
+            .nav-links a.nav-book { text-align: center; }
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body {
@@ -779,8 +820,18 @@
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Switch between dark and light mode">
         <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
         <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    </button>
-
+</button>
+    <nav class="topnav" aria-label="Primary">
+        <a class="nav-brand" href="index.html">Joey <span>Interrante</span></a>
+        <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="#main-content">Shows</a>
+            <a href="blog.html">Blog</a>
+            <a class="nav-book" href="book.html">Book a Gig</a>
+        </div>
+    </nav>
     <header>
         <div class="header-left">
             <span class="name-first">Joey</span>
@@ -1095,6 +1146,12 @@ function shiftWeek(dir) {
 
 renderShows();
 
+function toggleNav() {
+    var links = document.getElementById('navLinks');
+    var btn = document.getElementById('navToggle');
+    var open = links.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
 function toggleTheme() {
     var isLight = document.documentElement.classList.toggle('light');
     localStorage.setItem('joeyTheme', isLight ? 'light' : 'dark');
