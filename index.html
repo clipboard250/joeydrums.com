@@ -569,6 +569,29 @@
             .subscribe-btn { width: 100%; padding: 0.85rem; }
         }
 
+        /* ── BLOG ── */
+        .blog-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.22s ease both; }
+        .blog-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 1.6rem 1.8rem;
+            background: linear-gradient(135deg, rgba(230,57,70,0.08), rgba(230,57,70,0.03));
+            border: 1px solid var(--red-border);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.25s;
+        }
+        .blog-card:hover { background: rgba(230,57,70,0.13); border-color: rgba(230,57,70,0.5); transform: translateX(3px); }
+        .blog-card-left { display: flex; flex-direction: column; gap: 0.5rem; }
+        .blog-card-tag { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--red); }
+        .blog-card-title { font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; line-height: 1.25; }
+        .blog-card-sub { font-size: 0.75rem; font-weight: 300; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); }
+        .blog-card-arrow { color: var(--red); font-size: 1.4rem; flex-shrink: 0; }
+        @media (max-width: 640px) {
+            .blog-card { flex-direction: column; align-items: flex-start; }
+        }
         /* ── LINKS ── */
         .links-section { animation: fadeUp 0.8s 0.25s ease both; }
         .link-grid {
