@@ -21,6 +21,7 @@
     <style>
         :root {
             --red: #e63946;
+            --red-bright: #ff2b3b;
             --red-dim: rgba(230,57,70,0.15);
             --red-border: rgba(230,57,70,0.3);
             --bg: #080808;
@@ -323,6 +324,8 @@
             object-position: center top;
             display: block;
             filter: grayscale(15%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 90% at 55% 40%, #000 40%, transparent 92%);
+            mask-image: radial-gradient(ellipse 80% 90% at 55% 40%, #000 40%, transparent 92%);
             transition: filter 0.4s ease;
         }
         .hero-photo:hover img { filter: grayscale(0%); }
@@ -372,8 +375,8 @@
         .week-arrows { display: flex; gap: 0.5rem; }
     .week-btn {
     background: none;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
+    border: 2px solid var(--red-bright);
+    color: #fff;
     font-family: 'Oswald', sans-serif;
     font-size: 0.85rem;
     letter-spacing: 3px;
@@ -382,7 +385,7 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .week-btn:hover { border-color: var(--red-border); color: var(--red); }
+        .week-btn:hover { background: var(--red-bright); color: #fff; border-color: var(--red-bright); }
         .week-btn:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
 
         /* ── SHOWS (Rock Hall style cards) ── */
@@ -424,7 +427,7 @@
             border-radius: 7px;
         }
         .gig-month { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; }
-        .gig-day { font-size: 1rem; font-weight: 700; line-height: 1; }
+        .gig-day { font-size: 1.15rem; font-weight: 700; line-height: 1; }
         .gig-head-text { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
         .gig-act {
             font-size: clamp(1.2rem, 4.5vw, 1.6rem);
@@ -538,19 +541,13 @@
         .subscribe-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.2s ease both; }
         .subscribe-inner {
             border: 1px solid var(--border);
+            background: linear-gradient(180deg, #191919 0%, #0c0c0c 100%);
             padding: 2rem 2.2rem;
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 2rem;
             align-items: center;
             position: relative;
-        }
-        .subscribe-inner::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 3px; height: 100%;
-            background: var(--red);
         }
         .subscribe-text h2 {
             font-size: 1.15rem;
@@ -568,7 +565,7 @@
             color: var(--text-dim);
             line-height: 1.5;
         }
-        .subscribe-form { display: flex; gap: 0; flex-shrink: 0; }
+        .subscribe-form { display: flex; gap: 0.6rem; flex-shrink: 0; }
         .subscribe-input {
             font-family: 'Oswald', sans-serif;
             font-size: 0.8rem;
@@ -576,7 +573,7 @@
             text-transform: uppercase;
             background: var(--bg);
             border: 1px solid var(--border);
-            border-right: none;
+            border-radius: 8px;
             color: var(--text);
             padding: 0.75rem 1.2rem;
             width: 230px;
@@ -623,13 +620,13 @@
             justify-content: space-between;
             gap: 1.5rem;
             padding: 1.6rem 1.8rem;
-            background: linear-gradient(135deg, rgba(230,57,70,0.08), rgba(230,57,70,0.03));
-            border: 1px solid var(--red-border);
+            background: linear-gradient(180deg, #191919 0%, #0c0c0c 100%);
+            border: 1px solid var(--border);
             text-decoration: none;
             color: var(--text);
             transition: all 0.25s;
         }
-        .blog-card:hover { background: rgba(230,57,70,0.13); border-color: rgba(230,57,70,0.5); transform: translateX(3px); }
+        .blog-card:hover { border-color: var(--red-border); transform: translateX(3px); }
         .blog-card-left { display: flex; flex-direction: column; gap: 0.5rem; }
         .blog-card-tag { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--red); }
         .blog-card-title { font-size: 1.1rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; line-height: 1.25; }
@@ -729,7 +726,7 @@
                 width: 100%;
                 height: 100%;
             }
-            .hero-photo img { object-position: 72% 12%; }
+            .hero-photo img { object-position: 72% 12%; -webkit-mask-image: none; mask-image: none; }
             .hero-photo::before {
                 background: linear-gradient(to right, var(--bg) 0%, rgba(var(--bg-rgb),0.8) 30%, rgba(var(--bg-rgb),0.2) 68%, transparent 100%);
             }
@@ -794,34 +791,32 @@
         .no-shows { border-radius: 8px; }
         /* ── ROCK HALL HERO FRAME ── */
         header {
-            border: 4px solid rgba(230,57,70,0.55);
-            border-radius: 18px;
+            border: 12px solid var(--red-bright);
+            border-radius: 40px;
             padding: 2.2rem 2.4rem;
             overflow: hidden;
         }
         @media (max-width: 760px) {
-            header { padding: 1.5rem; border-radius: 14px; border-width: 3px; }
+            header { padding: 1.5rem; border-radius: 24px; border-width: 7px; }
         }
         /* ── BRING JOEY TO YOUR TOWN ── */
         .request-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.18s ease both; }
-        .request-card {
-            position: relative;
-            border: 1px solid var(--red-border);
+        .request-card { position: relative; }
+        .request-box {
+            border: 1px solid var(--border);
             border-radius: 14px;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(230,57,70,0.08), rgba(230,57,70,0.02));
+            background: linear-gradient(180deg, #191919 0%, #0c0c0c 100%);
             padding: 2.2rem 2.4rem;
         }
-        .request-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--red); }
         .request-kicker { font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
         .request-title { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.05; margin-bottom: 0.8rem; color: var(--text); }
-        .request-desc { font-size: 0.95rem; font-weight: 300; letter-spacing: 0.5px; color: var(--text-mid); line-height: 1.6; max-width: 640px; margin-bottom: 1.5rem; }
+        .request-desc { font-size: 0.95rem; font-weight: 300; letter-spacing: 0.5px; color: var(--text-mid); line-height: 1.6; max-width: 640px; margin-bottom: 0; }
         .request-toggle {
             display: inline-flex; align-items: center; gap: 0.6rem;
             background: var(--red); color: #fff;
             font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 600;
             letter-spacing: 3px; text-transform: uppercase;
-            border: none; border-radius: 9px; padding: 0.9rem 1.4rem;
+            border: none; border-radius: 9px; padding: 0.9rem 1.4rem; margin-top: 1.4rem;
             cursor: pointer; transition: background 0.2s;
         }
         .request-toggle:hover { background: #c8313d; }
@@ -847,7 +842,28 @@
         }
         .request-form button:hover { background: #c8313d; }
         @media (max-width: 760px) {
-            .request-card { padding: 1.6rem 1.4rem; }
+            .request-box { padding: 1.6rem 1.4rem; }
+        }
+        /* ── HALL OF FAME OUTLINED BUTTONS ── */
+        .header-cta,
+        .book-cta-full,
+        .subscribe-btn,
+        .request-toggle,
+        .request-form button {
+            background: transparent;
+            border: 2px solid var(--red-bright);
+            color: #fff;
+            border-radius: 10px;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .header-cta:hover,
+        .book-cta-full:hover,
+        .subscribe-btn:hover,
+        .request-toggle:hover,
+        .request-form button:hover {
+            background: var(--red-bright);
+            color: #fff;
+            border-color: var(--red-bright);
         }
    </style>
     <script type="application/ld+json">
@@ -914,10 +930,6 @@
         <div class="title-bar">
                 <span class="role-text">Drummer &nbsp;&middot;&nbsp; Based in Tampa Bay</span>
             </div>
-            <a class="header-cta" href="book.html">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                Book a Gig
-            </a>
         </div>
         <div class="header-right-bottom">
             <div class="hero-photo">
@@ -935,22 +947,24 @@
                 <div class="week-count" id="weekCount"></div>
             </div>
             <div class="week-arrows">
-                <button class="week-btn" id="prevWeek" onclick="shiftWeek(-1)">&#8592; Prev</button>
-                <button class="week-btn" id="nextWeek" onclick="shiftWeek(1)">Next &#8594;</button>
+                <button class="week-btn" id="prevWeek" onclick="shiftWeek(-1)">Prev</button>
+                <button class="week-btn" id="nextWeek" onclick="shiftWeek(1)">Next</button>
             </div>
         </div>
         <div class="gig-list" id="gigList"></div>
        <p class="no-shows" id="noShows" style="display:none;">No shows this week &mdash; hit Next to see what&rsquo;s coming.</p>
         <div style="margin-top:1.5rem; text-align:right;">
-            <button class="week-btn" onclick="shiftWeek(1); document.querySelector('.shows-section').scrollIntoView({behavior:'smooth'});">More Shows &#8594;</button>
+            <button class="week-btn" onclick="shiftWeek(1); document.querySelector('.shows-section').scrollIntoView({behavior:'smooth'});">More Shows</button>
         </div>
    </section>
 
    <section class="request-section" aria-label="Request a show in your city">
         <div class="request-card" id="requestCard">
+            <div class="request-box">
             <p class="request-kicker">Don't see your city?</p>
             <h2 class="request-title">Bring Joey to your town</h2>
             <p class="request-desc">No show near you yet? Tell us where you want him and a venue you'd love to see him at. Enough requests from one place and he shows up.</p>
+            </div>
             <button class="request-toggle" type="button" id="requestToggle" aria-expanded="false" aria-controls="requestFormWrap">
                 Request your city
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1012,7 +1026,6 @@
     <section class="links-section">
         <p class="section-label">Book &amp; Connect</p>
        <a class="book-cta-full" href="book.html">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             Book a Gig
         </a>
         <div class="social-row">
