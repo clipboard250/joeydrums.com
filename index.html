@@ -312,7 +312,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 5%;
+            object-position: center top;
             display: block;
             filter: grayscale(15%);
             transition: filter 0.4s ease;
@@ -467,12 +467,12 @@
             gap: 1.2rem;
         }
         .gig-panel-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            object-position: center 30%;
-            border-radius: 10px;
             display: block;
+            width: 100%;
+            max-width: 640px;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 10px;
             filter: grayscale(15%);
         }
         .gig-detail-grid {
@@ -749,7 +749,7 @@
             .gig-arrow { width: 34px; height: 34px; }
             .gig-arrow svg { width: 17px; height: 17px; }
             .gig-panel-inner { padding: 0 1.1rem 1.1rem; }
-            .gig-panel-img { height: 185px; }
+            .gig-panel-img { max-width: 100%; height: 200px; object-fit: cover; object-position: center 30%; }
             .gig-detail-grid { grid-template-columns: 1fr; gap: 1rem; }
             .gig.open .gig-panel { max-height: 600px; }
             .today-badge { font-size: 0.6rem; }
@@ -769,7 +769,7 @@
 
         /* ── ROCK HALL STYLE: SOFT ROUNDED CORNERS ── */
         .hero-photo { border-radius: 16px; }
-        .header-cta { border-radius: 8px; }
+        .header-cta { border-radius: 8px; align-self: flex-start; }
         .nav-links a.nav-book { border-radius: 6px; }
         .book-cta-full { border-radius: 10px; }
         .social-row { border-radius: 12px; overflow: hidden; }
@@ -786,16 +786,62 @@
         .no-shows { border-radius: 8px; }
         /* ── ROCK HALL HERO FRAME ── */
         header {
-            border: 2px solid var(--red-border);
+            border: 4px solid rgba(230,57,70,0.55);
             border-radius: 18px;
             padding: 2.2rem 2.4rem;
             overflow: hidden;
         }
         @media (max-width: 760px) {
-            header { padding: 1.5rem; border-radius: 14px; }
+            header { padding: 1.5rem; border-radius: 14px; border-width: 3px; }
+        }
+        /* ── BRING JOEY TO YOUR TOWN ── */
+        .request-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.18s ease both; }
+        .request-card {
+            position: relative;
+            border: 1px solid var(--red-border);
+            border-radius: 14px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(230,57,70,0.08), rgba(230,57,70,0.02));
+            padding: 2.2rem 2.4rem;
+        }
+        .request-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--red); }
+        .request-kicker { font-size: 0.62rem; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin-bottom: 0.6rem; }
+        .request-title { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.05; margin-bottom: 0.8rem; color: var(--text); }
+        .request-desc { font-size: 0.95rem; font-weight: 300; letter-spacing: 0.5px; color: var(--text-mid); line-height: 1.6; max-width: 640px; margin-bottom: 1.5rem; }
+        .request-toggle {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: var(--red); color: #fff;
+            font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase;
+            border: none; border-radius: 9px; padding: 0.9rem 1.4rem;
+            cursor: pointer; transition: background 0.2s;
+        }
+        .request-toggle:hover { background: #c8313d; }
+        .request-toggle svg { width: 15px; height: 15px; transition: transform 0.3s ease; }
+        .request-card.open .request-toggle svg { transform: rotate(90deg); }
+        .request-form-wrap { max-height: 0; overflow: hidden; transition: max-height 0.45s ease; }
+        .request-card.open .request-form-wrap { max-height: 640px; }
+        .request-form { display: flex; flex-direction: column; gap: 1rem; padding-top: 1.6rem; max-width: 520px; }
+        .request-form input, .request-form textarea {
+            font-family: 'Oswald', sans-serif; font-size: 0.85rem; letter-spacing: 1px;
+            background: var(--bg); border: 1px solid var(--border); color: var(--text);
+            padding: 0.85rem 1rem; border-radius: 8px; outline: none; width: 100%;
+            transition: border-color 0.2s;
+        }
+        .request-form input::placeholder, .request-form textarea::placeholder { color: var(--text-dim); }
+        .request-form input:focus, .request-form textarea:focus { border-color: var(--red-border); }
+        .request-form textarea { resize: vertical; min-height: 90px; }
+        .request-form button {
+            align-self: flex-start; background: var(--red); color: #fff; border: none; border-radius: 9px;
+            font-family: 'Oswald', sans-serif; font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase; padding: 0.9rem 1.6rem;
+            cursor: pointer; transition: background 0.2s;
+        }
+        .request-form button:hover { background: #c8313d; }
+        @media (max-width: 760px) {
+            .request-card { padding: 1.6rem 1.4rem; }
         }
    </style>
-    <script>if (localStorage.getItem('joeyTheme') === 'light') { document.documentElement.classList.add('light'); }</script>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -841,10 +887,7 @@
 <a class="skip-link" href="#main-content">Skip to main content</a> 
     <div class="page">
 
-    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Switch between dark and light mode">
-        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
-        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button>
+
     <nav class="topnav" aria-label="Primary">
         <a class="nav-brand" href="index.html">Joey<span>Drums</span></a>
         <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
@@ -891,6 +934,31 @@
        <p class="no-shows" id="noShows" style="display:none;">No shows this week &mdash; hit Next to see what&rsquo;s coming.</p>
         <div style="margin-top:1.5rem; text-align:right;">
             <button class="week-btn" onclick="shiftWeek(1); document.querySelector('.shows-section').scrollIntoView({behavior:'smooth'});">More Shows &#8594;</button>
+        </div>
+   </section>
+
+   <section class="request-section" aria-label="Request a show in your city">
+        <div class="request-card" id="requestCard">
+            <p class="request-kicker">Don't see your city?</p>
+            <h2 class="request-title">Bring Joey to your town</h2>
+            <p class="request-desc">No show near you yet? Tell us where you want him and a venue you'd love to see him at. Enough requests from one place and he shows up.</p>
+            <button class="request-toggle" type="button" id="requestToggle" aria-expanded="false" aria-controls="requestFormWrap">
+                Request your city
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="request-form-wrap" id="requestFormWrap">
+                <form class="request-form" action="https://formspree.io/f/meepqeoo" method="POST">
+                    <input type="hidden" name="_subject" value="City Request — Bring Joey to my town (joeydrums.com)">
+                    <input type="hidden" name="_cc" value="interrantej@gmail.com">
+                    <input type="hidden" name="_next" value="https://joeydrums.com/thank-you.html">
+                    <input type="text" name="name" placeholder="Your name" required autocomplete="name">
+                    <input type="email" name="email" placeholder="Your email" required autocomplete="email">
+                    <input type="text" name="city" placeholder="Your city" required>
+                    <input type="text" name="venue" placeholder="A venue you'd love to see him at">
+                    <textarea name="message" placeholder="Anything else?"></textarea>
+                    <button type="submit">Send Request</button>
+                </form>
+            </div>
         </div>
    </section>
    <section class="blog-section" aria-label="From the blog">
@@ -1173,23 +1241,21 @@ document.getElementById('gigList').addEventListener('click', function(e) {
     }
 });
 
+var reqToggle = document.getElementById('requestToggle');
+if (reqToggle) {
+    reqToggle.addEventListener('click', function() {
+        var card = document.getElementById('requestCard');
+        var isOpen = card.classList.toggle('open');
+        this.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+}
+
 function toggleNav() {
     var links = document.getElementById('navLinks');
     var btn = document.getElementById('navToggle');
     var open = links.classList.toggle('open');
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
-function toggleTheme() {
-    var isLight = document.documentElement.classList.toggle('light');
-    localStorage.setItem('joeyTheme', isLight ? 'light' : 'dark');
-    updateThemeIcon();
-}
-function updateThemeIcon() {
-    var isLight = document.documentElement.classList.contains('light');
-    document.getElementById('iconMoon').style.display = isLight ? 'none' : 'block';
-    document.getElementById('iconSun').style.display = isLight ? 'block' : 'none';
-}
-updateThemeIcon();
 </script>
 </body>
 </html>
