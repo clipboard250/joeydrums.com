@@ -237,32 +237,7 @@
         margin-top: 0.8rem;         
         }
 
-     /* ── TICKER ── */
-        .ticker {
-            background: linear-gradient(100deg, #9e2230 0%, #e63946 45%, #8f1f2a 100%);
-            overflow: hidden;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            margin: -2rem 0 3.5rem;
-        }
-        .ticker-track {
-            display: flex;
-            white-space: nowrap;
-            animation: tick 48s linear infinite;
-        }
-        .ti {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #fff;
-            padding: 0 22px;
-            flex-shrink: 0;
-        }
-        .ts { color: rgba(255,255,255,0.45); flex-shrink: 0; }
-        @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+     /* ── TICKER removed ── */
 
         /* ── SOCIAL ROW ── */
         .book-cta-full {
@@ -402,120 +377,142 @@
         .week-btn:hover { border-color: var(--red-border); color: var(--red); }
         .week-btn:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
 
-        /* ── SHOWS ── */
+        /* ── SHOWS (Rock Hall style cards) ── */
         .shows-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.15s ease both; }
-        .gig-list { display: flex; flex-direction: column; }
+        .gig-list { display: flex; flex-direction: column; gap: 0.9rem; }
+
         .gig {
-            display: grid;
-            grid-template-columns: 72px 1fr 130px;
-            gap: 0 1.8rem;
-            padding: 1.3rem 0;
-            border-bottom: 1px solid var(--border);
-            align-items: center;
-            position: relative;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            background: var(--bg-card);
+            transition: border-color 0.25s, background 0.25s;
         }
-        .gig:first-child { border-top: 1px solid var(--border); }
-        .gig::before {
-            content: '';
-            position: absolute;
-            left: -3rem;
-            top: 0; bottom: 0;
-            width: 2px;
-            background: var(--red);
-            transform: scaleY(0);
-            transform-origin: bottom;
-            transition: transform 0.25s ease;
-        }
-        .gig:hover::before { transform: scaleY(1); }
-        .gig-date { text-align: center; }
-        .gig-month {
-            display: block;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.6rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--red);
-            line-height: 1;
-            margin-bottom: 0.2rem;
-        }
-        .gig-day {
-            display: block;
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 1;
-            color: var(--text);
-        }
-        .gig-info { display: flex; flex-direction: column; gap: 0.3rem; }
-        .gig-act {
-            font-size: 1.15rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            color: var(--text);
-            line-height: 1.2;
+        .gig:hover { border-color: var(--red-border); }
+        .gig.open { border-color: var(--red-border); background: var(--bg-card-hover); }
+
+        .gig-head {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-        .gig-feat { font-weight: 300; color: var(--text-mid); font-size: 1rem; }
-        .gig-sublabel {
+            gap: 1rem;
+            width: 100%;
+            border: none;
+            background: none;
+            padding: 1.3rem 1.4rem;
+            cursor: pointer;
+            text-align: left;
             font-family: 'Oswald', sans-serif;
-            font-size: 0.58rem;
+            color: var(--text);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .gig-datechip {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.4rem;
+            background: var(--red);
+            color: #fff;
+            padding: 0.4rem 0.7rem;
+            border-radius: 7px;
+        }
+        .gig-month { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; }
+        .gig-day { font-size: 1rem; font-weight: 700; line-height: 1; }
+        .gig-head-text { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+        .gig-act {
+            font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            line-height: 1.05;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .gig-feat { font-weight: 300; font-size: 0.72em; color: var(--text-mid); }
+        .gig-venue-sum {
+            font-size: 0.78rem;
+            font-weight: 300;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--text-dim);
         }
-        .gig-venue {
-            font-size: 0.8rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-mid);
-            text-decoration: none;
-            transition: color 0.2s;
+        .gig-arrow {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid var(--border);
+            border-radius: 9px;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-        }
-        .gig-venue:hover { color: var(--red); }
-        .gig-venue svg { width: 12px; height: 12px; opacity: 0.5; flex-shrink: 0; transition: opacity 0.2s; }
-        .gig-venue:hover svg { opacity: 1; }
-        .gig-time {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.72rem;
+            justify-content: center;
             color: var(--text-mid);
-            letter-spacing: 1px;
+            transition: transform 0.3s ease, border-color 0.2s, background 0.2s, color 0.2s;
         }
+        .gig-arrow svg { width: 20px; height: 20px; }
+        .gig:hover .gig-arrow { border-color: var(--red-border); color: var(--red); }
+        .gig.open .gig-arrow { transform: rotate(180deg); border-color: var(--red); background: var(--red); color: #fff; }
 
-        /* ── PHOTO THUMBNAIL ── */
-        .gig-photo {
-            width: 130px;
-            height: 80px;
+        .gig-panel {
+            max-height: 0;
             overflow: hidden;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            flex-shrink: 0;
+            transition: max-height 0.4s ease;
         }
-        .gig-photo img {
+        .gig.open .gig-panel { max-height: 560px; }
+        .gig-panel-inner {
+            padding: 0 1.4rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .gig-panel-img {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
+            height: 220px;
+            object-fit: cover;
+            object-position: center 30%;
+            border-radius: 10px;
             display: block;
-            transition: transform 0.3s ease;
+            filter: grayscale(15%);
         }
-        .gig:hover .gig-photo img { transform: scale(1.05); }
+        .gig-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+        .gig-detail { display: flex; flex-direction: column; gap: 0.3rem; }
+        .gig-detail-label {
+            font-size: 0.58rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--red);
+        }
+        .gig-detail-val {
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--text);
+        }
+        .gig-venue-link { text-decoration: none; transition: color 0.2s; }
+        .gig-venue-link:hover { color: var(--red); }
+        .gig-sublabel {
+            font-size: 0.62rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
 
-        /* ── TODAY BADGE ── */
+        /* TODAY BADGE */
         .today-badge {
             display: inline-block;
             font-family: 'Oswald', sans-serif;
-            font-size: 0.52rem;
+            font-size: 0.55rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             background: var(--red);
             color: #fff;
-            padding: 3px 7px;
+            padding: 3px 8px;
+            border-radius: 5px;
             line-height: 1.6;
         }
 
@@ -748,15 +745,14 @@
             .header-left .header-cta { justify-content: center; padding: 0.9rem 1.2rem; align-self: stretch; margin-top: 1.2rem; }
             .role-text { letter-spacing: 2px; font-size: 0.9rem; }
 
-            .gig { grid-template-columns: 58px 1fr; }
-            .gig-photo { display: none; }
-            .gig-day { font-size: 1.9rem; }
-            .gig-act { font-size: 1.15rem; }
-            .gig-feat { font-size: 1rem; }
-            .gig-sublabel { font-size: 0.72rem; }
-            .gig-venue { font-size: 0.92rem; letter-spacing: 1.5px; }
-            .gig-time { font-size: 0.85rem; }
-            .today-badge { font-size: 0.62rem; }
+            .gig-head { padding: 1.1rem; gap: 0.8rem; }
+            .gig-arrow { width: 34px; height: 34px; }
+            .gig-arrow svg { width: 17px; height: 17px; }
+            .gig-panel-inner { padding: 0 1.1rem 1.1rem; }
+            .gig-panel-img { height: 185px; }
+            .gig-detail-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .gig.open .gig-panel { max-height: 600px; }
+            .today-badge { font-size: 0.6rem; }
             .section-label { font-size: 0.78rem; letter-spacing: 3px; }
             .week-range { font-size: 1rem; }
             .week-count { font-size: 0.8rem; }
@@ -769,6 +765,34 @@
             .social-row { grid-template-columns: repeat(2, 1fr); }
             .slink:last-child { grid-column: 1 / -1; }
             footer { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+        }
+
+        /* ── ROCK HALL STYLE: SOFT ROUNDED CORNERS ── */
+        .hero-photo { border-radius: 16px; }
+        .header-cta { border-radius: 8px; }
+        .nav-links a.nav-book { border-radius: 6px; }
+        .book-cta-full { border-radius: 10px; }
+        .social-row { border-radius: 12px; overflow: hidden; }
+        .week-btn { border-radius: 8px; }
+        .gig-photo { border-radius: 8px; }
+        .today-badge { border-radius: 5px; }
+        .ticker { border-radius: 10px; }
+        .subscribe-inner { border-radius: 14px; overflow: hidden; }
+        .subscribe-input { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+        .subscribe-btn { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+        .blog-card { border-radius: 12px; }
+        .link-item { border-radius: 10px; }
+        .studio-cta { border-radius: 12px; }
+        .no-shows { border-radius: 8px; }
+        /* ── ROCK HALL HERO FRAME ── */
+        header {
+            border: 2px solid var(--red-border);
+            border-radius: 18px;
+            padding: 2.2rem 2.4rem;
+            overflow: hidden;
+        }
+        @media (max-width: 760px) {
+            header { padding: 1.5rem; border-radius: 14px; }
         }
    </style>
     <script>if (localStorage.getItem('joeyTheme') === 'light') { document.documentElement.classList.add('light'); }</script>
@@ -851,27 +875,6 @@
     </header>
 
     <main id="main-content">     
-   <div class="ticker" aria-hidden="true">
-        <div class="ticker-track">
-            <span class="ti">Kid Royal Band</span><span class="ts">/</span>
-            <span class="ti">Gale &amp; Joey</span><span class="ts">/</span>
-            <span class="ti">Dog and Pony Trio</span><span class="ts">/</span>
-            <span class="ti">St Pete Collective</span><span class="ts">/</span>
-            <span class="ti">Kid Royal Band</span><span class="ts">/</span>
-            <span class="ti">Gale &amp; Joey</span><span class="ts">/</span>
-            <span class="ti">Dog and Pony Trio</span><span class="ts">/</span>
-            <span class="ti">St Pete Collective</span><span class="ts">/</span>
-            <span class="ti">Kid Royal Band</span><span class="ts">/</span>
-            <span class="ti">Gale &amp; Joey</span><span class="ts">/</span>
-            <span class="ti">Dog and Pony Trio</span><span class="ts">/</span>
-            <span class="ti">St Pete Collective</span><span class="ts">/</span>
-            <span class="ti">Kid Royal Band</span><span class="ts">/</span>
-            <span class="ti">Gale &amp; Joey</span><span class="ts">/</span>
-            <span class="ti">Dog and Pony Trio</span><span class="ts">/</span>
-            <span class="ti">St Pete Collective</span><span class="ts">/</span>
-        </div>
-    </div>
-
     <section class="shows-section">
         <p class="section-label">Upcoming Shows</p>
         <div class="week-nav">
@@ -1110,15 +1113,26 @@ function renderShows() {
         if (s.feat) actHtml += ' <span class="gig-feat">' + s.feat + '</span>';
         if (isToday) actHtml += ' <span class="today-badge">Tonight</span>';
 
+        var pid = 'gig-panel-' + visible;
         var html = '<article class="gig">'
-            + '<div class="gig-date"><span class="gig-month">' + s.month + '</span><span class="gig-day">' + s.day + '</span></div>'
-            + '<div class="gig-info">'
-            +   '<div class="gig-act">' + actHtml + '</div>'
-            +   (s.sublabel ? '<div class="gig-sublabel">' + s.sublabel + '</div>' : '')
-            +   '<div class="gig-venue-row"><a class="gig-venue" href="' + s.venueUrl + '" target="_blank" rel="noopener">' + venueIcon(s.venueUrl) + s.venue + '</a></div>'
-            +   '<span class="gig-time">' + s.time + '</span>'
+            + '<button class="gig-head" type="button" aria-expanded="false" aria-controls="' + pid + '">'
+            +   '<span class="gig-datechip"><span class="gig-month">' + s.month + '</span><span class="gig-day">' + s.day + '</span></span>'
+            +   '<span class="gig-head-text">'
+            +     '<span class="gig-act">' + actHtml + '</span>'
+            +     '<span class="gig-venue-sum">' + s.venue + '</span>'
+            +   '</span>'
+            +   '<span class="gig-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>'
+            + '</button>'
+            + '<div class="gig-panel" id="' + pid + '">'
+            +   '<div class="gig-panel-inner">'
+            +     '<img class="gig-panel-img" src="' + s.photo + '" alt="' + s.photoAlt + '" onerror="this.parentNode.removeChild(this)">'
+            +     '<div class="gig-detail-grid">'
+            +       '<div class="gig-detail"><span class="gig-detail-label">When</span><span class="gig-detail-val">' + s.month + ' ' + s.day + ' &middot; ' + s.time + '</span></div>'
+            +       '<div class="gig-detail"><span class="gig-detail-label">Where</span><a class="gig-detail-val gig-venue-link" href="' + s.venueUrl + '" target="_blank" rel="noopener">' + s.venue + '</a></div>'
+            +     '</div>'
+            +     (s.sublabel ? '<div class="gig-sublabel">' + s.sublabel + '</div>' : '')
+            +   '</div>'
             + '</div>'
-            + '<div class="gig-photo"><img src="' + s.photo + '" alt="' + s.photoAlt + '" onerror="this.style.display=\'none\'"></div>'
             + '</article>';
 
         list.insertAdjacentHTML('beforeend', html);
@@ -1142,6 +1156,22 @@ function shiftWeek(dir) {
 }
 
 renderShows();
+
+document.getElementById('gigList').addEventListener('click', function(e) {
+    var head = e.target.closest('.gig-head');
+    if (!head) return;
+    var art = head.parentElement;
+    var wasOpen = art.classList.contains('open');
+    this.querySelectorAll('.gig.open').forEach(function(g) {
+        g.classList.remove('open');
+        var h = g.querySelector('.gig-head');
+        if (h) h.setAttribute('aria-expanded', 'false');
+    });
+    if (!wasOpen) {
+        art.classList.add('open');
+        head.setAttribute('aria-expanded', 'true');
+    }
+});
 
 function toggleNav() {
     var links = document.getElementById('navLinks');
