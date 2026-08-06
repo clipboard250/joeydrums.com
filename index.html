@@ -1254,6 +1254,12 @@ function shiftWeek(dir) {
 
 renderShows();
 
+var firstGig = document.querySelector('.gig');
+if (firstGig) {
+    firstGig.classList.add('open');
+    firstGig.querySelector('.gig-head').setAttribute('aria-expanded', 'true');
+}
+
 document.getElementById('gigList').addEventListener('click', function(e) {
     var head = e.target.closest('.gig-head');
     if (!head) return;
