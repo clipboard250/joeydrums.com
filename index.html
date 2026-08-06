@@ -452,20 +452,6 @@
         @media (max-width: 760px) {
             .gig-thumb { width: 48px; height: 48px; border-radius: 7px; }
         }
-        ..gig-thumb {
-            flex-shrink: 0;
-            width: 64px;
-            height: 64px;
-            border-radius: 9px;
-            object-fit: cover;
-            object-position: center 30%;
-            filter: grayscale(20%);
-            transition: filter 0.25s;
-        }
-        .gig:hover .gig-thumb { filter: grayscale(0%); }
-        @media (max-width: 760px) {
-            .gig-thumb { width: 48px; height: 48px; border-radius: 7px; }
-        }
         .gig-head-text { flex: 1; display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
         .gig-act {
             font-size: clamp(1.2rem, 4.5vw, 1.6rem);
@@ -1244,7 +1230,7 @@ function renderShows() {
         var pid = 'gig-panel-' + visible;
         var html = '<article class="gig">'
             + '<button class="gig-head" type="button" aria-expanded="false" aria-controls="' + pid + '">'
-            +   '<span class="gig-datechip"><span class="gig-month">' + s.month + '</span><span class="gig-day">' + s.day + '</span></span>'
+            +   '<span class="gig-datechip"><span class="gig-month">' + s.month + '</span><span class="gig-day">' + s.day + '</span></span>'             +   '<img class="gig-thumb" src="' + s.photo + '" alt="" onerror="this.remove()">'
             +   '<span class="gig-head-text">'
             +     '<span class="gig-act">' + actHtml + '</span>'
             +     '<span class="gig-venue-sum">' + s.venue + '</span>'
