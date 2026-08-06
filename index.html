@@ -423,15 +423,18 @@
             color: var(--text);
             -webkit-tap-highlight-color: transparent;
         }
-        .gig-datechip {
+      .gig-datechip {
             flex-shrink: 0;
             display: inline-flex;
             align-items: baseline;
+            justify-content: center;
             gap: 0.4rem;
+            width: 88px;
             background: var(--red);
             color: #fff;
-            padding: 0.4rem 0.7rem;
+            padding: 0.4rem 0.5rem;
             border-radius: 7px;
+            font-variant-numeric: tabular-nums;
         }
         .gig-month { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; }
         .gig-day { font-size: 1.15rem; font-weight: 700; line-height: 1; }
