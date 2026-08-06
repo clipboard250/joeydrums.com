@@ -1292,5 +1292,77 @@ function toggleNav() {
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 </script>
+  /* ── EVENT SCHEMA FOR SEARCH ENGINES ── */
+var VENUES = {
+    'Bayboro Brewing Co.':             { street:'2390 5th Ave S',      city:'St. Petersburg', zip:'33712' },
+    'Firehouse Cultural Center':       { street:'101 1st Ave NE',      city:'Ruskin',         zip:'33570' },
+    'Bamboo Beach Bar':                { street:'13025 Village Blvd',  city:'Madeira Beach',  zip:'33708' },
+    'The Green Room':                  { street:'14703 Gulf Blvd',     city:'Madeira Beach',  zip:'33708' },
+    'Saltwater Hippie':                { street:'15045 Madeira Wy',    city:'Madeira Beach',  zip:'33708' },
+    "Ruby's Elixir":                   { street:'15 3rd St N',         city:'St. Petersburg', zip:'33701' },
+    "O'Maddy's Bar & Grille":          { street:'5405 Shore Blvd S',   city:'Gulfport',       zip:'33707' },
+    "Woody's River Roo":               { street:'5717 18th St E',      city:'Ellenton',       zip:'34222' },
+    'Middle Grounds Grill':            { street:'10925 Gulf Blvd',     city:'Treasure Island',zip:'33706' },
+    'Fogartyville':                    { street:'525 Kumquat Ct',      city:'Sarasota',       zip:'34236' },
+    'New Tampa Performing Arts Center':{ street:'8550 Hunters Village Rd', city:'Tampa',      zip:'33647' }
+};
+
+(function buildEventSchema() {
+    var el = document.createElement('textarea');
+    function decode(t) { el.innerHTML = t; return el.value; }
+
+    function startISO(s) {
+        var t = decode(s.time);
+        var m = t.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)?/i);
+        if (!m) return s.date + 'T19:00:00-04:00';
+        var h = parseInt(m[1], 10);
+        var ampm = (m[3] || 'PM').toUpperCase();
+        if (ampm === 'PM' && h !== 12) h += 12;
+        if (ampm === 'AM' && h === 12) h = 0;
+        return s.date + 'T' + (h < 10 ? '0' + h : h) + ':' + m[2] + ':00-04:00';
+    }
+
+    var today = new Date().toISOString().slice(0, 10);
+    var events = SHOWS.filter(function (s) { return s.date >= today; }).map(function (s) {
+        var venue = decode(s.venue);
+        var act = decode(s.act);
+        var v = VENUES[venue];
+        var loc = { "@type": "Place", "name": venue };
+        if (v) {
+            loc.address = {
+                "@type": "PostalAddress",
+                "streetAddress": v.street,
+                "addressLocality": v.city,
+                "addressRegion": "FL",
+                "postalCode": v.zip,
+                "addressCountry": "US"
+            };
+        }
+        var ev = {
+            "@type": "MusicEvent",
+            "name": act + " at " + venue,
+            "startDate": startISO(s),
+            "endDate": s.date + "T" + s.endTime + ":00-04:00",
+            "eventStatus": "https://schema.org/EventScheduled",
+            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+            "location": loc,
+            "performer": [
+                { "@type": "MusicGroup", "name": act },
+                { "@id": "https://joeydrums.com/#joey" }
+            ],
+            "organizer": { "@id": "https://joeydrums.com/#joey" },
+            "image": "https://joeydrums.com/" + s.photo,
+            "url": "https://joeydrums.com/"
+        };
+        if (s.venueUrl && s.venueUrl.indexOf('http') === 0) ev.location.url = s.venueUrl;
+        return ev;
+    });
+
+    if (!events.length) return;
+    var tag = document.createElement('script');
+    tag.type = 'application/ld+json';
+    tag.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": events });
+  document.head.appendChild(tag);
+})();
+</script>
 </body>
-</html>
