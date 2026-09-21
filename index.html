@@ -878,12 +878,25 @@
             color: #fff;
             border-color: var(--red-bright);
         }
-      /* ── FULL SCHEDULE (plain text for search) ── */
+            /* ── FULL SCHEDULE (plain text for search) ── */
         .schedule-section { margin-bottom: 4rem; }
-        .sched-intro { font-size: 0.95rem; font-weight: 300; color: var(--text-mid); line-height: 1.6; margin-bottom: 1.5rem; max-width: 640px; }
-        .sched-month { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--red); margin: 1.4rem 0 0.6rem; }
-        .sched-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
-        .sched-list li { font-size: 0.9rem; font-weight: 300; color: var(--text-mid); letter-spacing: 0.5px; }
+        .sched-details { border: 1px solid var(--border); border-radius: 14px; background: var(--bg-card); overflow: hidden; }
+        .sched-toggle { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.4rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #fff; -webkit-tap-highlight-color: transparent; }
+        .sched-toggle::-webkit-details-marker { display: none; }
+        .sched-toggle::after { content: '+'; font-size: 1.4rem; font-weight: 300; color: var(--red); transition: transform 0.3s ease; }
+        .sched-details[open] .sched-toggle::after { transform: rotate(45deg); }
+        .sched-details[open] .sched-toggle { border-bottom: 1px solid var(--border); }
+        .sched-intro { font-size: 0.95rem; font-weight: 300; color: var(--text-mid); line-height: 1.6; padding: 1.4rem 1.4rem 0; max-width: 640px; }
+        .sched-month { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; color: var(--red); padding: 1.6rem 1.4rem 0.6rem; }
+        .sched-list { list-style: none; display: flex; flex-direction: column; }
+        .sched-list li { font-size: 0.95rem; font-weight: 300; color: var(--text); letter-spacing: 0.5px; padding: 0.75rem 1.4rem; border-top: 1px solid var(--border); }
+        .sched-list li:hover { background: var(--bg-card-hover); }
+        .sched-details .sched-list:last-of-type { padding-bottom: 0.6rem; }
+        @media (max-width: 760px) {
+            .sched-toggle { padding: 1rem 1.1rem; font-size: 0.75rem; }
+            .sched-intro, .sched-month { padding-left: 1.1rem; padding-right: 1.1rem; }
+            .sched-list li { padding: 0.7rem 1.1rem; font-size: 0.88rem; }
+        }
    </style>
     <script type="application/ld+json">
 {
@@ -1044,7 +1057,8 @@
           <li>Sun Dec 27: Gale &amp; Joey at Bamboo Beach Bar, Madeira Beach. 12:30 &ndash; 4:30 PM</li>
           <li>Sun Dec 27: Kid Royal Band at Saltwater Hippie, Madeira Beach. 6:00 &ndash; 10:00 PM</li>
           <li>Wed Dec 30: Kid Royal Band at Bayboro Brewing Co., St. Petersburg. 8:00 &ndash; 10:00 PM</li>
-        </ul>
+            </ul>
+        </details>
    </section>
    <section class="request-section" aria-label="Request a show in your city">
         <div class="request-card" id="requestCard">
