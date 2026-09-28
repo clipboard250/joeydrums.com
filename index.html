@@ -5,7 +5,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-3S32WPVMY4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+    function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-3S32WPVMY4');
 </script>
@@ -518,6 +518,8 @@
         }
         .gig-venue-link { text-decoration: none; transition: color 0.2s; }
         .gig-venue-link:hover { color: var(--red); }
+        .gig-share { align-self: flex-start; background: transparent; border: 2px solid var(--red-bright); color: #fff; font-family: 'Oswald', sans-serif; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; padding: 0.7rem 1.2rem; border-radius: 10px; cursor: pointer; transition: background 0.2s; }
+        .gig-share:hover { background: var(--red-bright); }
         .gig-sublabel {
             font-size: 0.62rem;
             letter-spacing: 2px;
@@ -1217,7 +1219,7 @@ var SHOWS = [
     { date:'2026-09-27', endTime:'22:00', month:'Sep', day:'27', act:'Kid Royal Band', feat:'', sublabel:'', venue:'Saltwater Hippie', venueUrl:'https://www.saltwaterhippie.com/', time:'6:00 &ndash; 10:00 PM', photo:'assets/kid-royal-band-saltwater-hippie.jpg', photoAlt:'Kid Royal Band at Saltwater Hippie' },
     { date:'2026-09-29', endTime:'21:00', month:'Sep', day:'29', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:"Woody's River Roo", venueUrl:'https://woodysriverroo.com/live-music/', time:'5:00 &ndash; 9:00 PM', photo:'assets/woodys-river-roo.jpg', photoAlt:"Gale and Joey at Woody's River Roo" },
     { date:'2026-09-30', endTime:'22:00', month:'Sep', day:'30', act:'Kid Royal Band', feat:'feat. Josh Nelms', sublabel:'Wednesday Blues &amp; $5 Jacks', venue:'Bayboro Brewing Co.', venueUrl:'https://www.bayborobrewing.com/upcoming-events', time:'8:00 &ndash; 10:00 PM', photo:'assets/kid-royal-band-bayboro.jpg', photoAlt:'Kid Royal Band at Bayboro Brewing' },
-    { date:'2026-10-03', endTime:'22:00', month:'Oct', day:'03', act:'Kirk Adams Band', feat:'', sublabel:'', venue:'Ale and the Witch', venueUrl:'https://www.aleandthewitch.com/', time:'7:30 &ndash; 10:00 PM', photo:'assets/kirk-adams-band-ale-witch.jpg', photoAlt:'Kirk Adams Band with Joey Interrante and Matt Walker at Ale and the Witch' },
+    { date:'2026-10-03', endTime:'22:00', month:'Oct', day:'03', act:'Kirk Adams Band', feat:'', sublabel:'', venue:'Ale and the Witch', venueUrl:'https://www.aleandthewitch.com/', time:'7:30 &ndash; 10:00 PM', photo:'assets/kirk-adams-band-ale-witch.jpg', photoAlt:'Kirk Adams Band with Joey Interrante and Matt Walker at Ale and the Witch', share:'shows/kirk-adams-oct-3' },
     { date:'2026-10-04', endTime:'16:30', month:'Oct', day:'04', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:'Bamboo Beach Bar', venueUrl:'https://www.bamboobeachbarandgrill.com/entertainment', time:'12:30 &ndash; 4:30 PM', photo:'assets/gale-and-joey.jpg', photoAlt:'Gale and Joey at Bamboo Beach Bar' },
     { date:'2026-10-04', endTime:'22:00', month:'Oct', day:'04', act:'Kid Royal Band', feat:'', sublabel:'', venue:'Saltwater Hippie', venueUrl:'https://www.saltwaterhippie.com/', time:'6:00 &ndash; 10:00 PM', photo:'assets/kid-royal-band-saltwater-hippie.jpg', photoAlt:'Kid Royal Band at Saltwater Hippie' },
     { date:'2026-10-06', endTime:'22:00', month:'Oct', day:'06', act:'Gale &amp; Joey', feat:'', sublabel:'', venue:"O'Maddy's Bar &amp; Grille", venueUrl:'https://www.omaddys.com/', time:'6:00 &ndash; 10:00 PM', photo:'assets/gale-and-joey.jpg', photoAlt:"Gale and Joey at O'Maddy's" },
@@ -1334,7 +1336,7 @@ function renderShows() {
             +       '<div class="gig-detail"><span class="gig-detail-label">When</span><span class="gig-detail-val">' + s.month + ' ' + s.day + ' &middot; ' + s.time + '</span></div>'
             +       '<div class="gig-detail"><span class="gig-detail-label">Where</span><a class="gig-detail-val gig-venue-link" href="' + s.venueUrl + '" target="_blank" rel="noopener">' + s.venue + '</a></div>'
             +     '</div>'
-            +     (s.sublabel ? '<div class="gig-sublabel">' + s.sublabel + '</div>' : '')
+            +     (s.sublabel ? '<div class="gig-sublabel">' + s.sublabel + '</div>' : '')             +     (s.share ? '<button class="gig-share" type="button" data-share="https://joeydrums.com/' + s.share + '" data-title="' + s.act + ' at ' + s.venue + '">Share this show</button>' : '')
             +   '</div>'
             + '</div>'
             + '</article>';
@@ -1380,6 +1382,23 @@ document.getElementById('gigList').addEventListener('click', function(e) {
     if (!wasOpen) {
         art.classList.add('open');
         head.setAttribute('aria-expanded', 'true');
+    }
+});
+
+document.getElementById('gigList').addEventListener('click', function(e) {
+    var btn = e.target.closest('.gig-share');
+    if (!btn) return;
+    var url = btn.getAttribute('data-share');
+    var title = btn.getAttribute('data-title');
+    if (navigator.share) {
+        navigator.share({ title: title, url: url }).catch(function(){});
+    } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(function() {
+            btn.textContent = 'Link copied!';
+            setTimeout(function(){ btn.textContent = 'Share this show'; }, 2000);
+        });
+    } else {
+        window.prompt('Copy this link:', url);
     }
 });
 
