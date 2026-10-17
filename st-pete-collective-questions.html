@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St Pete Collective Press Kit Questions</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/stpc-favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/stpc-favicon-48.png">
+    <link rel="apple-touch-icon" href="/stpc-apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,100;1,9..144,300..700,100&family=Oswald:wght@300;400;600;700&family=Shrikhand&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sand: #e6dcc3;
+            --sand-deep: #d9cba9;
+            --ink: #2a2320;
+            --ink-soft: #5a4e46;
+            --denim: #2f5d6b;
+            --denim-deep: #234853;
+            --mustard: #c9a227;
+            --line: rgba(42,35,32,0.18);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Fraunces', Georgia, serif;
+            font-variation-settings: "SOFT" 100;
+            background: var(--sand);
+            color: var(--ink);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.09'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 2.5rem 3rem 5rem;
+        }
+        a { color: var(--denim); }
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--mustard); outline-offset: 3px; }
+
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: var(--denim);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            z-index: 100;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+        .skip-link:focus { top: 0.5rem; }
+
+        /* ── TOP NAV ── */
+        .topnav {
+            font-family: 'Oswald', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1.3rem;
+            margin-bottom: 3.5rem;
+            border-bottom: 3px solid var(--ink);
+            position: relative;
+        }
+        .nav-brand { font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); text-decoration: none; line-height: 1; }
+        .nav-brand span { color: var(--denim); }
+        .nav-links { display: flex; align-items: center; gap: 2.2rem; }
+        .nav-links a, .nav-drop-btn {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover, .nav-drop-btn:hover { color: var(--denim); }
+        .nav-drop { position: relative; display: flex; align-items: center; }
+        .nav-drop-btn::after { content: '\25BE'; font-size: 0.7rem; margin-left: 0.35rem; }
+        .nav-drop-menu {
+            display: none;
+            position: absolute;
+            top: 1.6rem;
+            left: -1rem;
+            min-width: 210px;
+            background: #fbf7ee;
+            border: 3px solid var(--ink);
+            border-radius: 16px;
+            box-shadow: 5px 5px 0 var(--ink);
+            padding: 0.5rem 0;
+            z-index: 70;
+        }
+        .nav-drop-menu a { display: block; padding: 0.7rem 1.1rem; white-space: nowrap; }
+        .nav-drop-menu a.is-here { color: var(--denim); }
+        .nav-drop:hover .nav-drop-menu,
+        .nav-drop:focus-within .nav-drop-menu,
+        .nav-drop.open .nav-drop-menu { display: block; }
+        .nav-toggle { display: none; background: none; border: none; color: var(--ink); cursor: pointer; padding: 0.4rem; position: relative; z-index: 60; }
+        .nav-toggle svg { width: 28px; height: 28px; }
+        .nav-toggle .icon-close { display: none; }
+        .nav-toggle[aria-expanded="true"] .icon-open { display: none; }
+        .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
+        @media (max-width: 760px) {
+            .nav-toggle { display: block; }
+            .nav-brand { position: relative; z-index: 60; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                inset: 0;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-end;
+                gap: 0.8rem;
+                padding: 2rem 2.4rem;
+                background: var(--sand);
+                z-index: 55;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a, .nav-drop-btn { font-size: 1.1rem; color: var(--ink); padding: 0.6rem 0; }
+            .nav-drop { flex-direction: column; align-items: flex-end; }
+            .nav-drop-btn { pointer-events: none; }
+            .nav-drop-btn::after { content: ''; margin: 0; }
+            .nav-drop-menu { display: block; position: static; background: none; border: none; box-shadow: none; padding: 0; min-width: 0; }
+            .nav-drop-menu a { padding: 0.3rem 0; font-size: 0.95rem; font-weight: 400; color: var(--ink-soft); }
+        }
+
+        /* ── HEADINGS (retro poster type) ── */
+        h1, h2 {
+            font-family: 'Shrikhand', Georgia, serif;
+            font-weight: 400;
+            color: var(--denim);
+            letter-spacing: 0.5px;
+        }
+        h2 {
+            font-size: clamp(2rem, 3.4vw, 2.8rem);
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+        }
+
+        /* ── HERO ── */
+        .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 4rem; align-items: center; margin-bottom: 5rem; }
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.2rem);
+            line-height: 1;
+            text-shadow: 4px 4px 0 var(--mustard);
+            margin-bottom: 1.4rem;
+        }
+        .hero h1 em {
+            display: block;
+            font-family: 'Fraunces', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+            line-height: 1.3;
+            color: var(--ink);
+            text-shadow: none;
+            letter-spacing: 0;
+            margin-top: 1rem;
+        }
+        .hero-lede { font-size: 1.15rem; line-height: 1.6; color: var(--ink-soft); max-width: 36ch; margin-bottom: 2rem; }
+        .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .hero-btns .btn { flex: 0 0 240px; }
+        .hero-photo {
+            border: 4px solid var(--ink);
+            border-radius: 24px;
+            box-shadow: 14px 14px 0 var(--mustard);
+            overflow: hidden;
+            margin-right: 14px;
+        }
+        .hero-photo img { display: block; width: 100%; height: auto; filter: contrast(1.2) saturate(0.9); }
+
+        /* ── BUTTONS (pill, chunky shadow, squish on tap) ── */
+        .btn {
+            display: inline-block;
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--ink);
+            background: var(--mustard);
+            padding: 1rem 1.6rem;
+            border: 3px solid var(--ink);
+            border-radius: 999px;
+            box-shadow: 5px 5px 0 var(--ink);
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+        .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+        .btn:active { transform: translate(4px, 4px); box-shadow: 1px 1px 0 var(--ink); }
+        .btn-quiet { background: var(--sand); }
+
+        /* ── PROSE ── */
+        section { margin-bottom: 5rem; }
+        .prose p { font-size: 1.1rem; max-width: 62ch; margin-bottom: 1.1rem; }
+        .prose p:last-child { margin-bottom: 0; }
+
+        /* ── VIDEO ── */
+        .video-frame {
+            border: 4px solid var(--ink);
+            border-radius: 24px;
+            box-shadow: 14px 14px 0 var(--denim);
+            overflow: hidden;
+            margin-right: 14px;
+            background: var(--ink);
+        }
+        .video-frame iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+
+        /* ── LINEUP ── */
+        .lineup { list-style: none; max-width: 720px; border-top: 3px solid var(--ink); }
+        .lineup li {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 1.1rem;
+        }
+        .lineup .who { font-weight: 600; }
+        .lineup .what { color: var(--ink-soft); text-align: right; font-style: italic; }
+
+        /* ── NEXT SHOW ── */
+        .next-show {
+            background: var(--denim);
+            color: #fbf7ee;
+            border: 4px solid var(--ink);
+            border-radius: 24px;
+            box-shadow: 14px 14px 0 var(--mustard);
+            margin-right: 14px;
+            padding: 2.4rem 2.6rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2.4rem;
+            align-items: center;
+        }
+        .next-show h2 { font-family: 'Fraunces', Georgia, serif; color: #fbf7ee; grid-column: 1 / -1; margin-bottom: 0; font-size: 1.2rem; font-style: italic; font-weight: 400; letter-spacing: 0; }
+        .show-date { line-height: 1; }
+        .show-date .day { display: block; font-family: 'Shrikhand', Georgia, serif; font-size: 5.5rem; color: var(--mustard); text-shadow: 4px 4px 0 var(--ink); }
+        .show-date .mon { display: block; font-size: 1.2rem; font-style: italic; margin-top: 0.5rem; }
+        .show-where { font-size: 1.15rem; line-height: 1.5; }
+        .show-where strong { display: block; font-size: 1.6rem; font-weight: 400; line-height: 1.15; margin-bottom: 0.4rem; }
+        .show-where .btn { margin-top: 1.4rem; }
+
+        /* ── VENUES ── */
+        .venues { list-style: none; max-width: 720px; columns: 2; column-gap: 2.5rem; }
+        .venues li { font-size: 1.1rem; padding: 0.35rem 0; break-inside: avoid; }
+        .venues li span { display: block; font-size: 0.9rem; font-style: italic; color: var(--ink-soft); }
+
+        /* ── FOOTER ── */
+        footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 3px solid var(--ink);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+        }
+        footer a { color: var(--ink-soft); text-decoration: none; }
+        footer a:hover { color: var(--denim); }
+
+        @media (max-width: 760px) {
+            .page { padding: 1.6rem 1.25rem 4rem; }
+            .topnav { margin-bottom: 2.5rem; }
+            .hero { grid-template-columns: 1fr; gap: 2.5rem; margin-bottom: 4rem; }
+            .hero-btns .btn { flex: 1 1 100%; }
+            .lineup li { flex-direction: column; gap: 0.1rem; }
+            .lineup .what { text-align: left; }
+            .next-show { grid-template-columns: 1fr; gap: 1.2rem; padding: 1.8rem 1.5rem; }
+            .show-date .day { font-size: 4.2rem; }
+            .venues { columns: 1; }
+            section { margin-bottom: 4rem; }
+            footer { flex-direction: column; gap: 0.8rem; align-items: flex-start; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .btn, .btn:hover, .btn:active { transition: none; transform: none; }
+        }
+
+        /* ── QUESTIONNAIRE ── */
+        .intro { font-size: 1.15rem; color: var(--ink-soft); max-width: 58ch; margin-bottom: 3rem; }
+        .q-form { max-width: 760px; }
+        fieldset { border: 4px solid var(--ink); border-radius: 24px; box-shadow: 10px 10px 0 var(--mustard); background: #fbf7ee; padding: 2rem 2rem 1rem; margin: 0 14px 3.5rem 0; }
+        legend { font-family: 'Shrikhand', Georgia, serif; color: var(--denim); font-size: 1.6rem; padding: 0 0.6rem; }
+        .q { margin-bottom: 1.6rem; }
+        .q label, .q .qlabel { display: block; font-weight: 600; font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .q .hint { display: block; font-size: 0.95rem; font-style: italic; color: var(--ink-soft); margin-bottom: 0.6rem; }
+        .q input[type=text], .q input[type=email], .q input[type=tel], .q input[type=url], .q textarea {
+            width: 100%; font-family: 'Fraunces', Georgia, serif; font-size: 1.05rem; color: var(--ink);
+            background: #fff; border: 2px solid var(--ink); border-radius: 12px; padding: 0.75rem 0.9rem;
+        }
+        .q textarea { min-height: 120px; resize: vertical; line-height: 1.5; }
+        .q input:focus-visible, .q textarea:focus-visible { outline: 3px solid var(--mustard); outline-offset: 2px; }
+        .choices label { display: flex; align-items: center; gap: 0.6rem; font-weight: 400; margin-bottom: 0.4rem; }
+        .choices input { width: 1.2rem; height: 1.2rem; accent-color: var(--denim); }
+        .gotcha { position: absolute; left: -9999px; }
+        .q-form .btn { font-size: 0.9rem; cursor: pointer; }
+        .done { display: none; border: 4px solid var(--ink); border-radius: 24px; box-shadow: 10px 10px 0 var(--mustard); background: var(--denim); color: #fbf7ee; padding: 2.4rem; margin-right: 14px; }
+        .done h2 { color: var(--mustard); }
+        .form-err { display: none; color: #8a1c1c; font-weight: 600; margin-top: 1rem; }
+        @media (max-width: 760px) { fieldset { padding: 1.4rem 1.1rem 0.6rem; } legend { font-size: 1.3rem; } }
+        .pick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+        .pick { display: block; border: 3px solid var(--ink); border-radius: 14px; overflow: hidden; background: #fff; cursor: pointer; font-weight: 400 !important; }
+        .pick img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+        .pick span { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.7rem; font-size: 0.95rem; }
+        .pick input { width: 1.2rem; height: 1.2rem; accent-color: var(--denim); }
+        .pick:has(input:checked) { border-color: var(--denim); box-shadow: 0 0 0 3px var(--mustard); }
+        @media (max-width: 760px) { .pick-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<div class="page">
+
+    <nav class="topnav" aria-label="Primary">
+        <a class="nav-brand" href="index.html">Joey<span>Drums</span></a>
+    </nav>
+
+    <main id="main-content">
+        <section class="hero" style="grid-template-columns:1fr;margin-bottom:2rem;" aria-label="Introduction">
+            <div>
+                <h1>Press kit questions <em>for the St Pete Collective</em></h1>
+            </div>
+        </section>
+        <p class="intro">Hi Joey! Your answers become the band's press kit, the page venues and reporters use to book and write about you. Answer what you can and skip the rest. Some boxes already show what is on the site now, so just fix anything that is wrong.</p>
+
+        <form class="q-form" id="qForm" action="https://formspree.io/f/mbdprjyn" method="POST">
+            <input type="hidden" name="_subject" value="St Pete Collective press kit answers">
+            <input type="hidden" name="Form" value="St Pete Collective EPK questionnaire (joeydrums.com)">
+            <input type="hidden" name="_next" value="https://joeydrums.com/st-pete-collective">
+            <label class="gotcha">Leave this empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+            <fieldset>
+                <legend>About you</legend>
+                <div class="q">
+                    <label for="fname">Your name</label>
+                    
+                    <input type="text" id="fname" name="Your name" value="Joey Interrante" required>
+                </div>
+                <div class="q">
+                    <label for="femail">Your email</label>
+                    
+                    <input type="email" id="femail" name="Your email" required>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>The band</legend>
+                <div class="q">
+                    <label for="oneline">Describe the band in one sentence</label>
+                    <span class="hint" id="oneline-hint">How you would say it to someone at a bar.</span>
+                    <textarea id="oneline" name="Describe the band in one sentence" aria-describedby="oneline-hint"></textarea>
+                </div>
+                <div class="q">
+                    <label for="bio">Short bio</label>
+                    <span class="hint" id="bio-hint">A few sentences. How it started, who is in it, what makes the show special. Your words are fine, I will polish them.</span>
+                    <textarea id="bio" name="Short bio" aria-describedby="bio-hint"></textarea>
+                </div>
+                <div class="q">
+                    <label for="lineup">Lineup</label>
+                    <span class="hint" id="lineup-hint">This is what is on the site now. Fix anything wrong: names, spelling, what each person plays.</span>
+                    <textarea id="lineup" style="min-height:220px" name="Lineup" aria-describedby="lineup-hint">Chad Stivers, lead vocals, acoustic guitar
+Patrick Bettison, keys, harmonica, percussion, vocals, musical director
+LaRue Nickelson, electric guitar
+Vinnie Seplesky, bass
+Gale Trippsmith, vocals, percussion
+Joey Interrante, drums
+Jim Gilmour, sound</textarea>
+                </div>
+                <div class="q">
+                    <label for="history">How long has the band been together?</label>
+                    <span class="hint" id="history-hint">The year you started is perfect.</span>
+                    <input type="text" id="history" name="How long has the band been together?" aria-describedby="history-hint">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>The show</legend>
+                <div class="q">
+                    <label for="format">What does a show look like?</label>
+                    <span class="hint" id="format-hint">How long, how many sets, seated or standing, any special moments.</span>
+                    <textarea id="format" name="What does a show look like?" aria-describedby="format-hint"></textarea>
+                </div>
+                <div class="q">
+                    <label for="songs">Which songs always get the biggest reaction?</label>
+                    <span class="hint" id="songs-hint">Three to five is plenty.</span>
+                    <textarea id="songs" name="Which songs always get the biggest reaction?" aria-describedby="songs-hint"></textarea>
+                </div>
+                <div class="q">
+                    <label for="future">Other artists you plan to play after James Taylor?</label>
+                    <span class="hint" id="future-hint">Leave blank if you would rather not say yet.</span>
+                    <input type="text" id="future" name="Other artists you plan to play after James Taylor?" aria-describedby="future-hint">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Proof</legend>
+                <div class="q">
+                    <label for="venues">Where you have played</label>
+                    <span class="hint" id="venues-hint">This is what is on the site now. Add, remove, or fix. Mark any sold-out shows.</span>
+                    <textarea id="venues" style="min-height:200px" name="Where you have played" aria-describedby="venues-hint">The Palladium, Side Door Cabaret, St. Petersburg (sold out, July 2026)
+Firehouse Cultural Center, Ruskin
+Catherine Hickman Theater, Gulfport
+New Tampa Performing Arts Center, Tampa
+The Ale and the Witch, St. Petersburg
+Bayboro Brewing Co., St. Petersburg</textarea>
+                </div>
+                <div class="q">
+                    <label for="quotes">Press quotes or kind words</label>
+                    <span class="hint" id="quotes-hint">Reviews, articles, or something a venue owner said. Please include who said it.</span>
+                    <textarea id="quotes" name="Press quotes or kind words" aria-describedby="quotes-hint"></textarea>
+                </div>
+                <div class="q">
+                    <label for="press">Links to any articles or radio/TV mentions</label>
+                    
+                    <textarea id="press" name="Links to any articles or radio/TV mentions"></textarea>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Photos and video</legend>
+                <div class="q">
+                    <span class="qlabel" id="picks-l">Which photos should we use?</span>
+                    <span class="hint">Check every one you like. If none of these work, send better ones in the next box.</span>
+                    <div class="pick-grid" role="group" aria-labelledby="picks-l"><label class="pick"><img src="assets/st-pete-collective-promo.jpg" alt="Stairway promo shot" loading="lazy"><span><input type="checkbox" name="Photos to use" value="st-pete-collective-promo.jpg"> Stairway promo shot</span></label><label class="pick"><img src="assets/st-pete-collective-live.jpg" alt="Live on stage" loading="lazy"><span><input type="checkbox" name="Photos to use" value="st-pete-collective-live.jpg"> Live on stage</span></label><label class="pick"><img src="assets/st-pete-collective.jpg" alt="Group photo, casual" loading="lazy"><span><input type="checkbox" name="Photos to use" value="st-pete-collective.jpg"> Group photo, casual</span></label></div>
+                </div>
+                <div class="q">
+                    <label for="photocredit">Who took the band photos?</label>
+                    <span class="hint" id="photocredit-hint">So we can give the photographer credit.</span>
+                    <input type="text" id="photocredit" name="Who took the band photos?" aria-describedby="photocredit-hint">
+                </div>
+                <div class="q">
+                    <label for="photolink">Link to more photos</label>
+                    <span class="hint" id="photolink-hint">Got better or newer photos? A Google Drive or Dropbox link works great.</span>
+                    <input type="text" id="photolink" name="Link to more photos" aria-describedby="photolink-hint">
+                </div>
+                <div class="q">
+                    <label for="videos">Which video should be the main one?</label>
+                    <span class="hint" id="videos-hint">We will put it on YouTube for you. Paste a link or tell us which show it is from.</span>
+                    <textarea id="videos" name="Best videos of the band" aria-describedby="videos-hint"></textarea>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>For venues</legend>
+                <div class="q">
+                    <label for="stage">Stage and setup needs</label>
+                    <span class="hint" id="stage-hint">Jim runs sound. Tell venues what gear you bring and what you need from them: stage size, power, load-in time.</span>
+                    <textarea id="stage" name="Stage and setup needs" aria-describedby="stage-hint"></textarea>
+                </div>
+                <div class="q">
+                    <label for="rooms">What size rooms fit the band best?</label>
+                    <span class="hint" id="rooms-hint">For example: 100 to 300 seats.</span>
+                    <input type="text" id="rooms" name="What size rooms fit the band best?" aria-describedby="rooms-hint">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Contact</legend>
+                <div class="q">
+                    <label for="booker">Who should venues contact to book the band?</label>
+                    <span class="hint" id="booker-hint">Name, email, and phone.</span>
+                    <textarea id="booker" name="Who should venues contact to book the band?" aria-describedby="booker-hint">Joey Interrante, joey@joeydrums.com</textarea>
+                </div>
+                <div class="q">
+                    <label for="presscontact">Who should reporters contact?</label>
+                    <span class="hint" id="presscontact-hint">Leave blank if it is the same person.</span>
+                    <input type="text" id="presscontact" name="Who should reporters contact?" aria-describedby="presscontact-hint">
+                </div>
+                <div class="q">
+                    <label for="socials">Band social links</label>
+                    <span class="hint" id="socials-hint">Facebook, Instagram, YouTube, anything else.</span>
+                    <textarea id="socials" name="Band social links" aria-describedby="socials-hint">https://www.facebook.com/p/St-Pete-Collective-band-61576259796359/</textarea>
+                </div>
+                <div class="q">
+                    <label for="avoid">Anything we should never say or show?</label>
+                    
+                    <textarea id="avoid" name="Anything we should never say or show?"></textarea>
+                </div>
+                <div class="q">
+                    <label for="extra">Anything else?</label>
+                    
+                    <textarea id="extra" name="Anything else?"></textarea>
+                </div>
+            </fieldset>
+
+            <button class="btn" type="submit" id="qSend">Send my answers</button>
+            <p class="form-err" id="qErr" role="alert">Something went wrong. Please try again, or text Dayna at (727) 353-9673.</p>
+        </form>
+
+        <div class="done" id="qDone" tabindex="-1">
+            <h2>Got it, thank you!</h2>
+            <p>Your answers went straight to Dayna. She will build the press kit and send it to you to look over.</p>
+        </div>
+    </main>
+
+    <footer>
+        <a href="st-pete-collective.html">Back to the St Pete Collective</a>
+        <span>Built by <a href="https://www.gofercontent.com" target="_blank" rel="noopener">Gofer Content</a></span>
+    </footer>
+
+</div>
+<script>
+document.getElementById('qForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var form = this, btn = document.getElementById('qSend'), err = document.getElementById('qErr');
+    btn.disabled = true; btn.textContent = 'Sending...'; err.style.display = 'none';
+    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+    .then(function(r) {
+        if (!r.ok) throw new Error();
+        form.style.display = 'none';
+        var done = document.getElementById('qDone');
+        done.style.display = 'block'; done.focus();
+        window.scrollTo(0, 0);
+    })
+    .catch(function() {
+        err.style.display = 'block'; btn.disabled = false; btn.textContent = 'Send my answers';
+    });
+});
+</script>
+</body>
+</html>
