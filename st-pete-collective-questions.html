@@ -333,6 +333,18 @@
         .pick input { width: 1.2rem; height: 1.2rem; accent-color: var(--denim); }
         .pick:has(input:checked) { border-color: var(--denim); box-shadow: 0 0 0 3px var(--mustard); }
         @media (max-width: 760px) { .pick-grid { grid-template-columns: 1fr 1fr; } }
+        .drop { border: 3px dashed var(--ink); border-radius: 16px; background: #fff; padding: 1.6rem 1rem; text-align: center; cursor: pointer; }
+        .drop.over { border-color: var(--denim); background: #f3efe4; }
+        .drop.full { border-style: solid; cursor: default; opacity: 0.7; }
+        .drop p { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.2rem; }
+        .drop span { font-size: 0.95rem; font-style: italic; color: var(--ink-soft); }
+        .meter { display: flex; justify-content: space-between; gap: 1rem; margin-top: 0.6rem; font-family: 'Oswald', sans-serif; font-size: 0.78rem; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-soft); }
+        .meter.warn { color: #8a1c1c; }
+        .thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 0.6rem; margin-top: 0.8rem; }
+        .thumb { position: relative; border: 2px solid var(--ink); border-radius: 10px; overflow: hidden; aspect-ratio: 1 / 1; background: #eee; }
+        .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .thumb button { position: absolute; top: 4px; right: 4px; background: var(--ink); color: #fff; border: none; border-radius: 999px; width: 26px; height: 26px; cursor: pointer; font-size: 0.85rem; }
+        .folder-btn { display: inline-block; margin-bottom: 0.8rem; }
     </style>
 </head>
 <body>
@@ -351,7 +363,7 @@
         </section>
         <p class="intro">Hi Joey! Your answers become the band's press kit, the page venues and reporters use to book and write about you. Answer what you can and skip the rest. Some boxes already show what is on the site now, so just fix anything that is wrong.</p>
 
-        <form class="q-form" id="qForm" action="https://formspree.io/f/mbdprjyn" method="POST">
+        <form class="q-form" id="qForm" action="https://formspree.io/f/mbdprjyn" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_subject" value="St Pete Collective press kit answers">
             <input type="hidden" name="Form" value="St Pete Collective EPK questionnaire (joeydrums.com)">
             <input type="hidden" name="_next" value="https://joeydrums.com/st-pete-collective">
@@ -447,6 +459,14 @@ Bayboro Brewing Co., St. Petersburg</textarea>
                     <div class="pick-grid" role="group" aria-labelledby="picks-l"><label class="pick"><img src="assets/st-pete-collective-promo.jpg" alt="Stairway promo shot" loading="lazy"><span><input type="checkbox" name="Photos to use" value="st-pete-collective-promo.jpg"> Stairway promo shot</span></label><label class="pick"><img src="assets/st-pete-collective-live.jpg" alt="Live on stage" loading="lazy"><span><input type="checkbox" name="Photos to use" value="st-pete-collective-live.jpg"> Live on stage</span></label><label class="pick"><img src="assets/st-pete-collective.jpg" alt="Group photo, casual" loading="lazy"><span><input type="checkbox" name="Photos to use" value="st-pete-collective.jpg"> Group photo, casual</span></label></div>
                 </div>
                 <div class="q">
+                    <span class="qlabel" id="up-l">Add your own photos</span>
+                    <span class="hint">Up to 10. Straight off your phone is fine.</span>
+                    <div class="drop" id="drop" tabindex="0" role="button" aria-labelledby="up-l"><p id="dropCopy">Tap to add photos</p><span>or drag them here on a computer</span></div>
+                    <input type="file" id="file" name="Uploaded photos" accept="image/*" multiple hidden>
+                    <div class="meter" id="meter"><span><b id="picCount">0</b> of 10 photos</span><span id="sizeNote"></span></div>
+                    <div class="thumbs" id="thumbs"></div>
+                </div>
+                <div class="q">
                     <label for="photocredit">Who took the band photos?</label>
                     <span class="hint" id="photocredit-hint">So we can give the photographer credit.</span>
                     <input type="text" id="photocredit" name="Who took the band photos?" aria-describedby="photocredit-hint">
@@ -457,8 +477,13 @@ Bayboro Brewing Co., St. Petersburg</textarea>
                     <input type="text" id="photolink" name="Link to more photos" aria-describedby="photolink-hint">
                 </div>
                 <div class="q">
+                    <span class="qlabel">Videos</span>
+                    <span class="hint">Videos are too big for this form. Drop them in this shared folder, then come back and tell us about them below.</span>
+                    <a class="btn btn-quiet folder-btn" href="https://drive.google.com/drive/folders/1r0bbSbrbaP999tZRtW_XZopdqji-VUQs?usp=sharing" target="_blank" rel="noopener">Open the video folder</a>
+                </div>
+                <div class="q">
                     <label for="videos">Which video should be the main one?</label>
-                    <span class="hint" id="videos-hint">We will put it on YouTube for you. Paste a link or tell us which show it is from.</span>
+                    <span class="hint" id="videos-hint">Paste a link, or give the file name from the folder and say what is in each one. We will put the main one on YouTube for you.</span>
                     <textarea id="videos" name="Best videos of the band" aria-describedby="videos-hint"></textarea>
                 </div>
             </fieldset>
@@ -521,22 +546,72 @@ Bayboro Brewing Co., St. Petersburg</textarea>
 
 </div>
 <script>
-document.getElementById('qForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var form = this, btn = document.getElementById('qSend'), err = document.getElementById('qErr');
-    btn.disabled = true; btn.textContent = 'Sending...'; err.style.display = 'none';
-    fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
-    .then(function(r) {
-        if (!r.ok) throw new Error();
-        form.style.display = 'none';
-        var done = document.getElementById('qDone');
-        done.style.display = 'block'; done.focus();
-        window.scrollTo(0, 0);
-    })
-    .catch(function() {
-        err.style.display = 'block'; btn.disabled = false; btn.textContent = 'Send my answers';
+(function() {
+    var MAX = 10, LIMIT = 20 * 1024 * 1024;
+    var pics = [], dt = new DataTransfer();
+    var drop = document.getElementById('drop'), file = document.getElementById('file');
+    function mb(b) { return (b / 1048576).toFixed(1) + ' MB'; }
+    function total() { return pics.reduce(function(a, p) { return a + p.size; }, 0); }
+    function render() {
+        document.getElementById('picCount').textContent = pics.length;
+        var big = total() > LIMIT;
+        document.getElementById('meter').classList.toggle('warn', big);
+        document.getElementById('sizeNote').textContent = pics.length ? (big ? mb(total()) + ', too big. Remove a few' : mb(total())) : '';
+        drop.classList.toggle('full', pics.length >= MAX);
+        document.getElementById('dropCopy').textContent = pics.length >= MAX ? 'That is 10, the limit' : 'Tap to add photos';
+        document.getElementById('thumbs').innerHTML = pics.map(function(p, i) {
+            return '<div class="thumb"><img src="' + p.url + '" alt="Photo ' + (i + 1) + '"><button type="button" data-x="' + i + '" aria-label="Remove photo ' + (i + 1) + '">✕</button></div>';
+        }).join('');
+        document.querySelectorAll('#thumbs [data-x]').forEach(function(b) {
+            b.addEventListener('click', function() {
+                var gone = pics.splice(+b.dataset.x, 1)[0], next = new DataTransfer();
+                Array.prototype.forEach.call(dt.files, function(f) { if (!(f.name === gone.name && f.size === gone.size)) next.items.add(f); });
+                dt = next; file.files = dt.files; render();
+            });
+        });
+    }
+    function add(list) {
+        Array.prototype.forEach.call(list, function(f) {
+            if (!/^image\//.test(f.type) || pics.length >= MAX) return;
+            if (pics.some(function(p) { return p.name === f.name && p.size === f.size; })) return;
+            dt.items.add(f);
+            var entry = { name: f.name, size: f.size, url: '' };
+            pics.push(entry);
+            var r = new FileReader();
+            r.onload = function(e) { entry.url = e.target.result; render(); };
+            r.readAsDataURL(f);
+        });
+        file.files = dt.files; render();
+    }
+    drop.addEventListener('click', function() { if (pics.length < MAX) file.click(); });
+    drop.addEventListener('keydown', function(e) { if ((e.key === 'Enter' || e.key === ' ') && pics.length < MAX) { e.preventDefault(); file.click(); } });
+    file.addEventListener('change', function() { add(this.files); });
+    ['dragenter', 'dragover'].forEach(function(ev) { drop.addEventListener(ev, function(e) { e.preventDefault(); drop.classList.add('over'); }); });
+    ['dragleave', 'drop'].forEach(function(ev) { drop.addEventListener(ev, function(e) { e.preventDefault(); drop.classList.remove('over'); }); });
+    drop.addEventListener('drop', function(e) { add(e.dataTransfer.files); });
+
+    document.getElementById('qForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var form = this, btn = document.getElementById('qSend'), err = document.getElementById('qErr');
+        if (total() > LIMIT) {
+            err.textContent = 'Those photos add up to ' + mb(total()) + '. Remove a few, or put them in the video folder instead.';
+            err.style.display = 'block'; return;
+        }
+        btn.disabled = true; btn.textContent = pics.length ? 'Sending, photos take a minute...' : 'Sending...'; err.style.display = 'none';
+        fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        .then(function(r) {
+            if (!r.ok) throw new Error();
+            form.style.display = 'none';
+            var done = document.getElementById('qDone');
+            done.style.display = 'block'; done.focus();
+            window.scrollTo(0, 0);
+        })
+        .catch(function() {
+            err.textContent = pics.length ? 'Did not send. The photos may be too big. Try fewer, or put them in the shared folder.' : 'Something went wrong. Please try again, or text Dayna at (727) 353-9673.';
+            err.style.display = 'block'; btn.disabled = false; btn.textContent = 'Send my answers';
+        });
     });
-});
+})();
 </script>
 </body>
 </html>
