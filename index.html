@@ -1013,15 +1013,15 @@
 
 
     <nav class="topnav" aria-label="Primary">
-        <a class="nav-brand" href="index.html">Joey<span>Drums</span></a>
+        <a class="nav-brand" href="/">Joey<span>Drums</span></a>
         <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
             <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
             <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
         </button>
        <div class="nav-links" id="navLinks">
             <a href="#main-content">Shows</a>
-            <a href="st-pete-collective.html">St Pete Collective</a> 
-            <a href="blog.html">Blog</a>
+            <a href="/st-pete-collective">St Pete Collective</a> 
+            <a href="/blog">Blog</a>
         </div>
     </nav>
     <header>
@@ -1190,7 +1190,7 @@
    </section>
    <section class="blog-section" aria-label="Upcoming show">
         <p class="section-label">Coming Up</p>
-        <a class="blog-card" href="st-pete-collective.html#next-show">
+        <a class="blog-card" href="/st-pete-collective#next-show">
             <div class="blog-card-left">
                 <span class="blog-card-tag">Next Big Show &middot; Fri Oct 30</span>
                 <span class="blog-card-title">St Pete Collective Plays the Music of James Taylor</span>
@@ -1230,7 +1230,7 @@
 
     <section class="links-section">
         <p class="section-label">Book &amp; Connect</p>
-       <a class="book-cta-full" href="book.html">
+       <a class="book-cta-full" href="/book">
             Book a Gig
         </a>
         <div class="social-row">
@@ -1263,7 +1263,7 @@
     </section>
 </main>
     <footer>
-    <a class="footer-phone" href="book.html">Book a Gig</a>
+    <a class="footer-phone" href="/book">Book a Gig</a>
     <span class="footer-note">Built by <a href="https://www.gofercontent.com" target="_blank" rel="noopener" style="color:var(--text-dim);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text-dim)'">Gofer Content</a></span>
 </footer>
 
@@ -1615,6 +1615,7 @@ var VENUES = {
     var m=txt.match(/^[^:]+:\s*(.+?) at (.+?)\.\s*(\d{1,2}):(\d{2})\s*(AM|PM)?\s*-\s*(\d{1,2}):(\d{2})\s*(AM|PM)/);
     if(!m)return;
     var act=m[1],place=m[2],cut=place.lastIndexOf(', ');
+    if(/private/i.test(place))return;
     var venue=cut>0?place.slice(0,cut):place,city=cut>0?place.slice(cut+2):'';
     var endAP=m[8],startAP=m[5]||endAP;
     if(!m[5]&&(parseInt(m[3],10)%12)>(parseInt(m[6],10)%12))startAP=(endAP==='PM'?'AM':'PM');
