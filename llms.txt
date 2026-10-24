@@ -6,9 +6,9 @@ Joey plays live several nights a week around Tampa Bay, including St. Petersburg
 
 ## Main Pages
 - [Homepage](https://joeydrums.com/): This week's shows, a full schedule through the end of the year, booking links, and social profiles
-- [St Pete Collective](https://joeydrums.com/st-pete-collective.html): The St Pete Collective band page, with upcoming shows and details
-- [Book a Gig](https://joeydrums.com/book.html): Booking inquiry form for live shows, private events, sessions, and more
-- [Blog](https://joeydrums.com/blog.html): Show news and updates
+- [St Pete Collective](https://joeydrums.com/st-pete-collective): The St Pete Collective band page, with upcoming shows and details
+- [Book a Gig](https://joeydrums.com/book): Booking inquiry form for live shows, private events, sessions, and more
+- [Blog](https://joeydrums.com/blog): Show news and updates
 
 ## Regular Venues
 - Bayboro Brewing Co., St. Petersburg, FL: Kid Royal Band featuring Josh Nelms, Wednesday Blues residency, 8:00 to 10:00 PM
@@ -42,4 +42,4 @@ Joey performs across multiple genres including Florida blues, Americana, rock, a
 - [BanJoey](https://banjoey.com): Joey's one-of-a-kind handmade instrument
 
 ## Contact
-- [Book a Gig](https://joeydrums.com/book.html): Submit a gig inquiry directly to Joey
+- [Book a Gig](https://joeydrums.com/book): Submit a gig inquiry directly to Joey

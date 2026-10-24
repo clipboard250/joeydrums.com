@@ -885,6 +885,12 @@
         }
             /* ── FULL SCHEDULE (plain text for search) ── */
         .schedule-section { margin-bottom: 4rem; }
+        .faq-section { margin-bottom: 4rem; }
+        .faq-section .faq-item + .faq-item { margin-top: 0.75rem; }
+        .faq-section .sched-toggle { text-transform: none; letter-spacing: 0.5px; font-size: 0.95rem; gap: 1rem; }
+        .faq-section .faq-answer { padding: 1.1rem 1.4rem 1.4rem; }
+        .faq-section .faq-answer a { color: var(--red-bright); }
+
         .sched-details { border: 1px solid var(--border); border-radius: 14px; background: var(--bg-card); overflow: hidden; }
         .sched-toggle { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.4rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #fff; -webkit-tap-highlight-color: transparent; }
         .sched-toggle::-webkit-details-marker { display: none; }
@@ -910,11 +916,22 @@
     {
       "@type": "Person",
       "@id": "https://joeydrums.com/#joey",
-    "name": "Joey Interrante",
-"alternateName": "Joseph Interrante",
-"url": "https://joeydrums.com",
-"jobTitle": "Professional Drummer",
-"knowsAbout": ["Florida blues", "Americana", "rock", "alternative", "country", "acoustic rock", "alt-rock", "live performance", "session drumming", "music production"],
+      "name": "Joey Interrante",
+      "alternateName": "Joseph Interrante",
+      "url": "https://joeydrums.com",
+      "jobTitle": "Professional Drummer",
+      "knowsAbout": [
+        "Florida blues",
+        "Americana",
+        "rock",
+        "alternative",
+        "country",
+        "acoustic rock",
+        "alt-rock",
+        "live performance",
+        "session drumming",
+        "music production"
+      ],
       "image": "https://joeydrums.com/assets/joey_hero_tal_9-16.webp",
       "address": {
         "@type": "PostalAddress",
@@ -922,7 +939,7 @@
         "addressRegion": "FL",
         "addressCountry": "US"
       },
-     "sameAs": [
+      "sameAs": [
         "https://www.instagram.com/interrantejoseph_banjoey",
         "https://www.facebook.com/joey.gmsdrums",
         "https://www.youtube.com/@banjoeydrummer",
@@ -939,6 +956,52 @@
       "publisher": {
         "@id": "https://joeydrums.com/#joey"
       }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://joeydrums.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who is Joey Interrante?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Joey Interrante, also known as Joseph Interrante, is a professional drummer based in Tampa Bay, Florida. He plays live several nights a week with Kid Royal Band featuring Josh Nelms, Dog and Pony Trio, St Pete Collective, Kirk Adams Band, Cassie Jean and the Fireflies, and as Gale and Joey, an acoustic duo with Gale Trippsmith."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I see Joey play live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Around Tampa Bay, including Bayboro Brewing Co. in St. Petersburg (Wednesday Blues with Kid Royal Band), Saltwater Hippie and Bamboo Beach Bar in Madeira Beach, Middle Grounds Grill in Treasure Island, O'Maddy's in Gulfport, and Ale and the Witch in St. Petersburg. The full schedule above lists every upcoming show."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I book Joey for a wedding, private party, or corporate event?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Joey is available for bars, venues, private events, corporate events, weddings, and festivals in Tampa Bay and across Florida. Send the date, location, and type of event through the Book a Gig form."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Joey record drum tracks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Joey records drums for artists through Hip Pocket Studios, including remote drum tracks and studio sessions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What kind of music does Joey play?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Florida blues, Americana, rock, alternative, country, acoustic rock, and alt-rock."
+          }
+        }
+      ]
     }
   ]
 }
@@ -1074,6 +1137,29 @@
           <li data-date="2026-12-27">Sun Dec 27: Kid Royal Band at Saltwater Hippie, Madeira Beach. 6:00 &ndash; 10:00 PM</li>
           <li data-date="2026-12-30">Wed Dec 30: Kid Royal Band at Bayboro Brewing Co., St. Petersburg. 8:00 &ndash; 10:00 PM</li>
         </ul>
+        </details>
+   </section>
+   <section class="faq-section" aria-label="Frequently asked questions">
+        <h2 class="section-label">Good to Know: Booking and Shows</h2>
+        <details class="sched-details faq-item">
+          <summary class="sched-toggle">Who is Joey Interrante?</summary>
+          <p class="sched-intro faq-answer">Joey Interrante, also known as Joseph Interrante, is a professional drummer based in Tampa Bay, Florida. He plays live several nights a week with Kid Royal Band featuring Josh Nelms, Dog and Pony Trio, St Pete Collective, Kirk Adams Band, Cassie Jean and the Fireflies, and as Gale and Joey, an acoustic duo with Gale Trippsmith.</p>
+        </details>
+        <details class="sched-details faq-item">
+          <summary class="sched-toggle">Where can I see Joey play live?</summary>
+          <p class="sched-intro faq-answer">Around Tampa Bay, including Bayboro Brewing Co. in St. Petersburg (Wednesday Blues with Kid Royal Band), Saltwater Hippie and Bamboo Beach Bar in Madeira Beach, Middle Grounds Grill in Treasure Island, O'Maddy's in Gulfport, and Ale and the Witch in St. Petersburg. The full schedule above lists every upcoming show.</p>
+        </details>
+        <details class="sched-details faq-item">
+          <summary class="sched-toggle">Can I book Joey for a wedding, private party, or corporate event?</summary>
+          <p class="sched-intro faq-answer">Yes. Joey is available for bars, venues, private events, corporate events, weddings, and festivals in Tampa Bay and across Florida. Send the date, location, and type of event through the <a href="/book">Book a Gig</a> form.</p>
+        </details>
+        <details class="sched-details faq-item">
+          <summary class="sched-toggle">Does Joey record drum tracks?</summary>
+          <p class="sched-intro faq-answer">Yes. Joey records drums for artists through <a href="https://hippocketstudios.com">Hip Pocket Studios</a>, including remote drum tracks and studio sessions.</p>
+        </details>
+        <details class="sched-details faq-item">
+          <summary class="sched-toggle">What kind of music does Joey play?</summary>
+          <p class="sched-intro faq-answer">Florida blues, Americana, rock, alternative, country, acoustic rock, and alt-rock.</p>
         </details>
    </section>
    <section class="request-section" aria-label="Request a show in your city">
@@ -1516,6 +1602,38 @@ var VENUES = {
     tag.type = 'application/ld+json';
     tag.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": events });
   document.head.appendChild(tag);
+})();
+</script>
+<script>
+// Turns every show in the schedule list into event data for Google. Update the list, and this updates itself.
+(function(){
+  function to24(h,m,ap){h=parseInt(h,10)%12;if(ap==='PM')h+=12;return (h<10?'0':'')+h+':'+m;}
+  var events=[],seen={};
+  document.querySelectorAll('.sched-list li[data-date]').forEach(function(li){
+    var date=li.getAttribute('data-date');
+    var txt=li.textContent.replace(/\u2013/g,'-').replace(/\s+/g,' ').trim();
+    var m=txt.match(/^[^:]+:\s*(.+?) at (.+?)\.\s*(\d{1,2}):(\d{2})\s*(AM|PM)?\s*-\s*(\d{1,2}):(\d{2})\s*(AM|PM)/);
+    if(!m)return;
+    var act=m[1],place=m[2],cut=place.lastIndexOf(', ');
+    var venue=cut>0?place.slice(0,cut):place,city=cut>0?place.slice(cut+2):'';
+    var endAP=m[8],startAP=m[5]||endAP;
+    if(!m[5]&&(parseInt(m[3],10)%12)>(parseInt(m[6],10)%12))startAP=(endAP==='PM'?'AM':'PM');
+    var mo=parseInt(date.slice(5,7),10),tz=(mo>=11||mo<=2)?'-05:00':'-04:00';
+    var key=date+act+venue;if(seen[key])return;seen[key]=1;
+    events.push({"@type":"MusicEvent","name":act+" at "+venue,
+      "startDate":date+"T"+to24(m[3],m[4],startAP)+":00"+tz,
+      "endDate":date+"T"+to24(m[6],m[7],endAP)+":00"+tz,
+      "eventStatus":"https://schema.org/EventScheduled",
+      "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+      "location":{"@type":"Place","name":venue,"address":{"@type":"PostalAddress","addressLocality":city,"addressRegion":"FL","addressCountry":"US"}},
+      "performer":[{"@type":"MusicGroup","name":act},{"@id":"https://joeydrums.com/#joey"}],
+      "image":"https://joeydrums.com/assets/og-image.png",
+      "url":"https://joeydrums.com/"});
+  });
+  if(!events.length)return;
+  var s=document.createElement('script');s.type='application/ld+json';
+  s.textContent=JSON.stringify({"@context":"https://schema.org","@graph":events});
+  document.head.appendChild(s);
 })();
 </script>
 </body>
