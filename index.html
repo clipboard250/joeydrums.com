@@ -112,29 +112,13 @@
         .nav-toggle[aria-expanded="true"] .icon-open { display: none; }
         .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
         @media (max-width: 760px) {
-            .nav-toggle { display: block; }
-            .nav-brand { position: relative; z-index: 60; }
-            .nav-links {
-                display: none;
-                position: fixed;
-                inset: 0;
-                flex-direction: column;
-               justify-content: center;
-                align-items: flex-end;
-                gap: 0.8rem;
-                padding: 2rem 2.4rem;
-                background: var(--bg);
-                z-index: 55;
-            }
-            .nav-links.open { display: flex; }
-          .nav-links a {
-                font-size: 1.1rem;
-                font-weight: 600;
-                letter-spacing: 3px;
-                color: var(--text);
-                padding: 0.6rem 0;
-                border: none;
-            }
+            /* Phones: links always showing, no menu button */
+            .topnav { flex-direction: column; align-items: center; gap: 0.4rem; padding-bottom: 0; }
+            .nav-toggle { display: none !important; }
+            .nav-brand { text-align: center; }
+            .nav-links { display: flex; justify-content: center; gap: 1.1rem; width: 100%; }
+            .nav-links a { font-size: 0.62rem; letter-spacing: 2px; color: #fff; min-height: 44px; display: inline-flex; align-items: center; white-space: nowrap; }
+            .nav-links a.nav-spc { color: var(--red); }
             .nav-links a:hover { color: var(--red); }
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1021,13 +1005,9 @@
 
     <nav class="topnav" aria-label="Primary">
         <a class="nav-brand" href="/">Joey<span>Drums</span></a>
-        <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false">
-            <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-            <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
-        </button>
        <div class="nav-links" id="navLinks">
             <a href="#main-content">Shows</a>
-            <a href="/st-pete-collective">St Pete Collective</a> 
+            <a class="nav-spc" href="/st-pete-collective">St Pete Collective</a> 
             <a href="/blog">Blog</a>
         </div>
     </nav>
@@ -1527,12 +1507,6 @@ if (reqToggle) {
     });
 }
 
-function toggleNav() {
-    var links = document.getElementById('navLinks');
-    var btn = document.getElementById('navToggle');
-    var open = links.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-}
 </script>
 <script>
   /* ── EVENT SCHEMA FOR SEARCH ENGINES ── */
