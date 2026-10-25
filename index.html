@@ -2,12 +2,21 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3S32WPVMY4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+  function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-3S32WPVMY4');
+  /* Load Google Analytics after the page is showing, so it never slows Joey's page down */
+  window.addEventListener('load', function () {
+    var go = function () {
+      var t = document.createElement('script');
+      t.async = true;
+      t.src = 'https://www.googletagmanager.com/gtag/js?id=G-3S32WPVMY4';
+      document.head.appendChild(t);
+    };
+    if ('requestIdleCallback' in window) { requestIdleCallback(go, { timeout: 3000 }); } else { setTimeout(go, 1500); }
+  });
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,13 +37,32 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://joeydrums.com/assets/og-image.png">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/oswald-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="assets/sized/joey-hero-500.webp" imagesrcset="assets/sized/joey-hero-400.webp 400w, assets/sized/joey-hero-500.webp 500w, assets/sized/joey-hero-680.webp 680w" imagesizes="(max-width: 760px) calc(82vw - 60px), 340px" fetchpriority="high">
     <style>
+        @font-face {
+            font-family: 'Oswald';
+            font-style: normal;
+            font-weight: 200 700;
+            font-display: swap;
+            src: url('/fonts/oswald-latin-wght-normal.woff2') format('woff2-variations'), url('/fonts/oswald-latin-wght-normal.woff2') format('woff2');
+            unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+        }
+        @font-face {
+            font-family: 'Oswald';
+            font-style: normal;
+            font-weight: 200 700;
+            font-display: swap;
+            src: url('/fonts/oswald-latin-ext-wght-normal.woff2') format('woff2-variations'), url('/fonts/oswald-latin-ext-wght-normal.woff2') format('woff2');
+            unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+        }
         :root {
             --red: #e63946;
             --red-bright: #ff2b3b;
             --red-dim: rgba(230,57,70,0.15);
             --red-border: rgba(230,57,70,0.3);
+            --red-chip: #d12a38;
+            --red-label: #ff4d5a;
             --bg: #080808;
             --bg-rgb: 8,8,8;
             --bg-card: #0f0f0f;
@@ -53,6 +81,7 @@
             --text-mid: #4a4a4a;
             --text-dim: #857d72;
             --border: rgba(0,0,0,0.12);
+            --red-label: #b8222e;
         }
         .theme-toggle {
             position: fixed;
@@ -97,7 +126,6 @@
             margin-bottom: 2.5rem;
             border-bottom: 1px solid var(--border);
             position: relative;
-            animation: fadeUp 0.8s ease both;
         }
         .nav-brand { font-size: 1.1rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--text); text-decoration: none; }
         .nav-brand span { color: var(--red); }
@@ -162,7 +190,6 @@
         /* ── HEADER ── */
         header {
             margin-bottom: 4.5rem;
-            animation: fadeUp 0.8s ease both;
             display: grid;
             grid-template-columns: 1fr auto;
             grid-template-rows: auto auto;
@@ -353,7 +380,6 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 1.5rem;
-            animation: fadeUp 0.8s 0.1s ease both;
         }
      .week-range {
     font-family: 'Oswald', sans-serif;
@@ -385,7 +411,7 @@
         .week-btn:disabled { opacity: 0.2; cursor: default; pointer-events: none; }
 
         /* ── SHOWS (Rock Hall style cards) ── */
-        .shows-section { margin-bottom: 4rem; animation: fadeUp 0.8s 0.15s ease both; }
+        .shows-section { margin-bottom: 4rem; }
         .gig-list { display: flex; flex-direction: column; gap: 0.9rem; }
 
         .gig {
@@ -419,7 +445,7 @@
             justify-content: center;
             gap: 0.4rem;
             width: 88px;
-            background: var(--red);
+            background: var(--red-chip);
             color: #fff;
             padding: 0.4rem 0.5rem;
             border-radius: 7px;
@@ -497,7 +523,7 @@
             font-size: 0.58rem;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--red);
+            color: var(--red-label);
         }
         .gig-detail-val {
             font-size: 0.95rem;
@@ -523,7 +549,7 @@
             font-size: 0.55rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            background: var(--red);
+            background: var(--red-chip);
             color: #fff;
             padding: 3px 8px;
             border-radius: 5px;
@@ -729,7 +755,7 @@
                 width: 100%;
                 height: 100%;
             }
-        .hero-photo img { object-position: 72% 12%; -webkit-mask-image: radial-gradient(ellipse 90% 72% at 58% 46%, #000 8%, transparent 80%); mask-image: radial-gradient(ellipse 90% 72% at 58% 46%, #000 8%, transparent 80%); }`
+        .hero-photo img { object-position: 72% 12%; -webkit-mask-image: radial-gradient(ellipse 90% 72% at 58% 46%, #000 8%, transparent 80%); mask-image: radial-gradient(ellipse 90% 72% at 58% 46%, #000 8%, transparent 80%); }
             .hero-photo::before {
            background: transparent;
             }
@@ -1023,7 +1049,7 @@
         </div>
         <div class="header-right-bottom">
             <div class="hero-photo">
-                <img src="assets/joey_hero_tal_9-16.webp" alt="Joey Interrante, professional drummer based in Tampa Bay">
+                <img src="assets/sized/joey-hero-500.webp" srcset="assets/sized/joey-hero-400.webp 400w, assets/sized/joey-hero-500.webp 500w, assets/sized/joey-hero-680.webp 680w" sizes="(max-width: 760px) calc(82vw - 60px), 340px" width="680" height="1062" fetchpriority="high" alt="Joey Interrante, professional drummer based in Tampa Bay">
             </div>
         </div>
     </header>
@@ -1373,6 +1399,38 @@ function venueIcon(url) {
     return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
 }
 
+/* PHOTO-SIZES:START (made by tools/make-small-photos.py) */
+var PHOTO_SIZES = {"assets/Kid-Royal-Promo.jpg":{"w":350,"h":525,"v":[["assets/sized/Kid-Royal-Promo-400.webp",350]]},"assets/barefoot-bob-and-the-hope.jpg":{"w":720,"h":720,"v":[["assets/sized/barefoot-bob-and-the-hope-400.webp",400],["assets/sized/barefoot-bob-and-the-hope-640.webp",640],["assets/sized/barefoot-bob-and-the-hope-960.webp",720]]},"assets/cassiejeanandthefireflies.png":{"w":3200,"h":3200,"v":[["assets/sized/cassiejeanandthefireflies-400.webp",400],["assets/sized/cassiejeanandthefireflies-640.webp",640],["assets/sized/cassiejeanandthefireflies-960.webp",960]]},"assets/dog-and-pony-trio.jpg":{"w":960,"h":496,"v":[["assets/sized/dog-and-pony-trio-400.webp",400],["assets/sized/dog-and-pony-trio-640.webp",640],["assets/sized/dog-and-pony-trio-960.webp",960]]},"assets/gale-and-joey.jpg":{"w":906,"h":1014,"v":[["assets/sized/gale-and-joey-400.webp",400],["assets/sized/gale-and-joey-640.webp",640],["assets/sized/gale-and-joey-960.webp",906]]},"assets/green-room.jpg":{"w":1179,"h":1179,"v":[["assets/sized/green-room-400.webp",400],["assets/sized/green-room-640.webp",640],["assets/sized/green-room-960.webp",960]]},"assets/john-joey.png":{"w":515,"h":388,"v":[["assets/sized/john-joey-400.webp",400],["assets/sized/john-joey-640.webp",515]]},"assets/kid-royal-band-bayboro.jpg":{"w":591,"h":424,"v":[["assets/sized/kid-royal-band-bayboro-400.webp",400],["assets/sized/kid-royal-band-bayboro-640.webp",591]]},"assets/kid-royal-band-saltwater-hippie.jpg":{"w":1280,"h":959,"v":[["assets/sized/kid-royal-band-saltwater-hippie-400.webp",400],["assets/sized/kid-royal-band-saltwater-hippie-640.webp",640],["assets/sized/kid-royal-band-saltwater-hippie-960.webp",960]]},"assets/kidroyalbanner.png":{"w":2500,"h":1119,"v":[["assets/sized/kidroyalbanner-400.webp",400],["assets/sized/kidroyalbanner-640.webp",640],["assets/sized/kidroyalbanner-960.webp",960]]},"assets/kirk-adams-band-ale-witch.jpg":{"w":1200,"h":1157,"v":[["assets/sized/kirk-adams-band-ale-witch-400.webp",400],["assets/sized/kirk-adams-band-ale-witch-640.webp",640],["assets/sized/kirk-adams-band-ale-witch-960.webp",960]]},"assets/ruby.png":{"w":3072,"h":4096,"v":[["assets/sized/ruby-400.webp",400],["assets/sized/ruby-640.webp",640],["assets/sized/ruby-960.webp",960]]},"assets/st-pete-collective.jpg":{"w":1512,"h":1080,"v":[["assets/sized/st-pete-collective-400.webp",400],["assets/sized/st-pete-collective-640.webp",640],["assets/sized/st-pete-collective-960.webp",960]]},"assets/woodys-river-roo.jpg":{"w":1075,"h":1086,"v":[["assets/sized/woodys-river-roo-400.webp",400],["assets/sized/woodys-river-roo-640.webp",640],["assets/sized/woodys-river-roo-960.webp",960]]}};
+/* PHOTO-SIZES:END */
+
+/* Show card photo. Uses the small WebP copies when they exist, otherwise the original.
+   The photo only downloads when its card is opened, so closed cards never slow the page.
+   If a small copy ever fails to load, it falls back to the original, then hides. */
+function photoTag(s) {
+    var info = PHOTO_SIZES[s.photo];
+    var attrs = ' class="gig-panel-img" alt="' + s.photoAlt + '" loading="lazy" decoding="async"';
+    if (info) {
+        var set = info.v.map(function (v) { return v[0] + ' ' + v[1] + 'w'; }).join(', ');
+        var deskW = Math.min(640, Math.round(300 * info.w / info.h));
+        var last = info.v[info.v.length - 1][0];
+        attrs += ' data-src="' + last + '" data-srcset="' + set + '" data-sizes="(max-width: 760px) calc(100vw - 85px), ' + deskW + 'px"'
+              +  ' width="' + info.w + '" height="' + info.h + '" data-orig="' + s.photo + '"'
+              +  ' onerror="if(this.dataset.orig){var o=this.dataset.orig;this.removeAttribute(\'data-orig\');this.removeAttribute(\'srcset\');this.src=o;}else{this.parentNode.removeChild(this);}"';
+    } else {
+        attrs += ' data-src="' + s.photo + '" onerror="this.parentNode.removeChild(this)"';
+    }
+    return '<img' + attrs + '>';
+}
+
+function loadPhoto(card) {
+    var img = card && card.querySelector('img.gig-panel-img[data-src]');
+    if (!img) return;
+    if (img.dataset.sizes) img.sizes = img.dataset.sizes;
+    if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+    img.src = img.dataset.src;
+    img.removeAttribute('data-src');
+}
+
 function renderShows() {
     var now = new Date();
     var todayMid = midnight(now);
@@ -1413,7 +1471,7 @@ function renderShows() {
             + '</button>'
             + '<div class="gig-panel" id="' + pid + '">'
             +   '<div class="gig-panel-inner">'
-            +     '<img class="gig-panel-img" src="' + s.photo + '" alt="' + s.photoAlt + '" onerror="this.parentNode.removeChild(this)">'
+            +     photoTag(s)
             +     '<div class="gig-detail-grid">'
             +       '<div class="gig-detail"><span class="gig-detail-label">When</span><span class="gig-detail-val">' + s.month + ' ' + s.day + ' &middot; ' + s.time + '</span></div>'
             +       '<div class="gig-detail"><span class="gig-detail-label">Where</span><a class="gig-detail-val gig-venue-link" href="' + s.venueUrl + '" target="_blank" rel="noopener">' + s.venue + '</a></div>'
@@ -1449,6 +1507,8 @@ var firstGig = document.querySelector('.gig');
 if (firstGig) {
     firstGig.classList.add('open');
     firstGig.querySelector('.gig-head').setAttribute('aria-expanded', 'true');
+    if (document.readyState === 'complete') { loadPhoto(firstGig); }
+    else { window.addEventListener('load', function () { loadPhoto(document.querySelector('.gig.open')); }); }
 }
 
 document.getElementById('gigList').addEventListener('click', function(e) {
@@ -1464,6 +1524,7 @@ document.getElementById('gigList').addEventListener('click', function(e) {
     if (!wasOpen) {
         art.classList.add('open');
         head.setAttribute('aria-expanded', 'true');
+        loadPhoto(art);
     }
 });
 
