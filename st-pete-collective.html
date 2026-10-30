@@ -352,6 +352,25 @@
         .venues { list-style: none; max-width: 720px; columns: 2; column-gap: 2.5rem; }
         .venues li { font-size: 1.1rem; padding: 0.35rem 0; break-inside: avoid; }
         .venues li span { display: block; font-size: 0.9rem; font-style: italic; color: var(--ink-soft); }
+        .venues .tag {
+            display: table;
+            margin-top: 0.45rem;
+            padding: 0.2rem 0.65rem;
+            font-family: 'Oswald', sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 0.68rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.3;
+            color: var(--ink);
+            background: var(--mustard);
+            border: 2px solid var(--ink);
+            border-radius: 999px;
+            box-shadow: 2px 2px 0 var(--ink);
+            vertical-align: middle;
+            white-space: nowrap;
+        }
 
         /* ── FOOTER ── */
         footer {
@@ -471,12 +490,12 @@
         <section aria-labelledby="venues-heading">
             <h2 id="venues-heading">Where they have played</h2>
             <ul class="venues">
-                <li>The Palladium, Side Door Cabaret <span>St. Petersburg. Sold out, July 2026.</span></li>
-                <li>Firehouse Cultural Center <span>Ruskin</span></li>
-                <li>Catherine Hickman Theater <span>Gulfport</span></li>
+                <li>The Palladium, Side Door Cabaret <span>St. Petersburg, October 2025 and July 2026 <strong class="tag">Sold out twice</strong></span></li>
+                <li>Firehouse Cultural Center <span>Ruskin <strong class="tag">Sold out</strong></span></li>
+                <li>Catherine Hickman Theater <span>Gulfport <strong class="tag">Sold out</strong></span></li>
                 <li>New Tampa Performing Arts Center <span>Tampa</span></li>
-                <li>The Ale and the Witch <span>St. Petersburg, courtyard concert</span></li>
-                <li>Bayboro Brewing Co. <span>St. Petersburg</span></li>
+                <li>The Ale and the Witch <span>St. Petersburg, courtyard concert <strong class="tag">Standing room only</strong></span></li>
+                <li>Bayboro Brewing Co. <span>St. Petersburg <strong class="tag">Sold out</strong></span></li>
             </ul>
         </section>
 
