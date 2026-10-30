@@ -2,17 +2,26 @@
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3S32WPVMY4"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-3S32WPVMY4');
+  /* Load Google Analytics after the page is showing, so it never slows the page down */
+  window.addEventListener('load', function () {
+    var go = function () {
+      var t = document.createElement('script');
+      t.async = true;
+      t.src = 'https://www.googletagmanager.com/gtag/js?id=G-3S32WPVMY4';
+      document.head.appendChild(t);
+    };
+    if ('requestIdleCallback' in window) { requestIdleCallback(go, { timeout: 3000 }); } else { setTimeout(go, 1500); }
+  });
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>St Pete Collective | Live Band based in St. Petersburg, FL</title>
-   <meta name="description" content="The St Pete Collective is a band based in St. Petersburg, Florida that honors the music of their favorite artists, currently performing the music of James Taylor.">
+   <meta name="description" content="The St Pete Collective is a band based in St. Petersburg, Florida that honors the music of favorite artists, now performing the music of James Taylor.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://joeydrums.com/st-pete-collective">
     <meta property="og:title" content="St Pete Collective | Live Band based in St. Petersburg, FL">
@@ -27,7 +36,9 @@
     <link rel="icon" type="image/svg+xml" href="/stpc-favicon.svg">
     <link rel="icon" type="image/png" sizes="48x48" href="/stpc-favicon-48.png">
     <link rel="apple-touch-icon" href="/stpc-apple-touch-icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,100;1,9..144,300..700,100&family=Oswald:wght@300;400;600;700&family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="preload" href="/fonts/shrikhand-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/fraunces-soft-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="assets/sized/st-pete-collective-promo-640.webp" imagesrcset="assets/sized/st-pete-collective-promo-400.webp 400w, assets/sized/st-pete-collective-promo-640.webp 640w, assets/sized/st-pete-collective-promo-960.webp 960w" imagesizes="(max-width: 760px) calc(100vw - 4.5rem), 480px" fetchpriority="high">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -94,6 +105,12 @@
 }
     </script>
     <style>
+        /* Fonts live on joeydrums.com (same fonts as before, no Google request) */
+        @font-face { font-family: 'Fraunces'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('/fonts/fraunces-soft-latin-normal.woff2') format('woff2'); }
+        @font-face { font-family: 'Fraunces'; font-style: italic; font-weight: 300 700; font-display: swap; src: url('/fonts/fraunces-soft-latin-italic.woff2') format('woff2'); }
+        @font-face { font-family: 'Shrikhand'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/shrikhand-latin-400-normal.woff2') format('woff2'); }
+        @font-face { font-family: 'Oswald'; font-style: normal; font-weight: 200 700; font-display: swap; src: url('/fonts/oswald-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+        @font-face { font-family: 'Oswald'; font-style: normal; font-weight: 200 700; font-display: swap; src: url('/fonts/oswald-latin-ext-wght-normal.woff2') format('woff2'); unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
         :root {
             --sand: #e6dcc3;
             --sand-deep: #d9cba9;
@@ -312,6 +329,11 @@
             background: var(--ink);
         }
         .video-frame iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+        .video-cover { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; background: var(--ink); cursor: pointer; }
+        .video-cover img { display: block; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1) saturate(0.9); }
+        .video-play { position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; display: flex; align-items: center; justify-content: center; background: var(--mustard); border: 3px solid var(--ink); border-radius: 50%; box-shadow: 5px 5px 0 var(--ink); transition: transform 0.12s ease, box-shadow 0.12s ease; }
+        .video-play svg { width: 34px; height: 34px; fill: var(--ink); margin-left: 5px; }
+        .video-cover:hover .video-play { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
 
         /* ── LINEUP ── */
         .lineup { list-style: none; max-width: 720px; border-top: 3px solid var(--ink); }
@@ -442,7 +464,7 @@
                 </div>
             </div>
             <div class="hero-photo">
-                <img src="assets/st-pete-collective-promo.jpg" alt="The St Pete Collective band posed on a stucco stairway" width="960" height="1040">
+                <img src="assets/sized/st-pete-collective-promo-640.webp" srcset="assets/sized/st-pete-collective-promo-400.webp 400w, assets/sized/st-pete-collective-promo-640.webp 640w, assets/sized/st-pete-collective-promo-960.webp 960w" sizes="(max-width: 760px) calc(100vw - 4.5rem), 480px" alt="The St Pete Collective band posed on a stucco stairway" width="960" height="1038" fetchpriority="high" decoding="async">
             </div>
         </section>
 
@@ -455,7 +477,10 @@
 
         <section aria-labelledby="watch-heading">
             <h2 id="watch-heading">Watch the band</h2>
-            <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=PLIbuVJBHA6kM" title="St Pete Collective videos" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+            <div class="video-frame"><button class="video-cover" type="button" id="videoCover" aria-label="Play St Pete Collective videos">
+                <img src="assets/sized/st-pete-collective-live-169-960.webp" srcset="assets/sized/st-pete-collective-live-169-640.webp 640w, assets/sized/st-pete-collective-live-169-960.webp 960w, assets/sized/st-pete-collective-live-169-1280.webp 1280w" sizes="(max-width: 760px) calc(100vw - 4.5rem), 1180px" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><polygon points="8 5 19 12 8 19 8 5"/></svg></span>
+            </button></div>
         </section>
 
         <section aria-labelledby="lineup-heading">
@@ -525,6 +550,20 @@ function toggleDrop() {
     var btn = drop.querySelector('.nav-drop-btn');
     var open = drop.classList.toggle('open');
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+/* Video: load the YouTube player only when someone taps play */
+var cover = document.getElementById('videoCover');
+if (cover) {
+    cover.addEventListener('click', function () {
+        var f = document.createElement('iframe');
+        f.src = 'https://www.youtube-nocookie.com/embed/videoseries?list=PLIbuVJBHA6kM&autoplay=1';
+        f.title = 'St Pete Collective videos';
+        f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        f.referrerPolicy = 'strict-origin-when-cross-origin';
+        f.allowFullscreen = true;
+        cover.parentNode.replaceChild(f, cover);
+        f.focus();
+    });
 }
 document.addEventListener('click', function(e) {
     var drop = document.getElementById('navDrop');
